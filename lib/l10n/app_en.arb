@@ -1,0 +1,12 @@
+{
+  "login": "Log In",
+  "email": "Email",
+  "yourEmailExample": "your.email@example.com",
+  "password": "Password",
+  "enterYourPassword": "Enter your password",
+  "forgotPassword": "Forgot Password?",
+  "orContinueWith": "or continue with",
+  "continueWithGoogle": "Continue with Google",
+  "dontHaveAnAccount": "Don't have an account? ",
+  "createAccount": "Create Account"
+}
