@@ -1,5 +1,5 @@
 import 'package:empireone_app/l10n/app_localizations.dart';
-import 'package:empireone_app/pages/login/login.dart';
+import 'package:empireone_app/pages/login_employee/view/view.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -62,7 +62,7 @@ class EmpireOne extends StatelessWidget {
             ),
             foregroundColor: const Color(0xFFFFFFFF),
             // minimumSize: Size(double.infinity, 65),
-            minimumSize: const Size(double.infinity, 56),
+            minimumSize: const Size(double.infinity, 48),
             elevation: 0,
             backgroundColor: Color(0xFF1329A9),
           ),
@@ -100,7 +100,7 @@ final GoRouter _router = GoRouter(
     GoRoute(
       path: '/',
       builder: (BuildContext context, GoRouterState state) {
-        return VerifyLoginPage();
+        return LoginEmployeePage();
         // return AnimatedSplashScreen(
         //   splash: Padding(
         //     padding: const EdgeInsets.symmetric(horizontal: 32),
@@ -120,12 +120,12 @@ final GoRouter _router = GoRouter(
             return const VerifyLoginPage();
           },
         ),
-        // GoRoute(
-        //   path: SigninPage.route,
-        //   builder: (BuildContext context, GoRouterState state) {
-        //     return const SigninPage();
-        //   },
-        // ),
+        GoRoute(
+          path: LoginEmployeePage.route,
+          builder: (BuildContext context, GoRouterState state) {
+            return const LoginEmployeePage();
+          },
+        ),
         // GoRoute(
         //   path: HomePage.route,
         //   builder: (BuildContext context, GoRouterState state) {
