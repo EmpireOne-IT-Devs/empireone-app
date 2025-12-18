@@ -1,7 +1,9 @@
 import 'package:empireone_app/l10n/app_localizations.dart';
-import 'package:empireone_app/pages/login/view/view.dart';
+import 'package:empireone_app/pages/login/login.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+
+import 'pages/verify_login/view/view.dart';
 
 void main() {
   runApp(const EmpireOne());
@@ -98,7 +100,7 @@ final GoRouter _router = GoRouter(
     GoRoute(
       path: '/',
       builder: (BuildContext context, GoRouterState state) {
-        return LoginPage();
+        return VerifyLoginPage();
         // return AnimatedSplashScreen(
         //   splash: Padding(
         //     padding: const EdgeInsets.symmetric(horizontal: 32),
@@ -111,32 +113,32 @@ final GoRouter _router = GoRouter(
         //   duration: 3100,
         // );
       },
-      // routes: <RouteBase>[
-      //   GoRoute(
-      //     path: SignupPage.route,
-      //     builder: (BuildContext context, GoRouterState state) {
-      //       return const SignupPage();
-      //     },
-      //   ),
-      //   GoRoute(
-      //     path: SigninPage.route,
-      //     builder: (BuildContext context, GoRouterState state) {
-      //       return const SigninPage();
-      //     },
-      //   ),
-      //   GoRoute(
-      //     path: HomePage.route,
-      //     builder: (BuildContext context, GoRouterState state) {
-      //       return const HomePage();
-      //     },
-      //   ),
-      //   GoRoute(
-      //     path: AccountPage.route,
-      //     builder: (BuildContext context, GoRouterState state) {
-      //       return const AccountPage();
-      //     },
-      //   ),
-      // ],
+      routes: <RouteBase>[
+        GoRoute(
+          path: VerifyLoginPage.route,
+          builder: (BuildContext context, GoRouterState state) {
+            return const VerifyLoginPage();
+          },
+        ),
+        // GoRoute(
+        //   path: SigninPage.route,
+        //   builder: (BuildContext context, GoRouterState state) {
+        //     return const SigninPage();
+        //   },
+        // ),
+        // GoRoute(
+        //   path: HomePage.route,
+        //   builder: (BuildContext context, GoRouterState state) {
+        //     return const HomePage();
+        //   },
+        // ),
+        // GoRoute(
+        //   path: AccountPage.route,
+        //   builder: (BuildContext context, GoRouterState state) {
+        //     return const AccountPage();
+        //   },
+        // ),
+      ],
     ),
   ],
 );

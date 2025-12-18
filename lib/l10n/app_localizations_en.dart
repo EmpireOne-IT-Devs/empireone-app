@@ -37,4 +37,22 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get createAccount => 'Create Account';
+
+  @override
+  String get resendCodeInstructions => 'Didn\'t receive the code? Check your spam folder or try a different method';
+
+  @override
+  String get verifyLogin => 'Verify Login';
+
+  @override
+  String get enterSixDigit => 'Enter the 6-digit code sent to your email';
+
+  @override
+  String get enterVerificationCode => 'Enter Verification Code';
+
+  @override
+  String get resendCode => 'Resend code in';
+
+  @override
+  String get verifyCode => 'Verify Code';
 }
