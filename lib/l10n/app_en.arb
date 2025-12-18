@@ -8,5 +8,11 @@
   "orContinueWith": "or continue with",
   "continueWithGoogle": "Continue with Google",
   "dontHaveAnAccount": "Don't have an account? ",
-  "createAccount": "Create Account"
+  "createAccount": "Create Account",
+ "resendCodeInstructions": "Didn't receive the code? Check your spam folder or try a different method",
+ "verifyLogin": "Verify Login",
+ "enterSixDigit": "Enter the 6-digit code sent to your email",
+ "enterVerificationCode": "Enter Verification Code",
+ "resendCode": "Resend code in",
+ "verifyCode": "Verify Code"
 }
