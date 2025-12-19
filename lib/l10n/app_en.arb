@@ -14,5 +14,10 @@
  "enterSixDigit": "Enter the 6-digit code sent to your email",
  "enterVerificationCode": "Enter Verification Code",
  "resendCode": "Resend code in",
- "verifyCode": "Verify Code"
+ "verifyCode": "Verify Code",
+ "confirmPassword": "Confim Password",
+ "imAgreeToThe": "I’m agree to the",
+ "alreadyHaveAnAccount": "Already have an account?",
+ "startYourJourney": "Start your journey",
+ "welcomeBack": "Welcome back!"
 }
