@@ -55,4 +55,19 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get verifyCode => 'Verify Code';
+
+  @override
+  String get confirmPassword => 'Confim Password';
+
+  @override
+  String get imAgreeToThe => 'I’m agree to the';
+
+  @override
+  String get alreadyHaveAnAccount => 'Already have an account?';
+
+  @override
+  String get startYourJourney => 'Start your journey';
+
+  @override
+  String get welcomeBack => 'Welcome back!';
 }

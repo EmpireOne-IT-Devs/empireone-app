@@ -188,6 +188,36 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Verify Code'**
   String get verifyCode;
+
+  /// No description provided for @confirmPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Confim Password'**
+  String get confirmPassword;
+
+  /// No description provided for @imAgreeToThe.
+  ///
+  /// In en, this message translates to:
+  /// **'I’m agree to the'**
+  String get imAgreeToThe;
+
+  /// No description provided for @alreadyHaveAnAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Already have an account?'**
+  String get alreadyHaveAnAccount;
+
+  /// No description provided for @startYourJourney.
+  ///
+  /// In en, this message translates to:
+  /// **'Start your journey'**
+  String get startYourJourney;
+
+  /// No description provided for @welcomeBack.
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome back!'**
+  String get welcomeBack;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
