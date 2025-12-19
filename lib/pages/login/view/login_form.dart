@@ -2,6 +2,7 @@ import 'package:empireone_app/l10n/app_localizations.dart';
 import 'package:empireone_app/pages/login/view/login_footer.dart';
 import 'package:empireone_app/pages/widgets/labeled_text_field.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class LoginForm extends StatelessWidget {
@@ -45,36 +46,23 @@ class LoginForm extends StatelessWidget {
                 child: Text(
                   AppLocalizations.of(context)?.email ?? '',
                   style: GoogleFonts.inter(
-                    color: Theme.of(context).colorScheme.onPrimary,
-                    textStyle: Theme.of(context).textTheme.labelMedium,
+                    textStyle: Theme.of(context).textTheme.labelMedium
+                        ?.copyWith(
+                          color: Theme.of(context).colorScheme.onPrimary,
+                          fontSize: 11.9,
+                        ),
                   ),
                 ),
               ),
             ),
             LabeledTextField(
-              onChanged: (value) {
-                // bloc.add(
-                //   EmailChanged(value),
-                // );
-              },
+              onChanged: (value) {},
               hintText: AppLocalizations.of(context)?.yourEmailExample ?? '',
-              prefixIcon: Icon(Icons.email_outlined),
+              prefixIcon: SvgPicture.asset(
+                'assets/icons/email.svg',
+                fit: BoxFit.contain,
+              ),
               textInputAction: TextInputAction.next,
-              // style: TextStyle(
-              //   color: Theme.of(context).colorScheme.onSecondary,
-              // ),
-              // textAlign: TextAlign.left,
-              // decoration: InputDecoration(
-              //   hintText: 'your.email@example.com',
-              //   hintStyle: GoogleFonts.inter(
-              //     textStyle: Theme.of(context).textTheme.bodyMedium,
-              //     color: Theme.of(context).colorScheme.onSurfaceVariant,
-              //   ),
-              //   prefixIcon: Icon(
-              //     Icons.email_outlined,
-              //     color: Theme.of(context).colorScheme.onSurfaceVariant,
-              //   ),
-              // ),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 16),
@@ -83,8 +71,11 @@ class LoginForm extends StatelessWidget {
                 child: Text(
                   AppLocalizations.of(context)?.password ?? '',
                   style: GoogleFonts.inter(
-                    color: Theme.of(context).colorScheme.onPrimary,
-                    textStyle: Theme.of(context).textTheme.labelMedium,
+                    textStyle: Theme.of(context).textTheme.labelMedium
+                        ?.copyWith(
+                          color: Theme.of(context).colorScheme.onPrimary,
+                          fontSize: 11.9,
+                        ),
                   ),
                 ),
               ),
@@ -92,18 +83,27 @@ class LoginForm extends StatelessWidget {
             LabeledTextField(
               onChanged: (value) {},
               hintText: AppLocalizations.of(context)?.enterYourPassword ?? '',
-              prefixIcon: Icon(Icons.lock_outline),
+              prefixIcon: SvgPicture.asset(
+                'assets/icons/passwordlock.svg',
+                fit: BoxFit.contain,
+              ),
               textInputAction: TextInputAction.done,
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 16),
+              padding: const EdgeInsets.symmetric(vertical: 8),
               child: Align(
                 alignment: Alignment.centerRight,
-                child: Text(
-                  AppLocalizations.of(context)?.forgotPassword ?? '',
-                  style: GoogleFonts.inter(
-                    textStyle: Theme.of(context).textTheme.labelMedium,
-                    color: Theme.of(context).colorScheme.primary,
+                child: TextButton(
+                  onPressed: () {},
+                  child: Text(
+                    AppLocalizations.of(context)?.forgotPassword ?? '',
+                    style: GoogleFonts.inter(
+                      textStyle: Theme.of(context).textTheme.labelMedium
+                          ?.copyWith(
+                            color: Theme.of(context).colorScheme.primary,
+                            fontSize: 11.9,
+                          ),
+                    ),
                   ),
                 ),
               ),

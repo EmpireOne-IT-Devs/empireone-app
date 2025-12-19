@@ -1,5 +1,7 @@
 import 'package:empireone_app/l10n/app_localizations.dart';
+import 'package:empireone_app/pages/verify_login/view/view.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class LoginFooter extends StatelessWidget {
@@ -11,12 +13,15 @@ class LoginFooter extends StatelessWidget {
       children: [
         ElevatedButton(
           onPressed: () {
-            // context.push(HomePage.route);
+            context.push(VerifyLoginPage.route);
           },
           child: Text(
             AppLocalizations.of(context)?.login ?? '',
             style: GoogleFonts.inter(
-              textStyle: Theme.of(context).textTheme.labelLarge,
+              textStyle: Theme.of(context).textTheme.labelLarge?.copyWith(
+                fontSize: 13.6,
+                color: Theme.of(context).colorScheme.onSurface,
+              ),
             ),
           ),
         ),
@@ -35,8 +40,11 @@ class LoginFooter extends StatelessWidget {
                 child: Text(
                   AppLocalizations.of(context)?.orContinueWith ?? '',
                   style: GoogleFonts.inter(
-                    textStyle: Theme.of(context).textTheme.labelMedium,
-                    color: Theme.of(context).colorScheme.onTertiary,
+                    textStyle: Theme.of(context).textTheme.labelMedium
+                        ?.copyWith(
+                          color: Theme.of(context).colorScheme.onTertiary,
+                          fontSize: 11.9,
+                        ),
                   ),
                 ),
               ),
@@ -62,9 +70,11 @@ class LoginFooter extends StatelessWidget {
                 child: Text(
                   AppLocalizations.of(context)?.continueWithGoogle ?? '',
                   style: GoogleFonts.inter(
-                    textStyle: Theme.of(context).textTheme.titleSmall,
-                    fontWeight: FontWeight.w600,
-                    color: Theme.of(context).colorScheme.onPrimary,
+                    textStyle: Theme.of(context).textTheme.titleSmall?.copyWith(
+                      color: Theme.of(context).colorScheme.onPrimary,
+                      fontSize: 13.6,
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
                 ),
               ),
@@ -79,15 +89,22 @@ class LoginFooter extends StatelessWidget {
               Text(
                 AppLocalizations.of(context)?.dontHaveAnAccount ?? '',
                 style: GoogleFonts.inter(
-                  textStyle: Theme.of(context).textTheme.bodyMedium,
-                  color: Theme.of(context).colorScheme.onTertiary,
+                  textStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                    color: Theme.of(context).colorScheme.onTertiary,
+                    fontSize: 13.6,
+                  ),
                 ),
               ),
-              Text(
-                AppLocalizations.of(context)?.createAccount ?? '',
-                style: GoogleFonts.inter(
-                  textStyle: Theme.of(context).textTheme.titleSmall,
-                  color: Theme.of(context).colorScheme.primary,
+              TextButton(
+                onPressed: () {},
+                child: Text(
+                  AppLocalizations.of(context)?.createAccount ?? '',
+                  style: GoogleFonts.inter(
+                    textStyle: Theme.of(context).textTheme.titleSmall?.copyWith(
+                      color: Theme.of(context).colorScheme.primary,
+                      fontSize: 13.6,
+                    ),
+                  ),
                 ),
               ),
             ],
