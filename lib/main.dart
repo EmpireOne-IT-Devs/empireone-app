@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import 'pages/sign_up/view/view.dart';
+import 'pages/verify_account/view/view.dart';
 import 'pages/verify_login/view/view.dart';
 
 void main() {
@@ -134,12 +135,12 @@ final GoRouter _router = GoRouter(
             return const SignupPage();
           },
         ),
-        // GoRoute(
-        //   path: AccountPage.route,
-        //   builder: (BuildContext context, GoRouterState state) {
-        //     return const AccountPage();
-        //   },
-        // ),
+        GoRoute(
+          path: VerifyAccountPage.route,
+          builder: (BuildContext context, GoRouterState state) {
+            return const VerifyAccountPage();
+          },
+        ),
       ],
     ),
   ],

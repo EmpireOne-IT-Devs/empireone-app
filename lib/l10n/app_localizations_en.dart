@@ -70,4 +70,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get welcomeBack => 'Welcome back!';
+
+  @override
+  String get verifyAccount => 'Verify Account';
+
+  @override
+  String get didntReceiveTheCode => 'Didn\'t receive the code? Check your spam folder or try reach out to HR for verification.';
 }
