@@ -26,7 +26,7 @@ class SignupForm extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: Text(
-                AppLocalizations.of(context)?.login ?? '',
+                AppLocalizations.of(context)?.createAccount ?? '',
                 style: GoogleFonts.inter(
                   textStyle: Theme.of(context).textTheme.titleLarge,
                   color: Theme.of(context).colorScheme.primary,

@@ -218,6 +218,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Welcome back!'**
   String get welcomeBack;
+
+  /// No description provided for @verifyAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Verify Account'**
+  String get verifyAccount;
+
+  /// No description provided for @didntReceiveTheCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Didn\'t receive the code? Check your spam folder or try reach out to HR for verification.'**
+  String get didntReceiveTheCode;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

@@ -19,5 +19,7 @@
  "imAgreeToThe": "I’m agree to the",
  "alreadyHaveAnAccount": "Already have an account?",
  "startYourJourney": "Start your journey",
- "welcomeBack": "Welcome back!"
+ "welcomeBack": "Welcome back!",
+ "verifyAccount": "Verify Account",
+  "didntReceiveTheCode": "Didn't receive the code? Check your spam folder or try reach out to HR for verification."
 }

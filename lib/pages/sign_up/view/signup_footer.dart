@@ -1,5 +1,7 @@
 import 'package:empireone_app/l10n/app_localizations.dart';
+import 'package:empireone_app/pages/verify_account/view/view.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class SignupFooter extends StatelessWidget {
@@ -11,10 +13,10 @@ class SignupFooter extends StatelessWidget {
       children: [
         ElevatedButton(
           onPressed: () {
-            // context.push(VerifyLoginPage.route);
+            context.push(VerifyAccountPage.route);
           },
           child: Text(
-            AppLocalizations.of(context)?.login ?? '',
+            AppLocalizations.of(context)?.createAccount ?? '',
             style: GoogleFonts.inter(
               textStyle: Theme.of(context).textTheme.labelLarge?.copyWith(
                 fontSize: 13.6,
