@@ -21,5 +21,10 @@
  "startYourJourney": "Start your journey",
  "welcomeBack": "Welcome back!",
  "verifyAccount": "Verify Account",
-  "didntReceiveTheCode": "Didn't receive the code? Check your spam folder or try reach out to HR for verification."
-}
+  "didntReceiveTheCode": "Didn't receive the code? Check your spam folder or try reach out to HR for verification.",
+  "enterEmailReceiveCode": "Enter your email to receive a verification code",
+  "sendVerificationCode": "Send Verification Code",
+  "backToLogin": "Back to Login", 
+  "wellSendSixDigitVerificationEmail": "We'll send a 6-digit verification code to your email",
+  "emailAddress" : "Email Address"
+  }

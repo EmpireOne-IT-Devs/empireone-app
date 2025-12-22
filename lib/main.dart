@@ -4,6 +4,7 @@ import 'package:empireone_app/pages/signup_employee/view/view.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import 'pages/forgot_password/view/view.dart';
 import 'pages/sign_up/view/view.dart';
 import 'pages/verify_account/view/view.dart';
 import 'pages/verify_login/view/view.dart';
@@ -39,7 +40,6 @@ class EmpireOne extends StatelessWidget {
           onSurfaceVariant: Color(0xFFCCCCCC),
           onTertiary: Color(0xFF4B5563),
           primaryContainer: Color(0xFFF9FCFF),
-          
         ),
         textTheme: const TextTheme(
           displayLarge: TextStyle(fontSize: 64, fontWeight: FontWeight.w400),
@@ -113,7 +113,7 @@ final GoRouter _router = GoRouter(
     GoRoute(
       path: '/',
       builder: (BuildContext context, GoRouterState state) {
-        return SignupPage();
+        return ForgotPasswordPage();
         // return AnimatedSplashScreen(
         //   splash: Padding(
         //     padding: const EdgeInsets.symmetric(horizontal: 32),
@@ -149,6 +149,12 @@ final GoRouter _router = GoRouter(
           path: VerifyAccountPage.route,
           builder: (BuildContext context, GoRouterState state) {
             return const VerifyAccountPage();
+          },
+        ),
+        GoRoute(
+          path: ForgotPasswordPage.route,
+          builder: (BuildContext context, GoRouterState state) {
+            return const ForgotPasswordPage();
           },
         ),
       ],
