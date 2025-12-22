@@ -113,7 +113,7 @@ final GoRouter _router = GoRouter(
     GoRoute(
       path: '/',
       builder: (BuildContext context, GoRouterState state) {
-        return SignupEmployeePage();
+        return SignupPage();
         // return AnimatedSplashScreen(
         //   splash: Padding(
         //     padding: const EdgeInsets.symmetric(horizontal: 32),

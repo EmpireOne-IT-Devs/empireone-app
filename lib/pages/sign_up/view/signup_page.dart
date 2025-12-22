@@ -1,5 +1,7 @@
+import 'package:empireone_app/pages/sign_up/bloc/bloc.dart';
 import 'package:empireone_app/pages/sign_up/view/view.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SignupPage extends StatelessWidget {
   static const route = '/signup';
@@ -8,23 +10,28 @@ class SignupPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(),
-      body: CustomScrollView(
-        slivers: [
-          SliverToBoxAdapter(
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 48),
-              child: SignupHeading(),
+    return BlocProvider(
+      create: (context) => SignupBloc(
+        initialState: SignupState(),
+      ),
+      child: Scaffold(
+        appBar: AppBar(),
+        body: CustomScrollView(
+          slivers: [
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 48),
+                child: SignupHeading(),
+              ),
             ),
-          ),
-          SliverToBoxAdapter(
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(16, 16, 16, 32),
-              child: SignupForm(),
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(16, 16, 16, 32),
+                child: SignupForm(),
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

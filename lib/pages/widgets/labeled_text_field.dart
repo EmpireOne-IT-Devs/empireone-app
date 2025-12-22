@@ -6,12 +6,14 @@ class LabeledTextField extends StatelessWidget {
   final ValueChanged? onChanged;
   final Widget prefixIcon;
   final TextInputAction textInputAction;
+  final Widget? error;
   const LabeledTextField({
     super.key,
     this.onChanged,
     required this.hintText,
     required this.prefixIcon,
     required this.textInputAction,
+    this.error,
   });
 
   @override
@@ -41,6 +43,9 @@ class LabeledTextField extends StatelessWidget {
           minWidth: 20,
           minHeight: 20,
         ),
+        error: error,
+        // errorText: ,
+        errorStyle: TextStyle(color: Theme.of(context).colorScheme.error),
       ),
     );
   }
