@@ -1,22 +1,21 @@
 import 'package:empireone_app/l10n/app_localizations.dart';
-import 'package:empireone_app/models/models.dart';
-import 'package:empireone_app/pages/sign_up/bloc/signup_bloc.dart';
-import 'package:empireone_app/pages/sign_up/bloc/signup_event.dart';
-import 'package:empireone_app/pages/sign_up/bloc/signup_state/signup_state.dart';
-import 'package:empireone_app/pages/sign_up/view/signup_footer.dart';
-import 'package:empireone_app/pages/widgets/labeled_text_field.dart';
+import 'package:empireone_app/models/textfield_input/textfield_input.dart';
+import 'package:empireone_app/pages/signup_employee/bloc/bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class SignupForm extends StatelessWidget {
-  const SignupForm({super.key});
+import '../widgets/widget.dart';
+
+class SignupEmployeeForm extends StatelessWidget {
+  const SignupEmployeeForm({super.key});
 
   @override
   Widget build(BuildContext context) {
-    var bloc = context.read<SignupBloc>();
-    return BlocBuilder<SignupBloc, SignupState>(
+    var bloc = context.read<SignupEmployeeBloc>();
+    return BlocBuilder<SignupEmployeeBloc, SignupEmployeeState>(
       builder: (context, state) {
         return Container(
           constraints: BoxConstraints(
@@ -63,18 +62,27 @@ class SignupForm extends StatelessWidget {
                     ),
                   ),
                 ),
-                LabeledTextField(
-                  error: Text(state.signupEmail.errorType.message.toString()),
+                SignupEmployeeField(
                   onChanged: (value) {
-                    bloc.add(SignupEmailChanged(value));
+                    bloc.add(EmployeeIdChanged(value));
                   },
-                  hintText:
-                      AppLocalizations.of(context)?.yourEmailExample ?? '',
+                  hintText: '35653445',
                   prefixIcon: SvgPicture.asset(
-                    'assets/icons/email.svg',
+                    'assets/icons/employeeicon.svg',
                     fit: BoxFit.contain,
                   ),
                   textInputAction: TextInputAction.next,
+                  textInputType: TextInputType.number,
+                  textInputFormatter: [
+                    FilteringTextInputFormatter.digitsOnly,
+                    LengthLimitingTextInputFormatter(6),
+                  ],
+                  errorStyle: TextStyle(
+                    color: Theme.of(context).colorScheme.error,
+                  ),
+                  errorText: state.employeeId.value != ''
+                      ? ''
+                      : state.employeeId.errorType.message,
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 16),
@@ -92,13 +100,14 @@ class SignupForm extends StatelessWidget {
                     ),
                   ),
                 ),
-                LabeledTextField(
-                  onChanged: (value) {
-                    bloc.add(SignupPasswordChanged(value));
-                  },
-                  error: Text(
-                    state.signupPassword.errorType.message.toString(),
+                SignupEmployeeField(
+                  errorStyle: TextStyle(
+                    color: Theme.of(context).colorScheme.error,
                   ),
+                  errorText: state.signupEmployeePassword.errorType.message,
+                  onChanged: (value) {
+                    bloc.add(EmployeePasswordChanged(value));
+                  },
                   hintText:
                       AppLocalizations.of(context)?.enterYourPassword ?? '',
                   prefixIcon: SvgPicture.asset(
@@ -106,6 +115,8 @@ class SignupForm extends StatelessWidget {
                     fit: BoxFit.contain,
                   ),
                   textInputAction: TextInputAction.next,
+                  textInputType: TextInputType.text,
+                  textInputFormatter: [],
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 16),
@@ -123,27 +134,30 @@ class SignupForm extends StatelessWidget {
                     ),
                   ),
                 ),
-                LabeledTextField(
-                  onChanged: (value) {
-                    bloc.add(SignupConfirmPasswordChanged(value));
-                  },
-                  error: Text(
-                    state.signupConfirmPassword.errorType.message.toString(),
+                SignupEmployeeField(
+                  errorStyle: TextStyle(
+                    color: Theme.of(context).colorScheme.error,
                   ),
+                  errorText:
+                      state.signupEmployeeConfirmPassword.errorType.message,
+                  onChanged: (value) {
+                    bloc.add(SignupEmployeeConfirmPassword(value));
+                  },
                   hintText: AppLocalizations.of(context)?.confirmPassword ?? '',
                   prefixIcon: SvgPicture.asset(
-                    'assets/icons/passwordlock.svg',
+                    'assets/icons/email.svg',
                     fit: BoxFit.contain,
                   ),
                   textInputAction: TextInputAction.done,
+                  textInputType: TextInputType.text,
+                  textInputFormatter: [],
                 ),
                 Row(
-                  crossAxisAlignment: CrossAxisAlignment
-                      .start, 
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Checkbox(
                       onChanged: (value) {
-                        bloc.add(SignupAgreementCheckBoxPressed(state.isChecked));
+                        bloc.add(AgreementCheckBoxPressed(state.isChecked));
                       },
                       side: BorderSide(width: 0.5),
                       shape: RoundedRectangleBorder(
@@ -186,7 +200,52 @@ class SignupForm extends StatelessWidget {
                     ),
                   ],
                 ),
-                SignupFooter(),
+                ElevatedButton(
+                  onPressed: () {},
+                  child: Text(
+                    AppLocalizations.of(context)?.createAccount ?? '',
+                    style: GoogleFonts.inter(
+                      textStyle: Theme.of(context).textTheme.labelLarge
+                          ?.copyWith(
+                            fontSize: 13.6,
+                            color: Theme.of(context).colorScheme.onSurface,
+                          ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(bottom: 16),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text(
+                        AppLocalizations.of(context)?.alreadyHaveAnAccount ??
+                            '',
+                        style: GoogleFonts.inter(
+                          textStyle: Theme.of(context).textTheme.bodyMedium
+                              ?.copyWith(
+                                color: Theme.of(context).colorScheme.onTertiary,
+                                fontSize: 13.6,
+                              ),
+                        ),
+                      ),
+                      TextButton(
+                        onPressed: () {},
+                        child: Text(
+                          AppLocalizations.of(context)?.login ?? '',
+                          style: GoogleFonts.inter(
+                            textStyle: Theme.of(context).textTheme.titleSmall
+                                ?.copyWith(
+                                  color: Theme.of(context).colorScheme.primary,
+                                  fontSize: 13.6,
+                                ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               ],
             ),
           ),

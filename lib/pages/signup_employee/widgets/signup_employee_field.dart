@@ -1,24 +1,33 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class LabeledTextField extends StatelessWidget {
-  final String hintText;
+class SignupEmployeeField extends StatelessWidget {
+  final String? hintText;
   final ValueChanged? onChanged;
   final Widget prefixIcon;
   final TextInputAction textInputAction;
-  final Widget? error;
-  const LabeledTextField({
+  final TextInputType textInputType;
+  final List<TextInputFormatter>? textInputFormatter;
+  final TextStyle errorStyle;
+  final String? errorText;
+  const SignupEmployeeField({
     super.key,
-    this.onChanged,
     required this.hintText,
+    this.onChanged,
     required this.prefixIcon,
     required this.textInputAction,
-    this.error,
+    required this.textInputType,
+    this.textInputFormatter,
+    required this.errorStyle,
+     this.errorText,
   });
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      inputFormatters: textInputFormatter,
+      keyboardType: textInputType,
       onChanged: (value) => onChanged?.call(value),
       textAlign: TextAlign.left,
       textInputAction: textInputAction,
@@ -43,9 +52,8 @@ class LabeledTextField extends StatelessWidget {
           minWidth: 20,
           minHeight: 20,
         ),
-        error: error,
-        // errorText: ,
-        errorStyle: TextStyle(color: Theme.of(context).colorScheme.error),
+        errorText: errorText,
+        errorStyle: errorStyle,
       ),
     );
   }
