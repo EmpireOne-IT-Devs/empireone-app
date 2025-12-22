@@ -3,12 +3,14 @@ import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class SignupEmployeeField extends StatelessWidget {
-  final String hintText;
+  final String? hintText;
   final ValueChanged? onChanged;
   final Widget prefixIcon;
   final TextInputAction textInputAction;
   final TextInputType textInputType;
   final List<TextInputFormatter>? textInputFormatter;
+  final TextStyle errorStyle;
+  final String? errorText;
   const SignupEmployeeField({
     super.key,
     required this.hintText,
@@ -17,6 +19,8 @@ class SignupEmployeeField extends StatelessWidget {
     required this.textInputAction,
     required this.textInputType,
     this.textInputFormatter,
+    required this.errorStyle,
+     this.errorText,
   });
 
   @override
@@ -48,6 +52,8 @@ class SignupEmployeeField extends StatelessWidget {
           minWidth: 20,
           minHeight: 20,
         ),
+        errorText: errorText,
+        errorStyle: errorStyle,
       ),
     );
   }

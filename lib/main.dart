@@ -1,5 +1,4 @@
 import 'package:empireone_app/l10n/app_localizations.dart';
-import 'package:empireone_app/pages/login/view/login_page.dart';
 import 'package:empireone_app/pages/login_employee/view/view.dart';
 import 'package:empireone_app/pages/signup_employee/view/view.dart';
 import 'package:flutter/material.dart';
@@ -33,13 +32,14 @@ class EmpireOne extends StatelessWidget {
           inversePrimary: Color(0xFFFFF5E9),
           secondary: Color(0xFF337ace),
           onSecondary: Color(0xFF98DED9),
-          error: Color(0xFF2C4E80),
+          error: Color(0xFFFF6B6B),
           onError: Color(0xFF1329A9),
           surface: Color(0xFF1329A9),
           onSurface: Color(0xFFFFFFFF),
           onSurfaceVariant: Color(0xFFCCCCCC),
           onTertiary: Color(0xFF4B5563),
           primaryContainer: Color(0xFFF9FCFF),
+          
         ),
         textTheme: const TextTheme(
           displayLarge: TextStyle(fontSize: 64, fontWeight: FontWeight.w400),
@@ -84,6 +84,14 @@ class EmpireOne extends StatelessWidget {
           // contentPadding: EdgeInsets.symmetric(vertical: 15),
           isDense: true, // Crucial for manual height control
           contentPadding: const EdgeInsets.fromLTRB(15, 16, 15, 16),
+          errorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: BorderSide(width: 0.5, color: Color(0xFF4B5563)),
+          ),
+          focusedErrorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: BorderSide(width: 0.5, color: Color(0xFF4B5563)),
+          ),
         ),
         outlinedButtonTheme: OutlinedButtonThemeData(
           style: OutlinedButton.styleFrom(
