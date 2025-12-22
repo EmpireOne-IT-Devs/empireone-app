@@ -76,4 +76,19 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get didntReceiveTheCode => 'Didn\'t receive the code? Check your spam folder or try reach out to HR for verification.';
+
+  @override
+  String get enterEmailReceiveCode => 'Enter your email to receive a verification code';
+
+  @override
+  String get sendVerificationCode => 'Send Verification Code';
+
+  @override
+  String get backToLogin => 'Back to Login';
+
+  @override
+  String get wellSendSixDigitVerificationEmail => 'We\'ll send a 6-digit verification code to your email';
+
+  @override
+  String get emailAddress => 'Email Address';
 }

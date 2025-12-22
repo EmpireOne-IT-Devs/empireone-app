@@ -230,6 +230,36 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Didn\'t receive the code? Check your spam folder or try reach out to HR for verification.'**
   String get didntReceiveTheCode;
+
+  /// No description provided for @enterEmailReceiveCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your email to receive a verification code'**
+  String get enterEmailReceiveCode;
+
+  /// No description provided for @sendVerificationCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Send Verification Code'**
+  String get sendVerificationCode;
+
+  /// No description provided for @backToLogin.
+  ///
+  /// In en, this message translates to:
+  /// **'Back to Login'**
+  String get backToLogin;
+
+  /// No description provided for @wellSendSixDigitVerificationEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'We\'ll send a 6-digit verification code to your email'**
+  String get wellSendSixDigitVerificationEmail;
+
+  /// No description provided for @emailAddress.
+  ///
+  /// In en, this message translates to:
+  /// **'Email Address'**
+  String get emailAddress;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
