@@ -1,6 +1,7 @@
 import 'package:empireone_app/l10n/app_localizations.dart';
 import 'package:empireone_app/pages/login/view/login_page.dart';
 import 'package:empireone_app/pages/login_employee/view/view.dart';
+import 'package:empireone_app/pages/signup_employee/view/view.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -38,6 +39,7 @@ class EmpireOne extends StatelessWidget {
           onSurface: Color(0xFFFFFFFF),
           onSurfaceVariant: Color(0xFFCCCCCC),
           onTertiary: Color(0xFF4B5563),
+          primaryContainer: Color(0xFFF9FCFF),
         ),
         textTheme: const TextTheme(
           displayLarge: TextStyle(fontSize: 64, fontWeight: FontWeight.w400),
@@ -103,7 +105,7 @@ final GoRouter _router = GoRouter(
     GoRoute(
       path: '/',
       builder: (BuildContext context, GoRouterState state) {
-        return SignupPage();
+        return SignupEmployeePage();
         // return AnimatedSplashScreen(
         //   splash: Padding(
         //     padding: const EdgeInsets.symmetric(horizontal: 32),
