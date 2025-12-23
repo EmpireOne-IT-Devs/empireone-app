@@ -260,6 +260,42 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Email Address'**
   String get emailAddress;
+
+  /// No description provided for @resetPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset Password'**
+  String get resetPassword;
+
+  /// No description provided for @createNewSecurePassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Create a new secure password'**
+  String get createNewSecurePassword;
+
+  /// No description provided for @newPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'New Password'**
+  String get newPassword;
+
+  /// No description provided for @passwordMustContain.
+  ///
+  /// In en, this message translates to:
+  /// **'Password must contain:'**
+  String get passwordMustContain;
+
+  /// No description provided for @enterNewPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter new password'**
+  String get enterNewPassword;
+
+  /// No description provided for @confirmNewPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm new password'**
+  String get confirmNewPassword;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

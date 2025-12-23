@@ -26,5 +26,11 @@
   "sendVerificationCode": "Send Verification Code",
   "backToLogin": "Back to Login", 
   "wellSendSixDigitVerificationEmail": "We'll send a 6-digit verification code to your email",
-  "emailAddress" : "Email Address"
+  "emailAddress" : "Email Address",
+  "resetPassword" : "Reset Password",
+  "createNewSecurePassword" : "Create a new secure password",
+  "newPassword" : "New Password",
+  "passwordMustContain": "Password must contain:",
+  "enterNewPassword" : "Enter new password",
+  "confirmNewPassword" : "Confirm new password"
   }
