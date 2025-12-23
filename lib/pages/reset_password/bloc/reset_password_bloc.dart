@@ -6,8 +6,7 @@ class ResetPasswordBloc extends Bloc<ResetPasswordEvent, ResetPasswordState> {
   ResetPasswordBloc({required ResetPasswordState initialState})
     : super(initialState) {
     on<ResetNewPasswordChanged>(_resetNewPasswordChanged);
-    // on<ResetConfirmNewPassword>(_resetConfirmNewPassword);
-
+    on<ResetConfirmNewPassword>(_resetConfirmNewPassword);
   }
 
   void _resetNewPasswordChanged(
@@ -21,20 +20,10 @@ class ResetPasswordBloc extends Bloc<ResetPasswordEvent, ResetPasswordState> {
       errorType = ErrorType.empty;
     } else if (event.resetNewPassword.length < 6) {
       errorType = ErrorType.length;
-    } else if (!RegExp(r'[a-z]').hasMatch(event.resetNewPassword)) {
-      errorType = ErrorType.lowercaseLetter;
     } else if (!RegExp(r'[A-Z]').hasMatch(event.resetNewPassword)) {
       errorType = ErrorType.uppercaseLetter;
     } else if (!RegExp(r'[0-9]').hasMatch(event.resetNewPassword)) {
       errorType = ErrorType.digitNumber;
-    } else if (!RegExp(
-      r'[!@#\$%^&*(),.?":{}|<>]',
-    ).hasMatch(event.resetNewPassword)) {
-      errorType = ErrorType.specialCharacter;
-    } else if (!RegExp(
-      r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+",
-    ).hasMatch(event.resetNewPassword)) {
-      errorType = ErrorType.format;
     } else {
       errorType = ErrorType.none;
     }
@@ -42,9 +31,31 @@ class ResetPasswordBloc extends Bloc<ResetPasswordEvent, ResetPasswordState> {
       value: event.resetNewPassword,
       errorType: errorType,
     );
-    print(resetNewPassword);
     emit(state.copyWith(resetNewPassword: resetNewPassword));
   }
 
+  void _resetConfirmNewPassword(
+    ResetConfirmNewPassword event,
+    Emitter<ResetPasswordState> emit,
+  ) {
+    var resetConfrimNewPassword = state.resetConfirmNewPassword;
 
+    var errorType = ErrorType.none;
+    if (event.resetConfirmNewPassword.isEmpty) {
+      errorType = ErrorType.empty;
+    } else if (event.resetConfirmNewPassword.length < 8) {
+      errorType = ErrorType.length;
+    } else if (!RegExp(r'[A-Z]').hasMatch(event.resetConfirmNewPassword)) {
+      errorType = ErrorType.uppercaseLetter;
+    } else if (!RegExp(r'[0-9]').hasMatch(event.resetConfirmNewPassword)) {
+      errorType = ErrorType.digitNumber;
+    } else {
+      errorType = ErrorType.none;
+    }
+    resetConfrimNewPassword = resetConfrimNewPassword.copyWith(
+      value: event.resetConfirmNewPassword,
+      errorType: errorType,
+    );
+    emit(state.copyWith(resetConfirmNewPassword: resetConfrimNewPassword));
+  }
 }
