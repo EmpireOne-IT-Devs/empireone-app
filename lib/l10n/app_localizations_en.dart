@@ -91,4 +91,22 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get emailAddress => 'Email Address';
+
+  @override
+  String get resetPassword => 'Reset Password';
+
+  @override
+  String get createNewSecurePassword => 'Create a new secure password';
+
+  @override
+  String get newPassword => 'New Password';
+
+  @override
+  String get passwordMustContain => 'Password must contain:';
+
+  @override
+  String get enterNewPassword => 'Enter new password';
+
+  @override
+  String get confirmNewPassword => 'Confirm new password';
 }

@@ -1,5 +1,6 @@
 import 'package:empireone_app/l10n/app_localizations.dart';
 import 'package:empireone_app/pages/login_employee/view/view.dart';
+import 'package:empireone_app/pages/reset_password/view/view.dart';
 import 'package:empireone_app/pages/signup_employee/view/view.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -113,7 +114,7 @@ final GoRouter _router = GoRouter(
     GoRoute(
       path: '/',
       builder: (BuildContext context, GoRouterState state) {
-        return ForgotPasswordPage();
+        return ResetPasswordPage();
         // return AnimatedSplashScreen(
         //   splash: Padding(
         //     padding: const EdgeInsets.symmetric(horizontal: 32),
@@ -155,6 +156,12 @@ final GoRouter _router = GoRouter(
           path: ForgotPasswordPage.route,
           builder: (BuildContext context, GoRouterState state) {
             return const ForgotPasswordPage();
+          },
+        ),
+        GoRoute(
+          path: ResetPasswordPage.route,
+          builder: (BuildContext context, GoRouterState state) {
+            return const ResetPasswordPage();
           },
         ),
       ],
