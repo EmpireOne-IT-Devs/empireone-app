@@ -1,5 +1,6 @@
 import 'package:empireone_app/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class VerifyAccountHeading extends StatelessWidget {
@@ -15,10 +16,9 @@ class VerifyAccountHeading extends StatelessWidget {
             borderRadius: BorderRadius.circular(24),
             color: Theme.of(context).colorScheme.onSurface,
           ),
-          constraints: BoxConstraints(minHeight: 96, maxWidth: 96),
-          child: Image.asset('assets/images/verifylogo.png'),
-          // child: Icon(Icons.verified_user),
-          // child: Image.asset('assets/images/verifylogo.png'),
+          // constraints: BoxConstraints(minHeight: 96, maxWidth: 96),
+          padding: EdgeInsets.all(16),
+          child: SvgPicture.asset('assets/icons/verifylogin.svg'),
         ),
         Padding(
           padding: const EdgeInsets.fromLTRB(0, 16, 0, 8),
