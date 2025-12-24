@@ -32,5 +32,8 @@
   "newPassword" : "New Password",
   "passwordMustContain": "Password must contain:",
   "enterNewPassword" : "Enter new password",
-  "confirmNewPassword" : "Confirm new password"
+  "confirmNewPassword" : "Confirm new password",
+  "passwordReset" : "Password Reset!",
+  "yourPasswordSuccessfully": "Your password has been successfully reset",
+  "youCanLogNewPassword": "You can now log in with your new password"
   }

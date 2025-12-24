@@ -1,5 +1,4 @@
 import 'package:empireone_app/l10n/app_localizations.dart';
-import 'package:empireone_app/models/textfield_input/textfield_input.dart';
 import 'package:empireone_app/pages/reset_password/bloc/bloc.dart';
 import 'package:empireone_app/pages/widgets/labeled_text_field.dart';
 import 'package:flutter/material.dart';
