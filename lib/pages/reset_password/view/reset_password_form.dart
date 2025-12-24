@@ -47,7 +47,7 @@ class ResetPasswordForm extends StatelessWidget {
                   hintText:
                       AppLocalizations.of(context)?.enterNewPassword ?? '',
                   prefixIcon: SvgPicture.asset(
-                    'assets/icons/email.svg',
+                    'assets/icons/passwordlock.svg',
                     fit: BoxFit.contain,
                   ),
                   textInputAction: TextInputAction.next,
@@ -69,11 +69,13 @@ class ResetPasswordForm extends StatelessWidget {
                   ),
                 ),
                 LabeledTextField(
-                  onChanged: (value) {},
+                  onChanged: (value) {
+                    bloc.add(ResetConfirmNewPassword(value));
+                  },
                   hintText:
                       AppLocalizations.of(context)?.confirmNewPassword ?? '',
                   prefixIcon: SvgPicture.asset(
-                    'assets/icons/email.svg',
+                    'assets/icons/passwordlock.svg',
                     fit: BoxFit.contain,
                   ),
                   textInputAction: TextInputAction.next,
@@ -121,9 +123,11 @@ class ResetPasswordForm extends StatelessWidget {
                             children: [
                               SvgPicture.asset('assets/icons/roundcheck.svg'),
                               Padding(
-                                padding: const EdgeInsets.only(left: 8.0),
+                                padding: EdgeInsets.only(left: 8.0),
                                 child: Text(
-                                  'At least 8 characters',
+                                  state.resetNewPassword.value.length < 8
+                                      ? 'At least 8 characters'
+                                      : '',
                                   style:
                                       GoogleFonts.inter(
                                             textStyle: Theme.of(
@@ -148,7 +152,11 @@ class ResetPasswordForm extends StatelessWidget {
                                 Padding(
                                   padding: const EdgeInsets.only(left: 8.0),
                                   child: Text(
-                                    'One uppercase letter',
+                                    !RegExp(
+                                          r'[A-Z]',
+                                        ).hasMatch(state.resetNewPassword.value)
+                                        ? 'One uppercase letter'
+                                        : '',
                                     style:
                                         GoogleFonts.inter(
                                               textStyle: Theme.of(
@@ -172,7 +180,11 @@ class ResetPasswordForm extends StatelessWidget {
                               Padding(
                                 padding: const EdgeInsets.only(left: 8.0),
                                 child: Text(
-                                  'One number',
+                                  !RegExp(
+                                        r'[0-9]',
+                                      ).hasMatch(state.resetNewPassword.value)
+                                      ? 'One number'
+                                      : '',
                                   style:
                                       GoogleFonts.inter(
                                             textStyle: Theme.of(

@@ -296,6 +296,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Confirm new password'**
   String get confirmNewPassword;
+
+  /// No description provided for @passwordReset.
+  ///
+  /// In en, this message translates to:
+  /// **'Password Reset!'**
+  String get passwordReset;
+
+  /// No description provided for @yourPasswordSuccessfully.
+  ///
+  /// In en, this message translates to:
+  /// **'Your password has been successfully reset'**
+  String get yourPasswordSuccessfully;
+
+  /// No description provided for @youCanLogNewPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'You can now log in with your new password'**
+  String get youCanLogNewPassword;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

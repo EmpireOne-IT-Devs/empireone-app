@@ -109,4 +109,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get confirmNewPassword => 'Confirm new password';
+
+  @override
+  String get passwordReset => 'Password Reset!';
+
+  @override
+  String get yourPasswordSuccessfully => 'Your password has been successfully reset';
+
+  @override
+  String get youCanLogNewPassword => 'You can now log in with your new password';
 }

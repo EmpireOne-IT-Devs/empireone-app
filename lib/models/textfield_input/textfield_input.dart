@@ -20,7 +20,7 @@ extension ErrorTypeExtension on ErrorType {
       case ErrorType.empty:
         return 'Field cannot be empty';
       case ErrorType.length:
-        return 'Must be at least 6 characters';
+        return 'Must be at least 8 characters';
       case ErrorType.lowercaseLetter:
         return 'Must include a lowercase letter';
       case ErrorType.uppercaseLetter:
