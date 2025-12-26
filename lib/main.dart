@@ -1,4 +1,6 @@
 import 'package:empireone_app/l10n/app_localizations.dart';
+import 'package:empireone_app/pages/home_employee/view/view.dart';
+import 'package:empireone_app/pages/login/view/login_page.dart';
 import 'package:empireone_app/pages/login_employee/view/view.dart';
 import 'package:empireone_app/pages/reset_password/view/view.dart';
 import 'package:flutter/material.dart';
@@ -27,6 +29,7 @@ class EmpireOne extends StatelessWidget {
       routerConfig: _router,
       title: 'EmpireOne',
       theme: ThemeData(
+        scaffoldBackgroundColor: Color(0xFF1329A9),
         colorScheme: ColorScheme(
           brightness: Brightness.light,
           primary: Color(0xFF1329A9),
@@ -114,7 +117,7 @@ final GoRouter _router = GoRouter(
     GoRoute(
       path: '/',
       builder: (BuildContext context, GoRouterState state) {
-        return VerifyAccountPage();
+        return HomeEmployeePage();
         // return AnimatedSplashScreen(
         //   splash: Padding(
         //     padding: const EdgeInsets.symmetric(horizontal: 32),
@@ -168,6 +171,12 @@ final GoRouter _router = GoRouter(
           path: PasswordResetPage.route,
           builder: (BuildContext context, GoRouterState state) {
             return const PasswordResetPage();
+          },
+        ),
+        GoRoute(
+          path: HomeEmployeePage.route,
+          builder: (BuildContext context, GoRouterState state) {
+            return const HomeEmployeeDashboard();
           },
         ),
       ],
