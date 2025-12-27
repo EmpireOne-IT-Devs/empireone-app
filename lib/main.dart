@@ -9,6 +9,7 @@ import 'package:go_router/go_router.dart';
 import 'pages/forgot_password/view/view.dart';
 import 'pages/password_reset/view/view.dart';
 import 'pages/sign_up/view/view.dart';
+import 'pages/signup_employee/view/view.dart';
 import 'pages/verify_account/view/view.dart';
 import 'pages/verify_login/view/view.dart';
 
@@ -117,7 +118,7 @@ final GoRouter _router = GoRouter(
     GoRoute(
       path: '/',
       builder: (BuildContext context, GoRouterState state) {
-        return HomeEmployeePage();
+        return LoginEmployeePage();
         // return AnimatedSplashScreen(
         //   splash: Padding(
         //     padding: const EdgeInsets.symmetric(horizontal: 32),
@@ -144,9 +145,21 @@ final GoRouter _router = GoRouter(
           },
         ),
         GoRoute(
+          path: LoginPage.route,
+          builder: (BuildContext context, GoRouterState state) {
+            return const LoginPage();
+          },
+        ),
+        GoRoute(
           path: SignupPage.route,
           builder: (BuildContext context, GoRouterState state) {
             return const SignupPage();
+          },
+        ),
+        GoRoute(
+          path: SignupEmployeePage.route,
+          builder: (BuildContext context, GoRouterState state) {
+            return const SignupEmployeePage();
           },
         ),
         GoRoute(
@@ -176,7 +189,7 @@ final GoRouter _router = GoRouter(
         GoRoute(
           path: HomeEmployeePage.route,
           builder: (BuildContext context, GoRouterState state) {
-            return const HomeEmployeeDashboard();
+            return const HomeEmployeePage();
           },
         ),
       ],

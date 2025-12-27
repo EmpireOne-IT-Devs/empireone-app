@@ -3,7 +3,10 @@ import 'package:empireone_app/pages/login_employee/widgets/login_employee_field.
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import '../../home_employee/view/view.dart';
 
 class LoginEmployeeForm extends StatelessWidget {
   const LoginEmployeeForm({super.key});
@@ -110,7 +113,9 @@ class LoginEmployeeForm extends StatelessWidget {
               ),
             ),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                context.push(HomeEmployeePage.route);
+              },
               child: Text(AppLocalizations.of(context)?.login ?? ''),
             ),
             Padding(
