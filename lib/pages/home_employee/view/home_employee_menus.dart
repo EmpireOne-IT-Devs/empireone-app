@@ -230,7 +230,6 @@ class HomeEmployeeMenus extends StatelessWidget {
               ),
             ],
           ),
-
           Text(
             'Menu Features',
             textAlign: TextAlign.start,

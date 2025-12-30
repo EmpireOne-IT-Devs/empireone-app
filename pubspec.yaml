@@ -40,9 +40,13 @@ dependencies:
   bloc: ^9.1.0
   flutter_bloc: ^9.1.1
   build_runner: ^2.10.4
+  flutter_inset_shadow: ^2.0.3
+  navbar_router: ^0.7.7
   
   flutter_localizations:
     sdk: flutter
+  flutter_inset_box_shadow: ^1.0.8
+
   
 dev_dependencies:
   flutter_test:
