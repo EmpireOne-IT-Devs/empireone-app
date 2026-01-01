@@ -9,6 +9,7 @@ class HomeEmployeeAppbar extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: AppBar(
+        automaticallyImplyLeading: false,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
         elevation: 0,
         flexibleSpace: Container(

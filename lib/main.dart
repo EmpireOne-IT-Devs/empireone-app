@@ -1,6 +1,5 @@
 import 'package:empireone_app/l10n/app_localizations.dart';
 import 'package:empireone_app/pages/home_employee/view/view.dart';
-import 'package:empireone_app/pages/login/view/login_page.dart';
 import 'package:empireone_app/pages/login_employee/view/view.dart';
 import 'package:empireone_app/pages/reset_password/view/view.dart';
 import 'package:flutter/material.dart';
@@ -45,6 +44,8 @@ class EmpireOne extends StatelessWidget {
           onSurfaceVariant: Color(0xFFCCCCCC),
           onTertiary: Color(0xFF4B5563),
           primaryContainer: Color(0xFFF9FCFF),
+          tertiary: Color(0xFF000000),
+          inverseSurface: Color(0xFFF4F4F6),
         ),
         textTheme: const TextTheme(
           displayLarge: TextStyle(fontSize: 64, fontWeight: FontWeight.w400),
