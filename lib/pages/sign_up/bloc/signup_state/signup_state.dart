@@ -16,5 +16,6 @@ sealed class SignupState with _$SignupState {
     @Default(TextFieldInput(errorType: ErrorType.empty))
     TextFieldInput signupConfirmPassword,
     @Default(false) bool isChecked,
+    @Default(RequestStatus.waiting) RequestStatus requestStatus,
   }) = _SignupState;
 }

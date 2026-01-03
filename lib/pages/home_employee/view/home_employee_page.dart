@@ -19,11 +19,11 @@ class _HomeEmployeePageState extends State<HomeEmployeePage>
   int _selectedIndex = 0;
   late TabController _tabController;
 
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
+  // void _onItemTapped(int index) {
+  //   setState(() {
+  //     _selectedIndex = index;
+  //   });
+  // }
 
   @override
   void initState() {
@@ -91,7 +91,6 @@ class _HomeEmployeePageState extends State<HomeEmployeePage>
 
   @override
   Widget build(BuildContext context) {
-    print(_pages[_selectedIndex]);
     List<Widget> icons = [
       SvgPicture.asset('assets/icons/home.svg'),
       SvgPicture.asset('assets/icons/company.svg'),

@@ -3,6 +3,8 @@ import 'package:empireone_app/pages/home_employee/view/view.dart';
 import 'package:empireone_app/pages/login/view/view.dart';
 import 'package:empireone_app/pages/login_employee/view/view.dart';
 import 'package:empireone_app/pages/reset_password/view/view.dart';
+import 'package:empireone_app/repositories/google_repository.dart';
+import 'package:empireone_app/services/services.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -14,11 +16,39 @@ import 'pages/verify_account/view/view.dart';
 import 'pages/verify_login/view/view.dart';
 
 void main() {
-  runApp(const EmpireOne());
+  WidgetsFlutterBinding.ensureInitialized();
+  // var baseUrl = 'https://e-learning-api.dev2.koda.ws/';
+
+  // final List<String> _requiredScopes = [
+  //   'email',
+  //   'https://www.googleapis.com/auth/contacts.readonly',
+  // ];
+  // final String _clientId =
+  //     'http://543673078002-129ikt9prd41vbgreck91pcrmtsukmgf.apps.googleusercontent.com/';
+
+  // await googleSignIn.initialize(
+  //   scopes: <String>[
+  //     'email',
+  //     'https://www.googleapis.com/auth/contacts.readonly',
+  //   ],
+  // );
+  runApp(
+    EmpireOne(
+      googleRepository: GoogleRepository(
+        googleService: GoogleService(
+          // googleSignIn: GoogleSignIn.instance,
+          // baseUrl: '',
+          // clientId: _clientId,
+          // requiredScopes: _requiredScopes,
+        ),
+      ),
+    ),
+  );
 }
 
 class EmpireOne extends StatelessWidget {
-  const EmpireOne({super.key});
+  final GoogleRepository googleRepository;
+  const EmpireOne({super.key, required this.googleRepository});
 
   // This widget is the root of your application.
   @override
@@ -120,7 +150,7 @@ final GoRouter _router = GoRouter(
     GoRoute(
       path: '/',
       builder: (BuildContext context, GoRouterState state) {
-        return LoginEmployeePage();
+        return LoginPage();
         // return AnimatedSplashScreen(
         //   splash: Padding(
         //     padding: const EdgeInsets.symmetric(horizontal: 32),

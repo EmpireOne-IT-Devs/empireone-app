@@ -1,5 +1,9 @@
+import 'package:empireone_app/pages/login/bloc/bloc.dart';
 import 'package:empireone_app/pages/login/login.dart';
+import 'package:empireone_app/repositories/repositories.dart';
+import 'package:empireone_app/services/services.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LoginPage extends StatelessWidget {
   static const route = '/login';
@@ -8,33 +12,39 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: CustomScrollView(
-        slivers: [
-          SliverToBoxAdapter(child: LoginAppbar()),
-          SliverToBoxAdapter(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 48),
-              child: LoginHeading(),
+    return BlocProvider<LoginBloc>(
+      create: (context) => LoginBloc(
+        googleRepository:GoogleRepository(googleService: GoogleService()),
+        initialState: const LoginState(),
+      ),
+      child: Scaffold(
+        body: CustomScrollView(
+          slivers: [
+            SliverToBoxAdapter(child: LoginAppbar()),
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 48),
+                child: LoginHeading(),
+              ),
             ),
-          ),
-          SliverToBoxAdapter(
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(16, 16, 16, 32),
-              child: LoginForm(),
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(16, 16, 16, 32),
+                child: LoginForm(),
+              ),
             ),
-          ),
-          // SliverFillRemaining(
-          //   hasScrollBody: false,
-          //   child: Align(
-          //     alignment: Alignment.bottomCenter,
-          //     child: Padding(
-          //       padding: EdgeInsets.fromLTRB(48, 0, 48, 16),
-          //       child: LoginFooter(),
-          //     ),
-          //   ),
-          // ),
-        ],
+            // SliverFillRemaining(
+            //   hasScrollBody: false,
+            //   child: Align(
+            //     alignment: Alignment.bottomCenter,
+            //     child: Padding(
+            //       padding: EdgeInsets.fromLTRB(48, 0, 48, 16),
+            //       child: LoginFooter(),
+            //     ),
+            //   ),
+            // ),
+          ],
+        ),
       ),
     );
   }
