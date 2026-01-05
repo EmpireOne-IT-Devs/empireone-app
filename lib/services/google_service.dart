@@ -2,31 +2,95 @@ import 'package:google_sign_in/google_sign_in.dart';
 
 class GoogleService {
   final GoogleSignIn _googleSignIn = GoogleSignIn.instance;
+  // 931180503318-4b2mhhqe1uge9ma6lj8d9qeaqgp1471u.apps.googleusercontent.com
+  // Your Web Client ID (REQUIRED for Android)
+  static const String _serverClientId =
+      '543673078002-bhqkbrhr7cpfapraq0cjb3hl30mavj53.apps.googleusercontent.com';
 
   final List<String> _requiredScopes = [
     'email',
-    '',
+    // 'https://www.googleapis.com/auth/contacts.readonly',
   ];
+  bool _isInitialized = false;
 
-    final String _clientId = '301631048424-pdrvq2jm03jhca6d3abtp63jqmliuobo.apps.googleusercontent.com'
-  ;
+  // Initialize GoogleSignIn
+  Future<void> _ensureInitialized() async {
+    if (!_isInitialized) {
+      print('🔄 Initializing GoogleSignIn...');
+      try {
+        await _googleSignIn.initialize(serverClientId: _serverClientId);
+        _isInitialized = true;
+        print('✅ GoogleSignIn initialized successfully');
+        print('📋 Server Client ID: $_serverClientId');
+      } catch (e) {
+        print('❌ Initialization failed: $e');
+        rethrow;
+      }
+    } else {
+      print('ℹ️  GoogleSignIn already initialized');
+    }
+  }
 
-  // final String _clientId =
-  //     '543673078002-129ikt9prd41vbgreck91pcrmtsukmgf.apps.googleusercontent.com';
-
+  // Get access token with detailed logging
   Future<String?> getAccessToken() async {
+    print('\n🚀 Starting Google Sign-In process...');
+    print('📍 Step 1: Ensuring initialization');
+
     try {
-      await _googleSignIn.initialize(serverClientId: _clientId);
+      // Step 1: Initialize
+      await _ensureInitialized();
 
-      final GoogleSignInAccount account = await _googleSignIn.authenticate();
+      // Step 2: Authenticate
+      print('\n📍 Step 2: Authenticating user');
+      print('🔑 Requested scopes:');
+      for (var scope in _requiredScopes) {
+        print('   - $scope');
+      }
 
-      final GoogleSignInClientAuthorization authorization = await account
-          .authorizationClient
-          .authorizeScopes(_requiredScopes);
+      final account = await _googleSignIn.authenticate(
+        scopeHint: _requiredScopes,
+      );
 
-      return authorization.accessToken;
+      print('✅ Authentication successful!');
+      print('👤 User email: ${account.email}');
+      print('👤 User name: ${account.displayName}');
+      print('🆔 User ID: ${account.id}');
+
+      // Step 3: Authorize scopes
+      print('\n📍 Step 3: Authorizing scopes');
+      final authorization = await account.authorizationClient.authorizeScopes(
+        _requiredScopes,
+      );
+
+      print('✅ Scopes authorized successfully!');
+
+      // Step 4: Get access token
+      print('\n📍 Step 4: Getting access token');
+      // final accessToken = authorization.accessToken;
+
+      // if (accessToken != null && accessToken.isNotEmpty) {
+      //   print('✅ Access token obtained successfully!');
+      //   print(
+      //     '🔑 Token (first 30 chars): ${accessToken.substring(0, accessToken.length > 30 ? 30 : accessToken.length)}...',
+      //   );
+      //   print('📏 Token length: ${accessToken.length} characters');
+      //   print('\n🎉 SUCCESS! You can now use this token to call Google APIs');
+      //   return accessToken;
+      // } else {
+      //   print('❌ Access token is null or empty');
+      //   return null;
+      // }
+    } on GoogleSignInException catch (e) {
+      print('\n❌ GoogleSignInException occurred!');
+      print('🔴 Error Code: ${e.code.name}');
+      print('🔴 Description: ${e.description}');
+      print('🔴 Details: ${e.details}');
+
+      return null;
     } catch (e) {
-      print('Token fetch failed: $e');
+      print('\n❌ Unexpected error occurred!');
+      print('🔴 Error type: ${e.runtimeType}');
+      print('🔴 Error message: $e');
       return null;
     }
   }

@@ -16,6 +16,7 @@ class LoginForm extends StatelessWidget {
     var bloc = context.read<LoginBloc>();
     return BlocBuilder<LoginBloc, LoginState>(
       builder: (context, state) {
+        print(state.email.value);
         return Container(
           constraints: BoxConstraints(
             minHeight: 400, // Minimum height to maintain your UI design

@@ -12,38 +12,46 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<LoginBloc>(
-      create: (context) => LoginBloc(
-        googleRepository:GoogleRepository(googleService: GoogleService()),
-        initialState: const LoginState(),
-      ),
-      child: Scaffold(
-        body: CustomScrollView(
-          slivers: [
-            SliverToBoxAdapter(child: LoginAppbar()),
-            SliverToBoxAdapter(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 48),
-                child: LoginHeading(),
+    return MultiRepositoryProvider(
+      providers: [
+        RepositoryProvider<GoogleRepository>(
+          create: (context) => GoogleRepository(googleService: GoogleService(
+          )),
+        ),
+      ],
+      child: BlocProvider<LoginBloc>(
+        create: (context) => LoginBloc(
+          googleRepository:GoogleRepository(googleService: GoogleService()),
+          initialState: const LoginState(),
+        ),
+        child: Scaffold(
+          body: CustomScrollView(
+            slivers: [
+              SliverToBoxAdapter(child: LoginAppbar()),
+              SliverToBoxAdapter(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 48),
+                  child: LoginHeading(),
+                ),
               ),
-            ),
-            SliverToBoxAdapter(
-              child: Padding(
-                padding: const EdgeInsets.fromLTRB(16, 16, 16, 32),
-                child: LoginForm(),
+              SliverToBoxAdapter(
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(16, 16, 16, 32),
+                  child: LoginForm(),
+                ),
               ),
-            ),
-            // SliverFillRemaining(
-            //   hasScrollBody: false,
-            //   child: Align(
-            //     alignment: Alignment.bottomCenter,
-            //     child: Padding(
-            //       padding: EdgeInsets.fromLTRB(48, 0, 48, 16),
-            //       child: LoginFooter(),
-            //     ),
-            //   ),
-            // ),
-          ],
+              // SliverFillRemaining(
+              //   hasScrollBody: false,
+              //   child: Align(
+              //     alignment: Alignment.bottomCenter,
+              //     child: Padding(
+              //       padding: EdgeInsets.fromLTRB(48, 0, 48, 16),
+              //       child: LoginFooter(),
+              //     ),
+              //   ),
+              // ),
+            ],
+          ),
         ),
       ),
     );

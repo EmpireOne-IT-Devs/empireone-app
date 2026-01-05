@@ -7,6 +7,7 @@ import 'package:empireone_app/repositories/google_repository.dart';
 import 'package:empireone_app/services/services.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 import 'pages/forgot_password/view/view.dart';
 import 'pages/password_reset/view/view.dart';
@@ -36,6 +37,13 @@ void main() {
     EmpireOne(
       googleRepository: GoogleRepository(
         googleService: GoogleService(
+          // googleSignIn: GoogleSignIn(
+          //   scopes: <String>[
+          //     'email',
+          //     'https://www.googleapis.com/auth/contacts.readonly',
+          //   ],
+          // ),
+          // baseUrl: '',
           // googleSignIn: GoogleSignIn.instance,
           // baseUrl: '',
           // clientId: _clientId,
