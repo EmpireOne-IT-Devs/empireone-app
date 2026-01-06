@@ -90,6 +90,8 @@ class LoginFooter extends StatelessWidget {
                 ],
               ),
             ),
+            
+            
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 16),
               child: Row(

@@ -2,10 +2,9 @@ import 'package:google_sign_in/google_sign_in.dart';
 
 class GoogleService {
   final GoogleSignIn _googleSignIn = GoogleSignIn.instance;
-  // 931180503318-4b2mhhqe1uge9ma6lj8d9qeaqgp1471u.apps.googleusercontent.com
   // Your Web Client ID (REQUIRED for Android)
   static const String _serverClientId =
-      '543673078002-bhqkbrhr7cpfapraq0cjb3hl30mavj53.apps.googleusercontent.com';
+      '543673078002-5bh3ukvberh6j3nuqsojtj1mlp9vrlcq.apps.googleusercontent.com';
 
   final List<String> _requiredScopes = [
     'email',

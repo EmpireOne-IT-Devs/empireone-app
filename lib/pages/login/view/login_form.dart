@@ -121,7 +121,37 @@ class LoginForm extends StatelessWidget {
                     ),
                   ),
                 ),
-                LoginFooter(),
+                OutlinedButton(
+                  onPressed: () {
+                    bloc.add(GooglePressed());
+                  },
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Image.asset('assets/images/google.png'),
+                      // SizedBox(width: 20),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 16),
+                        child: Text(
+                          AppLocalizations.of(context)?.continueWithGoogle ??
+                              '',
+                          style: GoogleFonts.inter(
+                            textStyle: Theme.of(context).textTheme.titleSmall
+                                ?.copyWith(
+                                  color: Theme.of(
+                                    context,
+                                  ).colorScheme.onPrimary,
+                                  fontSize: 13.6,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                // LoginFooter(),
               ],
             ),
           ),
