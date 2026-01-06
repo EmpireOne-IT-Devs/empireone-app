@@ -1,6 +1,8 @@
+import 'package:empireone_app/pages/verify_login/view/view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 
 class HomeEmployeeMenus extends StatelessWidget {
   const HomeEmployeeMenus({super.key});
@@ -74,22 +76,33 @@ class HomeEmployeeMenus extends StatelessWidget {
                     ),
                     Column(
                       children: [
-                        SvgPicture.asset('assets/icons/ticket.svg'),
-                        Text(
-                          'Ticket',
-                          style:
-                              GoogleFonts.mada(
-                                    textStyle: Theme.of(
-                                      context,
-                                    ).textTheme.bodyMedium,
-                                  )
-                                  .copyWith(fontSize: 8)
-                                  .copyWith(
-                                    color: Theme.of(
-                                      context,
-                                    ).colorScheme.primary,
-                                  )
-                                  .copyWith(fontWeight: FontWeight.w600),
+                        // SvgPicture.asset('assets/icons/ticket.svg'),
+                        TextButton(
+                          onPressed: () {
+                            PersistentNavBarNavigator.pushNewScreen(
+                              context,
+                              screen: const VerifyLoginPage(),
+                              withNavBar: true, // ← keeps bottom nav bar
+                              pageTransitionAnimation:
+                                  PageTransitionAnimation.cupertino,
+                            );
+                          },
+                          child: Text(
+                            'Ticket',
+                            style:
+                                GoogleFonts.mada(
+                                      textStyle: Theme.of(
+                                        context,
+                                      ).textTheme.bodyMedium,
+                                    )
+                                    .copyWith(fontSize: 8)
+                                    .copyWith(
+                                      color: Theme.of(
+                                        context,
+                                      ).colorScheme.primary,
+                                    )
+                                    .copyWith(fontWeight: FontWeight.w600),
+                          ),
                         ),
                       ],
                     ),

@@ -1,4 +1,5 @@
 import 'package:empireone_app/l10n/app_localizations.dart';
+import 'package:empireone_app/pages/home_employee/view/home_employee_persistent.dart';
 import 'package:empireone_app/pages/home_employee/view/view.dart';
 import 'package:empireone_app/pages/login/view/view.dart';
 import 'package:empireone_app/pages/login_employee/view/view.dart';
@@ -158,7 +159,7 @@ final GoRouter _router = GoRouter(
     GoRoute(
       path: '/',
       builder: (BuildContext context, GoRouterState state) {
-        return LoginPage();
+        return HomeEmployeePage();
         // return AnimatedSplashScreen(
         //   splash: Padding(
         //     padding: const EdgeInsets.symmetric(horizontal: 32),

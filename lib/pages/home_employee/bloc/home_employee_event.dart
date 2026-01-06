@@ -3,5 +3,7 @@ abstract class HomeEmployeeEvent {
 }
 
 class SelectedIndex extends HomeEmployeeEvent {
-  const SelectedIndex();
+  final int selectedIndex;
+  const SelectedIndex(this.selectedIndex);
 }
+
