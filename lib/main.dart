@@ -1,9 +1,9 @@
 import 'package:empireone_app/l10n/app_localizations.dart';
-import 'package:empireone_app/pages/home_employee/view/home_employee_persistent.dart';
 import 'package:empireone_app/pages/home_employee/view/view.dart';
 import 'package:empireone_app/pages/login/view/view.dart';
 import 'package:empireone_app/pages/login_employee/view/view.dart';
 import 'package:empireone_app/pages/reset_password/view/view.dart';
+import 'package:empireone_app/pages/ticket/ticket.dart';
 import 'package:empireone_app/repositories/google_repository.dart';
 import 'package:empireone_app/services/services.dart';
 import 'package:flutter/material.dart';
@@ -19,36 +19,19 @@ import 'pages/verify_login/view/view.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  // var baseUrl = 'https://e-learning-api.dev2.koda.ws/';
+  var baseUrl = 'https://empireone-bpo.com/api/';
 
-  // final List<String> _requiredScopes = [
-  //   'email',
-  //   'https://www.googleapis.com/auth/contacts.readonly',
-  // ];
-  // final String _clientId =
-  //     'http://543673078002-129ikt9prd41vbgreck91pcrmtsukmgf.apps.googleusercontent.com/';
+  final List<String> scopes = ['email', 'profile'];
+  final String clientId =
+      '301631048424-pdrvq2jm03jhca6d3abtp63jqmliuobo.apps.googleusercontent.com';
 
-  // await googleSignIn.initialize(
-  //   scopes: <String>[
-  //     'email',
-  //     'https://www.googleapis.com/auth/contacts.readonly',
-  //   ],
-  // );
   runApp(
     EmpireOne(
       googleRepository: GoogleRepository(
         googleService: GoogleService(
-          // googleSignIn: GoogleSignIn(
-          //   scopes: <String>[
-          //     'email',
-          //     'https://www.googleapis.com/auth/contacts.readonly',
-          //   ],
-          // ),
-          // baseUrl: '',
-          // googleSignIn: GoogleSignIn.instance,
-          // baseUrl: '',
-          // clientId: _clientId,
-          // requiredScopes: _requiredScopes,
+          GoogleSignIn(scopes: scopes),
+          baseUrl,
+          clientId: clientId,
         ),
       ),
     ),
@@ -86,6 +69,7 @@ class EmpireOne extends StatelessWidget {
           primaryContainer: Color(0xFFF9FCFF),
           tertiary: Color(0xFF000000),
           inverseSurface: Color(0xFFF4F4F6),
+          surfaceContainer: Color(0XFF34A853),
         ),
         textTheme: const TextTheme(
           displayLarge: TextStyle(fontSize: 64, fontWeight: FontWeight.w400),
@@ -159,7 +143,7 @@ final GoRouter _router = GoRouter(
     GoRoute(
       path: '/',
       builder: (BuildContext context, GoRouterState state) {
-        return LoginPage();
+        return TicketPage();
         // return AnimatedSplashScreen(
         //   splash: Padding(
         //     padding: const EdgeInsets.symmetric(horizontal: 32),
@@ -231,6 +215,12 @@ final GoRouter _router = GoRouter(
           path: HomeEmployeePage.route,
           builder: (BuildContext context, GoRouterState state) {
             return const HomeEmployeePage();
+          },
+        ),
+        GoRoute(
+          path: TicketPage.route,
+          builder: (BuildContext context, GoRouterState state) {
+            return const TicketPage();
           },
         ),
       ],

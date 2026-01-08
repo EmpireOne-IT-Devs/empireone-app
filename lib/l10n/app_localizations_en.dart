@@ -117,5 +117,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get yourPasswordSuccessfully => 'Your password has been successfully reset';
 
   @override
+  String get ticketing => 'Ticketing';
+
+  @override
   String get youCanLogNewPassword => 'You can now log in with your new password';
 }

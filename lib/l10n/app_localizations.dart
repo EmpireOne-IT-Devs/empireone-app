@@ -309,6 +309,12 @@ abstract class AppLocalizations {
   /// **'Your password has been successfully reset'**
   String get yourPasswordSuccessfully;
 
+  /// No description provided for @ticketing.
+  ///
+  /// In en, this message translates to:
+  /// **'Ticketing'**
+  String get ticketing;
+
   /// No description provided for @youCanLogNewPassword.
   ///
   /// In en, this message translates to:
