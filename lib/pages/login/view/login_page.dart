@@ -4,6 +4,7 @@ import 'package:empireone_app/repositories/repositories.dart';
 import 'package:empireone_app/services/services.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class LoginPage extends StatelessWidget {
   static const route = '/login';
@@ -15,13 +16,16 @@ class LoginPage extends StatelessWidget {
     return MultiRepositoryProvider(
       providers: [
         RepositoryProvider<GoogleRepository>(
-          create: (context) => GoogleRepository(googleService: GoogleService(
-          )),
+          create: (context) => GoogleRepository(
+            googleService: GoogleService(GoogleSignIn(), '', clientId: ''),
+          ),
         ),
       ],
       child: BlocProvider<LoginBloc>(
         create: (context) => LoginBloc(
-          googleRepository:GoogleRepository(googleService: GoogleService()),
+          googleRepository: GoogleRepository(
+            googleService: GoogleService(GoogleSignIn(), '', clientId: ''),
+          ),
           initialState: const LoginState(),
         ),
         child: Scaffold(
@@ -40,16 +44,6 @@ class LoginPage extends StatelessWidget {
                   child: LoginForm(),
                 ),
               ),
-              // SliverFillRemaining(
-              //   hasScrollBody: false,
-              //   child: Align(
-              //     alignment: Alignment.bottomCenter,
-              //     child: Padding(
-              //       padding: EdgeInsets.fromLTRB(48, 0, 48, 16),
-              //       child: LoginFooter(),
-              //     ),
-              //   ),
-              // ),
             ],
           ),
         ),

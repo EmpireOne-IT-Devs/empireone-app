@@ -12,7 +12,6 @@ class LoginFooter extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var bloc = context.read<LoginBloc>();
-
     return BlocBuilder<LoginBloc, LoginState>(
       builder: (context, state) {
         return Column(
@@ -90,8 +89,6 @@ class LoginFooter extends StatelessWidget {
                 ],
               ),
             ),
-            
-            
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 16),
               child: Row(

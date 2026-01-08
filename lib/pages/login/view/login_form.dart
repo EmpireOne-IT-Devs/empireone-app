@@ -1,7 +1,7 @@
 import 'package:empireone_app/l10n/app_localizations.dart';
 import 'package:empireone_app/models/models.dart';
 import 'package:empireone_app/pages/login/bloc/bloc.dart';
-import 'package:empireone_app/pages/login/view/login_footer.dart';
+import 'package:empireone_app/pages/login/view/view.dart';
 import 'package:empireone_app/pages/widgets/labeled_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -16,7 +16,6 @@ class LoginForm extends StatelessWidget {
     var bloc = context.read<LoginBloc>();
     return BlocBuilder<LoginBloc, LoginState>(
       builder: (context, state) {
-        print(state.email.value);
         return Container(
           constraints: BoxConstraints(
             minHeight: 400, // Minimum height to maintain your UI design
@@ -121,37 +120,7 @@ class LoginForm extends StatelessWidget {
                     ),
                   ),
                 ),
-                OutlinedButton(
-                  onPressed: () {
-                    bloc.add(GooglePressed());
-                  },
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Image.asset('assets/images/google.png'),
-                      // SizedBox(width: 20),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 16),
-                        child: Text(
-                          AppLocalizations.of(context)?.continueWithGoogle ??
-                              '',
-                          style: GoogleFonts.inter(
-                            textStyle: Theme.of(context).textTheme.titleSmall
-                                ?.copyWith(
-                                  color: Theme.of(
-                                    context,
-                                  ).colorScheme.onPrimary,
-                                  fontSize: 13.6,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                // LoginFooter(),
+                LoginFooter(),
               ],
             ),
           ),
