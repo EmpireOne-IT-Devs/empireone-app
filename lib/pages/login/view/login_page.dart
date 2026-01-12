@@ -47,6 +47,37 @@ class LoginPage extends StatelessWidget {
     }
   }
 
+  void listenerGoogleLogin(BuildContext context, LoginState state) {
+    switch (state.googleSigninRequestStatus) {
+      case RequestStatus.waiting:
+        break;
+      case RequestStatus.inProgress:
+        showDialog(
+          context: context,
+          barrierDismissible: false,
+          builder: (context) {
+            return const Center(child: CircularProgressDialog());
+          },
+        );
+        break;
+      case RequestStatus.success:
+        Future.delayed(const Duration(milliseconds: 3000));
+        context.go(HomeEmployeePage.route);
+        break;
+      case RequestStatus.failure:
+        Navigator.pop(context);
+        showDialog(
+          context: context,
+          builder: (context) {
+            return Center(
+              child: ShowDialogError(message: state.message.toString()),
+            );
+          },
+        );
+        break;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return MultiRepositoryProvider(
@@ -72,8 +103,18 @@ class LoginPage extends StatelessWidget {
           initialState: const LoginState(),
           accountRepository: RepositoryProvider.of<AccountRepository>(context),
         ),
-        child: BlocListener<LoginBloc, LoginState>(
-          listener: (context, state) => listener(context, state),
+        child: MultiBlocListener(
+          listeners: [
+            BlocListener<LoginBloc, LoginState>(
+              listener: (context, state) => listener(context, state),
+            ),
+            BlocListener<LoginBloc, LoginState>(
+              listenWhen: (previous, current) =>
+                  previous.googleSigninRequestStatus !=
+                  current.googleSigninRequestStatus,
+              listener: (context, state) => listenerGoogleLogin(context, state),
+            ),
+          ],
           child: Scaffold(
             body: CustomScrollView(
               slivers: [

@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$LoginState {
 
- TextFieldInput get email; TextFieldInput get password; RequestStatus get requestStatus; String get message;
+ TextFieldInput get email; TextFieldInput get password; RequestStatus get requestStatus; RequestStatus get googleSigninRequestStatus; String get message;
 /// Create a copy of LoginState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -25,16 +25,16 @@ $LoginStateCopyWith<LoginState> get copyWith => _$LoginStateCopyWithImpl<LoginSt
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is LoginState&&(identical(other.email, email) || other.email == email)&&(identical(other.password, password) || other.password == password)&&(identical(other.requestStatus, requestStatus) || other.requestStatus == requestStatus)&&(identical(other.message, message) || other.message == message));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is LoginState&&(identical(other.email, email) || other.email == email)&&(identical(other.password, password) || other.password == password)&&(identical(other.requestStatus, requestStatus) || other.requestStatus == requestStatus)&&(identical(other.googleSigninRequestStatus, googleSigninRequestStatus) || other.googleSigninRequestStatus == googleSigninRequestStatus)&&(identical(other.message, message) || other.message == message));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,email,password,requestStatus,message);
+int get hashCode => Object.hash(runtimeType,email,password,requestStatus,googleSigninRequestStatus,message);
 
 @override
 String toString() {
-  return 'LoginState(email: $email, password: $password, requestStatus: $requestStatus, message: $message)';
+  return 'LoginState(email: $email, password: $password, requestStatus: $requestStatus, googleSigninRequestStatus: $googleSigninRequestStatus, message: $message)';
 }
 
 
@@ -45,7 +45,7 @@ abstract mixin class $LoginStateCopyWith<$Res>  {
   factory $LoginStateCopyWith(LoginState value, $Res Function(LoginState) _then) = _$LoginStateCopyWithImpl;
 @useResult
 $Res call({
- TextFieldInput email, TextFieldInput password, RequestStatus requestStatus, String message
+ TextFieldInput email, TextFieldInput password, RequestStatus requestStatus, RequestStatus googleSigninRequestStatus, String message
 });
 
 
@@ -62,11 +62,12 @@ class _$LoginStateCopyWithImpl<$Res>
 
 /// Create a copy of LoginState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? email = null,Object? password = null,Object? requestStatus = null,Object? message = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? email = null,Object? password = null,Object? requestStatus = null,Object? googleSigninRequestStatus = null,Object? message = null,}) {
   return _then(_self.copyWith(
 email: null == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
 as TextFieldInput,password: null == password ? _self.password : password // ignore: cast_nullable_to_non_nullable
 as TextFieldInput,requestStatus: null == requestStatus ? _self.requestStatus : requestStatus // ignore: cast_nullable_to_non_nullable
+as RequestStatus,googleSigninRequestStatus: null == googleSigninRequestStatus ? _self.googleSigninRequestStatus : googleSigninRequestStatus // ignore: cast_nullable_to_non_nullable
 as RequestStatus,message: null == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
 as String,
   ));
@@ -168,10 +169,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( TextFieldInput email,  TextFieldInput password,  RequestStatus requestStatus,  String message)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( TextFieldInput email,  TextFieldInput password,  RequestStatus requestStatus,  RequestStatus googleSigninRequestStatus,  String message)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _LoginState() when $default != null:
-return $default(_that.email,_that.password,_that.requestStatus,_that.message);case _:
+return $default(_that.email,_that.password,_that.requestStatus,_that.googleSigninRequestStatus,_that.message);case _:
   return orElse();
 
 }
@@ -189,10 +190,10 @@ return $default(_that.email,_that.password,_that.requestStatus,_that.message);ca
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( TextFieldInput email,  TextFieldInput password,  RequestStatus requestStatus,  String message)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( TextFieldInput email,  TextFieldInput password,  RequestStatus requestStatus,  RequestStatus googleSigninRequestStatus,  String message)  $default,) {final _that = this;
 switch (_that) {
 case _LoginState():
-return $default(_that.email,_that.password,_that.requestStatus,_that.message);}
+return $default(_that.email,_that.password,_that.requestStatus,_that.googleSigninRequestStatus,_that.message);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -206,10 +207,10 @@ return $default(_that.email,_that.password,_that.requestStatus,_that.message);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( TextFieldInput email,  TextFieldInput password,  RequestStatus requestStatus,  String message)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( TextFieldInput email,  TextFieldInput password,  RequestStatus requestStatus,  RequestStatus googleSigninRequestStatus,  String message)?  $default,) {final _that = this;
 switch (_that) {
 case _LoginState() when $default != null:
-return $default(_that.email,_that.password,_that.requestStatus,_that.message);case _:
+return $default(_that.email,_that.password,_that.requestStatus,_that.googleSigninRequestStatus,_that.message);case _:
   return null;
 
 }
@@ -221,12 +222,13 @@ return $default(_that.email,_that.password,_that.requestStatus,_that.message);ca
 
 
 class _LoginState implements LoginState {
-  const _LoginState({this.email = const TextFieldInput(errorType: ErrorType.empty), this.password = const TextFieldInput(errorType: ErrorType.empty), this.requestStatus = RequestStatus.waiting, this.message = ''});
+  const _LoginState({this.email = const TextFieldInput(errorType: ErrorType.empty), this.password = const TextFieldInput(errorType: ErrorType.empty), this.requestStatus = RequestStatus.waiting, this.googleSigninRequestStatus = RequestStatus.waiting, this.message = ''});
   
 
 @override@JsonKey() final  TextFieldInput email;
 @override@JsonKey() final  TextFieldInput password;
 @override@JsonKey() final  RequestStatus requestStatus;
+@override@JsonKey() final  RequestStatus googleSigninRequestStatus;
 @override@JsonKey() final  String message;
 
 /// Create a copy of LoginState
@@ -239,16 +241,16 @@ _$LoginStateCopyWith<_LoginState> get copyWith => __$LoginStateCopyWithImpl<_Log
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _LoginState&&(identical(other.email, email) || other.email == email)&&(identical(other.password, password) || other.password == password)&&(identical(other.requestStatus, requestStatus) || other.requestStatus == requestStatus)&&(identical(other.message, message) || other.message == message));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _LoginState&&(identical(other.email, email) || other.email == email)&&(identical(other.password, password) || other.password == password)&&(identical(other.requestStatus, requestStatus) || other.requestStatus == requestStatus)&&(identical(other.googleSigninRequestStatus, googleSigninRequestStatus) || other.googleSigninRequestStatus == googleSigninRequestStatus)&&(identical(other.message, message) || other.message == message));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,email,password,requestStatus,message);
+int get hashCode => Object.hash(runtimeType,email,password,requestStatus,googleSigninRequestStatus,message);
 
 @override
 String toString() {
-  return 'LoginState(email: $email, password: $password, requestStatus: $requestStatus, message: $message)';
+  return 'LoginState(email: $email, password: $password, requestStatus: $requestStatus, googleSigninRequestStatus: $googleSigninRequestStatus, message: $message)';
 }
 
 
@@ -259,7 +261,7 @@ abstract mixin class _$LoginStateCopyWith<$Res> implements $LoginStateCopyWith<$
   factory _$LoginStateCopyWith(_LoginState value, $Res Function(_LoginState) _then) = __$LoginStateCopyWithImpl;
 @override @useResult
 $Res call({
- TextFieldInput email, TextFieldInput password, RequestStatus requestStatus, String message
+ TextFieldInput email, TextFieldInput password, RequestStatus requestStatus, RequestStatus googleSigninRequestStatus, String message
 });
 
 
@@ -276,11 +278,12 @@ class __$LoginStateCopyWithImpl<$Res>
 
 /// Create a copy of LoginState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? email = null,Object? password = null,Object? requestStatus = null,Object? message = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? email = null,Object? password = null,Object? requestStatus = null,Object? googleSigninRequestStatus = null,Object? message = null,}) {
   return _then(_LoginState(
 email: null == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
 as TextFieldInput,password: null == password ? _self.password : password // ignore: cast_nullable_to_non_nullable
 as TextFieldInput,requestStatus: null == requestStatus ? _self.requestStatus : requestStatus // ignore: cast_nullable_to_non_nullable
+as RequestStatus,googleSigninRequestStatus: null == googleSigninRequestStatus ? _self.googleSigninRequestStatus : googleSigninRequestStatus // ignore: cast_nullable_to_non_nullable
 as RequestStatus,message: null == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
 as String,
   ));

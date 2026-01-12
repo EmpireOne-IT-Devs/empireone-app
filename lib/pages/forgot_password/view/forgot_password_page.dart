@@ -2,7 +2,7 @@ import 'package:empireone_app/pages/forgot_password/forgot_password.dart';
 import 'package:flutter/material.dart';
 
 class ForgotPasswordPage extends StatelessWidget {
-  static const route = 'forgot_password';
+  static const route = '/forgot_password';
   const ForgotPasswordPage({super.key});
 
   @override

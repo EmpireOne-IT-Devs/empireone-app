@@ -1,11 +1,13 @@
 import 'package:empireone_app/l10n/app_localizations.dart';
 import 'package:empireone_app/models/models.dart';
+import 'package:empireone_app/pages/forgot_password/view/view.dart';
 import 'package:empireone_app/pages/login/bloc/bloc.dart';
 import 'package:empireone_app/pages/login/view/view.dart';
 import 'package:empireone_app/pages/widgets/labeled_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class LoginForm extends StatelessWidget {
@@ -92,7 +94,6 @@ class LoginForm extends StatelessWidget {
                 ),
                 LabeledTextField(
                   error: Text(state.password.errorType.message.toString()),
-
                   onChanged: (value) {
                     bloc.add(PasswordChanged(value));
                   },
@@ -109,7 +110,9 @@ class LoginForm extends StatelessWidget {
                   child: Align(
                     alignment: Alignment.centerRight,
                     child: TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        context.push(ForgotPasswordPage.route);
+                      },
                       child: Text(
                         AppLocalizations.of(context)?.forgotPassword ?? '',
                         style: GoogleFonts.inter(

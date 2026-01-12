@@ -10,13 +10,13 @@ class GoogleService {
   Future<GoogleSignInAuthentication?> getAccessToken() async {
     final googleSigninAccount = await googleSignIn.signIn();
     print(googleSigninAccount);
-    final GoogleSignInAuthentication? googleAuth =
-        await googleSigninAccount?.authentication;
-    if (googleAuth != null) {
-      final String? accessToken = googleAuth.accessToken;
-      final String? idToken = googleAuth.idToken;
-      print('here $accessToken');
-    }
+    // final GoogleSignInAuthentication? googleAuth =
+    //     await googleSigninAccount?.authentication;
+    // if (googleAuth != null) {
+    //   final String? accessToken = googleAuth.accessToken;
+    //   final String? idToken = googleAuth.idToken;
+    //   print('here $accessToken');
+    // }
     try {
       return await googleSigninAccount?.authentication;
     } catch (e) {

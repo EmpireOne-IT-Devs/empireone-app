@@ -33,4 +33,32 @@ class AccountRepository {
       );
     }
   }
+
+  Future<Result<AccountPayload>> signInTGoogle({
+    required String accessToken,
+  }) async {
+    var result = await _accountService.signInTGoogle(
+      body: {'access_token': accessToken},
+    );
+    return Result(
+      statusCode: result.statusCode,
+      data: AccountPayload.fromJson(jsonDecode(result.body)),
+    );
+  }
+
+  //   Future<void> save({
+  //   int? id,
+  //   String? token,
+  //   String? email,
+  //   int? userId,
+  // }) async {
+  //   await _accountDao.add(
+  //     AccountTableCompanion.insert(
+  //       id: id ?? 0,
+  //       token: token ?? '',
+  //       email: Value(email),
+  //       userId: userId ?? 0,
+  //     ),
+  //   );
+  // }
 }

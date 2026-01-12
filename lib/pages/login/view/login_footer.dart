@@ -19,7 +19,6 @@ class LoginFooter extends StatelessWidget {
           children: [
             ElevatedButton(
               onPressed: () {
-                // context.push(VerifyLoginPage.route);
                 bloc.add(LoginPressed());
               },
               child: Text(

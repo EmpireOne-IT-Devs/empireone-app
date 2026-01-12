@@ -7,4 +7,11 @@ class AccountService {
   Future<Response> login({required Map<String, dynamic> body}) {
     return post(Uri.parse('$baseUrl/login'), body: body);
   }
+
+    Future<Response> signInTGoogle({required Map<String, dynamic> body}) async {
+    return await post(
+      Uri.parse('$baseUrl/google'),
+      body: body,
+    );
+  }
 }

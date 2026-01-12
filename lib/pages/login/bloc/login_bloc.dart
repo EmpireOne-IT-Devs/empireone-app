@@ -3,6 +3,7 @@ import 'package:empireone_app/pages/login/bloc/bloc.dart';
 import 'package:empireone_app/repositories/account_repository.dart';
 import 'package:empireone_app/repositories/repositories.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
   final GoogleRepository _googleRepository;
@@ -72,40 +73,34 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     GooglePressed event,
     Emitter<LoginState> emit,
   ) async {
-    // This now returns a String? token directly
-    final token = await _googleRepository.signIn();
+    final googleSignInAuthentication = await _googleRepository.signIn();
+    var token = googleSignInAuthentication?.accessToken;
+    print('here token: $token');
+    // if(token != null){
+    //   emit(state.copyWith(requestStatus: RequestStatus.inProgress));
+    //   var result = await _accountRepository.signInTGoogle(accessToken: token);
+    //   switch (result.resultStatus) {
+    //     case ResultStatus.success:
+    //       // var accountId = result.data?.account?.id;
+    //       // var token = result.data?.accessToken;
 
-    if (token != null) {
-      print('googletoken $token');
-      // Your further logic here
-    }
-    //     if (token != null) {
-    //       print('googletoken $token');
-
-    //       emit(state.copyWith(requestStatus: RequestStatus.inProgress));
-    //       var result = await _accountRepository.signInTGoogle(accessToken: token);
-    //       switch (result.resultStatus) {
-    //         case ResultStatus.success:
-    //           var accountId = result.data?.account?.id;
-    //           var token = result.data?.accessToken;
-
-    //           if (accountId != null && token != null) {
-    //             await _accountRepository.save(
-    //               id: accountId,
-    //               token: token,
-    //               email: result.data?.account?.email,
-    //             );
-    //           }
-    //           emit(state.copyWith(requestStatus: RequestStatus.success));
-    //           break;
-    //         case ResultStatus.error:
-    //           emit(state.copyWith(requestStatus: RequestStatus.failure));
-    //           emit(state.copyWith(requestStatus: RequestStatus.waiting));
-    //           break;
-    //         case ResultStatus.none:
-    //           break;
-    //       }
-    //     }
+    //       // if (accountId != null && token != null) {
+    //       //   await _accountRepository.save(
+    //       //     id: accountId,
+    //       //     token: token,
+    //       //     email: result.data?.account?.email,
+    //       //   );
+    //       // }
+    //       emit(state.copyWith(requestStatus: RequestStatus.success));
+    //       break;
+    //     case ResultStatus.error:
+    //       emit(state.copyWith(requestStatus: RequestStatus.failure));
+    //       emit(state.copyWith(requestStatus: RequestStatus.waiting));
+    //       break;
+    //     case ResultStatus.none:
+    //       break;
+    //   }
+    // }
   }
 
   Future<void> _loginPressed(
