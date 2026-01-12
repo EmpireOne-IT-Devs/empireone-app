@@ -1,5 +1,6 @@
 import 'package:empireone_app/l10n/app_localizations.dart';
 import 'package:empireone_app/pages/login_employee/widgets/login_employee_field.dart';
+import 'package:empireone_app/pages/sign_up/signup.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';

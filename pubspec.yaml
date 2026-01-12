@@ -45,6 +45,7 @@ dependencies:
   google_sign_in: ^6.1.1
   persistent_bottom_nav_bar: ^6.2.1
   http: ^1.6.0
+  json_annotation: ^4.8.1
   
   flutter_localizations:
     sdk: flutter
@@ -55,6 +56,9 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^6.0.0
+  json_serializable: ^6.6.1
+
+
 
 
 flutter:

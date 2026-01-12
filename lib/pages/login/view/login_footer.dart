@@ -1,6 +1,6 @@
 import 'package:empireone_app/l10n/app_localizations.dart';
 import 'package:empireone_app/pages/login/bloc/bloc.dart';
-import 'package:empireone_app/pages/verify_login/view/view.dart';
+import 'package:empireone_app/pages/sign_up/view/view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -14,11 +14,13 @@ class LoginFooter extends StatelessWidget {
     var bloc = context.read<LoginBloc>();
     return BlocBuilder<LoginBloc, LoginState>(
       builder: (context, state) {
+        // print('here ${state.message}');
         return Column(
           children: [
             ElevatedButton(
               onPressed: () {
-                context.push(VerifyLoginPage.route);
+                // context.push(VerifyLoginPage.route);
+                bloc.add(LoginPressed());
               },
               child: Text(
                 AppLocalizations.of(context)?.login ?? '',
@@ -105,7 +107,9 @@ class LoginFooter extends StatelessWidget {
                     ),
                   ),
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      context.push(SignupPage.route);
+                    },
                     child: Text(
                       AppLocalizations.of(context)?.createAccount ?? '',
                       style: GoogleFonts.inter(

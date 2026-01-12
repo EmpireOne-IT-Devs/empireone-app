@@ -1,19 +1,23 @@
 import 'package:empireone_app/models/models.dart';
-import 'package:empireone_app/models/textfield_input/textfield_input.dart';
 import 'package:empireone_app/pages/login/bloc/bloc.dart';
+import 'package:empireone_app/repositories/account_repository.dart';
 import 'package:empireone_app/repositories/repositories.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
   final GoogleRepository _googleRepository;
+  final AccountRepository _accountRepository;
   LoginBloc({
     required GoogleRepository googleRepository,
     required LoginState initialState,
+    required AccountRepository accountRepository,
   }) : _googleRepository = googleRepository,
+       _accountRepository = accountRepository,
        super(initialState) {
     on<EmailChanged>(_emailChanged);
     on<PasswordChanged>(_passwordChanged);
     on<GooglePressed>(_googlePressed);
+    on<LoginPressed>(_loginPressed);
   }
 
   void _emailChanged(EmailChanged event, Emitter<LoginState> emit) {
@@ -26,10 +30,6 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       errorType = ErrorType.length;
     } else if (!RegExp(r'[a-z]').hasMatch(event.email)) {
       errorType = ErrorType.lowercaseLetter;
-    } else if (!RegExp(r'[A-Z]').hasMatch(event.email)) {
-      errorType = ErrorType.uppercaseLetter;
-    } else if (!RegExp(r'[0-9]').hasMatch(event.email)) {
-      errorType = ErrorType.digitNumber;
     } else if (!RegExp(r'[!@#\$%^&*(),.?":{}|<>]').hasMatch(event.email)) {
       errorType = ErrorType.specialCharacter;
     } else if (!RegExp(
@@ -106,5 +106,62 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     //           break;
     //       }
     //     }
+  }
+
+  Future<void> _loginPressed(
+    LoginPressed event,
+    Emitter<LoginState> emit,
+  ) async {
+    emit(state.copyWith(requestStatus: RequestStatus.inProgress));
+
+    var result = await _accountRepository.login(
+      email: state.email.value,
+      password: state.password.value,
+    );
+    switch (result.resultStatus) {
+      case ResultStatus.success:
+        var userId = result.data?.user?.id;
+        var token = result.data?.token;
+        if (userId != null && token != null) {}
+        emit(
+          state.copyWith(
+            message: result.data?.message ?? '',
+            requestStatus: RequestStatus.success,
+          ),
+        );
+        break;
+      case ResultStatus.error:
+        emit(
+          state.copyWith(
+            message: result.data?.message ?? '',
+            requestStatus: RequestStatus.failure,
+          ),
+        );
+        break;
+      case ResultStatus.none:
+        break;
+    }
+    // print('error message: ${result.data?.message}');
+    // print('token: ${result.data?.token}');
+    // print('resultstatus: ${result.statusCode}');
+    // if (result.statusCode == 201) {
+    //   emit(
+    //     state.copyWith(
+    //       message: result.data?.message ?? '',
+    //       requestStatus: RequestStatus.success,
+    //     ),
+    //   );
+    // } else if (result.statusCode == 400 ||
+    //     result.statusCode == 401 ||
+    //     result.statusCode == 402) {
+    //   emit(
+    //     state.copyWith(
+    //       message: result.data?.message ?? '',
+    //       requestStatus: RequestStatus.failure,
+    //     ),
+    //   );
+    // } else {
+    //   ResultStatus.none;
+    // }
   }
 }

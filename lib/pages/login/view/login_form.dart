@@ -16,6 +16,7 @@ class LoginForm extends StatelessWidget {
     var bloc = context.read<LoginBloc>();
     return BlocBuilder<LoginBloc, LoginState>(
       builder: (context, state) {
+        // print('messagetext: ${state.message}');
         return Container(
           constraints: BoxConstraints(
             minHeight: 400, // Minimum height to maintain your UI design
@@ -90,6 +91,8 @@ class LoginForm extends StatelessWidget {
                   ),
                 ),
                 LabeledTextField(
+                  error: Text(state.password.errorType.message.toString()),
+
                   onChanged: (value) {
                     bloc.add(PasswordChanged(value));
                   },

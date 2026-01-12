@@ -15,3 +15,7 @@ class PasswordChanged extends LoginEvent {
 class GooglePressed extends LoginEvent {
   const GooglePressed();
 }
+
+class LoginPressed extends LoginEvent{
+  const LoginPressed();
+}

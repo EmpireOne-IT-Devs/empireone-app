@@ -64,7 +64,7 @@ class SignupForm extends StatelessWidget {
                   ),
                 ),
                 LabeledTextField(
-                  error: Text(state.signupEmail.errorType.message.toString()),
+                  // error: Text(state.signupEmail.errorType.message.toString()),
                   onChanged: (value) {
                     bloc.add(SignupEmailChanged(value));
                   },
@@ -96,9 +96,9 @@ class SignupForm extends StatelessWidget {
                   onChanged: (value) {
                     bloc.add(SignupPasswordChanged(value));
                   },
-                  error: Text(
-                    state.signupPassword.errorType.message.toString(),
-                  ),
+                  // error: Text(
+                  //   state.signupPassword.errorType.message.toString(),
+                  // ),
                   hintText:
                       AppLocalizations.of(context)?.enterYourPassword ?? '',
                   prefixIcon: SvgPicture.asset(
@@ -127,9 +127,9 @@ class SignupForm extends StatelessWidget {
                   onChanged: (value) {
                     bloc.add(SignupConfirmPasswordChanged(value));
                   },
-                  error: Text(
-                    state.signupConfirmPassword.errorType.message.toString(),
-                  ),
+                  // error: Text(
+                  //   state.signupConfirmPassword.errorType.message.toString(),
+                  // ),
                   hintText: AppLocalizations.of(context)?.confirmPassword ?? '',
                   prefixIcon: SvgPicture.asset(
                     'assets/icons/passwordlock.svg',
@@ -138,12 +138,13 @@ class SignupForm extends StatelessWidget {
                   textInputAction: TextInputAction.done,
                 ),
                 Row(
-                  crossAxisAlignment: CrossAxisAlignment
-                      .start, 
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Checkbox(
                       onChanged: (value) {
-                        bloc.add(SignupAgreementCheckBoxPressed(state.isChecked));
+                        bloc.add(
+                          SignupAgreementCheckBoxPressed(state.isChecked),
+                        );
                       },
                       side: BorderSide(width: 0.5),
                       shape: RoundedRectangleBorder(

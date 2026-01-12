@@ -4,7 +4,9 @@ import 'package:empireone_app/pages/login/view/view.dart';
 import 'package:empireone_app/pages/login_employee/view/view.dart';
 import 'package:empireone_app/pages/reset_password/view/view.dart';
 import 'package:empireone_app/pages/ticket/ticket.dart';
+import 'package:empireone_app/repositories/account_repository.dart';
 import 'package:empireone_app/repositories/google_repository.dart';
+import 'package:empireone_app/services/account_service.dart';
 import 'package:empireone_app/services/services.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -19,11 +21,15 @@ import 'pages/verify_login/view/view.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  var baseUrl = 'https://empireone-bpo.com/api/';
+  var baseUrl = 'https://empireone-bpo.com/api/auth';
 
   final List<String> scopes = ['email', 'profile'];
   final String clientId =
       '301631048424-pdrvq2jm03jhca6d3abtp63jqmliuobo.apps.googleusercontent.com';
+
+  var accountRepository = AccountRepository(
+    accountService: AccountService(baseUrl: baseUrl),
+  );
 
   runApp(
     EmpireOne(
@@ -34,13 +40,19 @@ void main() {
           clientId: clientId,
         ),
       ),
+      accountRepository: accountRepository,
     ),
   );
 }
 
 class EmpireOne extends StatelessWidget {
   final GoogleRepository googleRepository;
-  const EmpireOne({super.key, required this.googleRepository});
+  final AccountRepository accountRepository;
+  const EmpireOne({
+    super.key,
+    required this.googleRepository,
+    required this.accountRepository,
+  });
 
   // This widget is the root of your application.
   @override
@@ -122,6 +134,7 @@ class EmpireOne extends StatelessWidget {
             borderRadius: BorderRadius.circular(10),
             borderSide: BorderSide(width: 0.5, color: Color(0xFF4B5563)),
           ),
+          errorStyle: TextStyle(color: Theme.of(context).colorScheme.onPrimary),
         ),
         outlinedButtonTheme: OutlinedButtonThemeData(
           style: OutlinedButton.styleFrom(
@@ -133,6 +146,9 @@ class EmpireOne extends StatelessWidget {
             ),
           ),
         ),
+        textSelectionTheme: TextSelectionThemeData(
+          cursorColor: Theme.of(context).colorScheme.onPrimary,
+        ),
       ),
     );
   }
@@ -143,7 +159,7 @@ final GoRouter _router = GoRouter(
     GoRoute(
       path: '/',
       builder: (BuildContext context, GoRouterState state) {
-        return TicketPage();
+        return LoginPage();
         // return AnimatedSplashScreen(
         //   splash: Padding(
         //     padding: const EdgeInsets.symmetric(horizontal: 32),

@@ -13,5 +13,6 @@ sealed class LoginState with _$LoginState {
     @Default(TextFieldInput(errorType: ErrorType.empty))
     TextFieldInput password,
     @Default(RequestStatus.waiting) RequestStatus requestStatus,
+    @Default('') String message,
   }) = _LoginState;
 }

@@ -44,8 +44,7 @@ class LabeledTextField extends StatelessWidget {
           minHeight: 20,
         ),
         error: error,
-        // errorText: ,
-        errorStyle: TextStyle(color: Theme.of(context).colorScheme.error),
+        errorStyle: TextStyle(color: Theme.of(context).colorScheme.onPrimary),
       ),
     );
   }
