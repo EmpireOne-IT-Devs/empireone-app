@@ -22,7 +22,7 @@ import 'pages/verify_login/view/view.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  var baseUrl = 'https://empireone-bpo.com/api/auth';
+  var baseUrl = 'https://empireone-bpo.com/api';
 
   var accountRepository = AccountRepository(
     accountService: AccountService(baseUrl: baseUrl),

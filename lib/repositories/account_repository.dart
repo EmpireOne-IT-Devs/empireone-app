@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:empireone_app/models/employee_payload/employee_payload.dart';
 import 'package:empireone_app/models/models.dart';
 import 'package:empireone_app/services/account_service.dart';
 
@@ -61,4 +62,20 @@ class AccountRepository {
   //     ),
   //   );
   // }
+
+  Future<Result<EmployeePayload>> employeeId({required String employeeId}) async {
+    var result = await _accountService.employeeId(employeeId: employeeId);
+    return Result(
+      data: EmployeePayload.fromJson(jsonDecode(result.body)),
+      statusCode: result.statusCode,
+    );
+  }
+
+    Future<Result<EmployeePayload>> sendOtp({required String email}) async {
+    var result = await _accountService.sendOtp(email: email);
+    return Result(
+      data: EmployeePayload.fromJson(jsonDecode(result.body)),
+      statusCode: result.statusCode,
+    );
+  }
 }
