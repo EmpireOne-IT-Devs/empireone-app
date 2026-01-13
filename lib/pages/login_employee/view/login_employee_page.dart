@@ -2,7 +2,7 @@ import 'package:empireone_app/pages/login_employee/login_employee.dart';
 import 'package:flutter/material.dart';
 
 class LoginEmployeePage extends StatelessWidget {
-  static const route = '/login';
+  static const route = '/login_employee';
 
   const LoginEmployeePage({super.key});
 

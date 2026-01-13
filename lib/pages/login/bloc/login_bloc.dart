@@ -3,7 +3,6 @@ import 'package:empireone_app/pages/login/bloc/bloc.dart';
 import 'package:empireone_app/repositories/account_repository.dart';
 import 'package:empireone_app/repositories/repositories.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
   final GoogleRepository _googleRepository;
@@ -73,7 +72,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     GooglePressed event,
     Emitter<LoginState> emit,
   ) async {
-    final googleSignInAuthentication = await _googleRepository.signIn();
+    // final googleSignInAuthentication = await _googleRepository.signIn();
     // var token = googleSignInAuthentication?.accessToken;
     // var idToken =  googleSignInAuthentication?.idToken;
     // print('here token: $token');

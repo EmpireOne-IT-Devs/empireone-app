@@ -1,5 +1,8 @@
+import 'package:empireone_app/pages/login/view/view.dart';
+import 'package:empireone_app/pages/login_employee/view/view.dart';
 import 'package:empireone_app/pages/role/role.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class RoleButtons extends StatelessWidget {
@@ -13,6 +16,9 @@ class RoleButtons extends StatelessWidget {
         SizedBox(
           width: 133,
           child: RoleButton(
+            onPressed: () {
+              context.push(LoginEmployeePage.route);
+            },
             text: Stack(
               children: [
                 // The White Border
@@ -55,6 +61,9 @@ class RoleButtons extends StatelessWidget {
         SizedBox(
           width: 133,
           child: RoleButton(
+            onPressed: () {
+              context.push(LoginPage.route);
+            },
             text: Stack(
               children: [
                 // The White Border

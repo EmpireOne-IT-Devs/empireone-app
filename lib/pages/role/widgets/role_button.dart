@@ -3,7 +3,7 @@ import 'package:flutter_inset_shadow/flutter_inset_shadow.dart';
 
 class RoleButton extends StatelessWidget {
   final Widget? text;
-  final Function()? onPressed;
+  final VoidCallback? onPressed;
   const RoleButton({super.key, required this.text, this.onPressed});
 
   @override

@@ -8,7 +8,7 @@ class GoogleRepository {
     required GoogleService googleService,
   }) : _googleService = googleService;
 
-  Future<String?> signIn() async {
+  Future<GoogleSignInAuthentication?> signIn() async {
     try {
       return await _googleService.getAccessToken();
     } catch (e) {

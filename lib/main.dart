@@ -24,10 +24,6 @@ void main() {
   WidgetsFlutterBinding.ensureInitialized();
   var baseUrl = 'https://empireone-bpo.com/api/auth';
 
-  final List<String> scopes = ['email', 'profile'];
-  final String clientId =
-      '301631048424-pdrvq2jm03jhca6d3abtp63jqmliuobo.apps.googleusercontent.com';
-
   var accountRepository = AccountRepository(
     accountService: AccountService(baseUrl: baseUrl),
   );
@@ -36,7 +32,15 @@ void main() {
     EmpireOne(
       googleRepository: GoogleRepository(
         googleService: GoogleService(
-          GoogleSignIn(scopes: scopes, serverClientId: clientId),
+          GoogleSignIn(
+            clientId:
+                '543673078002-bhqkbrhr7cpfapraq0cjb3hl30mavj53.apps.googleusercontent.com',
+            scopes: <String>[
+              'email',
+              'profile',
+              'https://www.googleapis.com/auth/contacts.readonly',
+            ],
+          ),
           baseUrl,
         ),
       ),
@@ -159,7 +163,7 @@ final GoRouter _router = GoRouter(
     GoRoute(
       path: '/',
       builder: (BuildContext context, GoRouterState state) {
-        return LoginPage();
+        return RolePage();
         // return AnimatedSplashScreen(
         //   splash: Padding(
         //     padding: const EdgeInsets.symmetric(horizontal: 32),

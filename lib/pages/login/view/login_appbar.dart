@@ -5,6 +5,6 @@ class LoginAppbar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppBar();
+    return AppBar(automaticallyImplyLeading: false);
   }
 }
