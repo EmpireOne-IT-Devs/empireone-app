@@ -3,6 +3,7 @@ import 'package:empireone_app/pages/home_employee/view/view.dart';
 import 'package:empireone_app/pages/login/view/view.dart';
 import 'package:empireone_app/pages/login_employee/view/view.dart';
 import 'package:empireone_app/pages/reset_password/view/view.dart';
+import 'package:empireone_app/pages/role/view/role_page.dart';
 import 'package:empireone_app/pages/ticket/ticket.dart';
 import 'package:empireone_app/repositories/account_repository.dart';
 import 'package:empireone_app/repositories/google_repository.dart';
@@ -35,9 +36,8 @@ void main() {
     EmpireOne(
       googleRepository: GoogleRepository(
         googleService: GoogleService(
-          GoogleSignIn(scopes: scopes),
+          GoogleSignIn(scopes: scopes, serverClientId: clientId),
           baseUrl,
-          clientId: clientId,
         ),
       ),
       accountRepository: accountRepository,
@@ -237,6 +237,12 @@ final GoRouter _router = GoRouter(
           path: TicketPage.route,
           builder: (BuildContext context, GoRouterState state) {
             return const TicketPage();
+          },
+        ),
+        GoRoute(
+          path: RolePage.route,
+          builder: (BuildContext context, GoRouterState state) {
+            return const RolePage();
           },
         ),
       ],

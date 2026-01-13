@@ -84,7 +84,7 @@ class LoginPage extends StatelessWidget {
       providers: [
         RepositoryProvider<GoogleRepository>(
           create: (context) => GoogleRepository(
-            googleService: GoogleService(GoogleSignIn(), '', clientId: ''),
+            googleService: GoogleService(GoogleSignIn(), ''),
           ),
         ),
         RepositoryProvider(
@@ -98,7 +98,7 @@ class LoginPage extends StatelessWidget {
       child: BlocProvider<LoginBloc>(
         create: (context) => LoginBloc(
           googleRepository: GoogleRepository(
-            googleService: GoogleService(GoogleSignIn(), '', clientId: ''),
+            googleService: GoogleService(GoogleSignIn(), ''),
           ),
           initialState: const LoginState(),
           accountRepository: RepositoryProvider.of<AccountRepository>(context),

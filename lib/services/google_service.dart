@@ -1,26 +1,28 @@
 import 'package:google_sign_in/google_sign_in.dart';
 
 class GoogleService {
-  final String clientId;
+  // final String clientId;
   final GoogleSignIn googleSignIn;
   final String baseUrl;
 
-  GoogleService(this.googleSignIn, this.baseUrl, {required this.clientId});
+  GoogleService(this.googleSignIn, this.baseUrl, );
 
-  Future<GoogleSignInAuthentication?> getAccessToken() async {
-    final googleSigninAccount = await googleSignIn.signIn();
+  Future<String?> getAccessToken() async {
+    final GoogleSignInAccount? googleSigninAccount = await  googleSignIn.signIn();
     print(googleSigninAccount);
-    // final GoogleSignInAuthentication? googleAuth =
-    //     await googleSigninAccount?.authentication;
-    // if (googleAuth != null) {
-    //   final String? accessToken = googleAuth.accessToken;
-    //   final String? idToken = googleAuth.idToken;
-    //   print('here $accessToken');
-    // }
+    final GoogleSignInAuthentication? googleAuth =
+        await googleSigninAccount?.authentication;
+    if (googleAuth != null) {
+      final String? accessToken = googleAuth.accessToken;
+      final String? idToken = googleAuth.idToken;
+      print('here $accessToken');
+      print('idtoken :: $idToken');
+    }
     try {
-      return await googleSigninAccount?.authentication;
+      // return '$idToken';
     } catch (e) {
       return null;
     }
   }
 }
+
