@@ -13,10 +13,10 @@ class AccountService {
   }
 
   Future<Response> employeeId({required String employeeId}) {
-    return get(Uri.parse('$baseUrl/auth/employee/$employeeId'));
+    return get(Uri.parse('$baseUrl/employee/$employeeId'));
   }
 
-    Future<Response> sendOtp({required String email}) {
-    return get(Uri.parse('$baseUrl/auth/send_otp/$email'));
+  Future<Response> sendOtp({required String email}) {
+    return post(Uri.parse('$baseUrl/auth/send_otp/$email'));
   }
 }

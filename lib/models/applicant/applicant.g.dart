@@ -8,7 +8,7 @@ part of 'applicant.dart';
 
 _Applicant _$ApplicantFromJson(Map<String, dynamic> json) => _Applicant(
   id: (json['id'] as num?)?.toInt(),
-  appId: (json['appId'] as num?)?.toInt(),
+  appId: json['app_id'] as String?,
   fname: json['fname'] as String?,
   mname: json['mname'] as String?,
   lname: json['lname'] as String?,
@@ -37,7 +37,7 @@ _Applicant _$ApplicantFromJson(Map<String, dynamic> json) => _Applicant(
   ephone: json['ephone'] as String?,
   status: json['status'] as String?,
   agreed: json['agreed'] as String?,
-  callStatus: json['callStatus'] as String?,
+  callStatus: json['call_status'] as String?,
   site: json['site'] as String?,
   submitted: json['submitted'] as String?,
 );
@@ -45,7 +45,7 @@ _Applicant _$ApplicantFromJson(Map<String, dynamic> json) => _Applicant(
 Map<String, dynamic> _$ApplicantToJson(_Applicant instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'appId': instance.appId,
+      'app_id': instance.appId,
       'fname': instance.fname,
       'mname': instance.mname,
       'lname': instance.lname,
@@ -74,7 +74,7 @@ Map<String, dynamic> _$ApplicantToJson(_Applicant instance) =>
       'ephone': instance.ephone,
       'status': instance.status,
       'agreed': instance.agreed,
-      'callStatus': instance.callStatus,
+      'call_status': instance.callStatus,
       'site': instance.site,
       'submitted': instance.submitted,
     };

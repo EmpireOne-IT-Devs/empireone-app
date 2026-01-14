@@ -33,22 +33,63 @@ class LoginEmployeeBloc extends Bloc<LoginEmployeeEvent, LoginEmployeeState> {
       errorType: errorType,
     );
     emit(state.copyWith(employeeId: employeeId));
-    // print('here $employeeId');
+    print('hereemploy id: $employeeId');
   }
 
   void _employeeIdVerified(
     EmployeeIdVerified event,
     Emitter<LoginEmployeeState> emit,
   ) async {
+    emit(state.copyWith(requestStatusSendOtp: RequestStatus.waiting));
+    emit(state.copyWith(requestStatusSendOtp: RequestStatus.inProgress));
     var employeeId = state.employeeId;
     var result = await _accountRepository.employeeId(
       employeeId: employeeId.value,
     );
-    switch (result.statusCode) {
-      case ResultStatus.success:
-      // eogs email get the response of the verify employee
-      //put inside email
-      // _accountRepository.sendOtp(email: email)
+    print('here ${result.data}');
+    print('eogs ${result.data?.eogs}');
+    print('here ${result.statusCode}');
+    var eogsEmail = result.data?.eogs;
+    if (result.statusCode == 200 && eogsEmail != null) {
+      _accountRepository.sendOtp(email: eogsEmail);
+      emit(
+        state.copyWith(
+          requestStatusSendOtp: RequestStatus.success,
+          requestStatus: RequestStatus.success,
+        ),
+      );
+    } else {
+      emit(
+        state.copyWith(
+          requestStatusSendOtp: RequestStatus.failure,
+          message: 'Employee ID not found',
+        ),
+      );
     }
+    // switch (result.statusCode) {
+    //   // ignore: constant_pattern_never_matches_value_type
+    //   case ResultStatus.success:
+    //     emit(state.copyWith(requestStatusSendOtp: RequestStatus.inProgress));
+    //     _accountRepository.sendOtp(email: eogsEmail ?? '');
+    //     emit(
+    //       state.copyWith(
+    //         requestStatusSendOtp: RequestStatus.success,
+    //         requestStatus: RequestStatus.success,
+    //       ),
+    //     );
+    //     break;
+    //   // ignore: constant_pattern_never_matches_value_type
+    //   case ResultStatus.error:
+    //     emit(
+    //       state.copyWith(
+    //         message: result.data?.message ?? '',
+    //         requestStatus: RequestStatus.failure,
+    //       ),
+    //     );
+    //     break;
+    //   // ignore: constant_pattern_never_matches_value_type
+    //   case ResultStatus.none:
+    //     break;
+    // }
   }
 }

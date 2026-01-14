@@ -9,19 +9,19 @@ part of 'employee_payload.dart';
 _EmployeePayload _$EmployeePayloadFromJson(Map<String, dynamic> json) =>
     _EmployeePayload(
       id: (json['id'] as num?)?.toInt(),
-      appId: (json['appId'] as num?)?.toInt(),
-      empId: (json['empId'] as num?)?.toInt(),
+      appId: json['app_id'] as String?,
+      empId: json['emp_id'] as String?,
       position: json['position'] as String?,
-      department: json['department'] == null
+      department: json['dept'] == null
           ? null
-          : Department.fromJson(json['department'] as Map<String, dynamic>),
+          : Department.fromJson(json['dept'] as Map<String, dynamic>),
       account: json['account'] as String?,
-      supId: (json['supId'] as num?)?.toInt(),
+      supId: (json['sup_id'] as num?)?.toInt(),
       hired: json['hired'] as String?,
       due: json['due'] as String?,
       eogs: json['eogs'] as String?,
       status: json['status'] as String?,
-      createdAt: json['created_at'] as String?,
+      createdAt: json['created'] as String?,
       attrition: json['attrition'] as String?,
       applicant: json['applicant'] == null
           ? null
@@ -35,17 +35,17 @@ _EmployeePayload _$EmployeePayloadFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$EmployeePayloadToJson(_EmployeePayload instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'appId': instance.appId,
-      'empId': instance.empId,
+      'app_id': instance.appId,
+      'emp_id': instance.empId,
       'position': instance.position,
-      'department': instance.department,
+      'dept': instance.department,
       'account': instance.account,
-      'supId': instance.supId,
+      'sup_id': instance.supId,
       'hired': instance.hired,
       'due': instance.due,
       'eogs': instance.eogs,
       'status': instance.status,
-      'created_at': instance.createdAt,
+      'created': instance.createdAt,
       'attrition': instance.attrition,
       'applicant': instance.applicant,
       'message': instance.message,

@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$EmployeePayload {
 
- int? get id; int? get appId; int? get empId; String? get position; Department? get department; String? get account; int? get supId; String? get hired; String? get due; String? get eogs; String? get status;@JsonKey(name: 'created_at') String? get createdAt; String? get attrition; Applicant? get applicant; String? get message; User? get user;
+ int? get id;@JsonKey(name: 'app_id') String? get appId;@JsonKey(name: 'emp_id') String? get empId; String? get position;@JsonKey(name: 'dept') Department? get department; String? get account;@JsonKey(name: 'sup_id') int? get supId; String? get hired; String? get due; String? get eogs; String? get status;@JsonKey(name: 'created') String? get createdAt; String? get attrition; Applicant? get applicant; String? get message; User? get user;
 /// Create a copy of EmployeePayload
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -48,7 +48,7 @@ abstract mixin class $EmployeePayloadCopyWith<$Res>  {
   factory $EmployeePayloadCopyWith(EmployeePayload value, $Res Function(EmployeePayload) _then) = _$EmployeePayloadCopyWithImpl;
 @useResult
 $Res call({
- int? id, int? appId, int? empId, String? position, Department? department, String? account, int? supId, String? hired, String? due, String? eogs, String? status,@JsonKey(name: 'created_at') String? createdAt, String? attrition, Applicant? applicant, String? message, User? user
+ int? id,@JsonKey(name: 'app_id') String? appId,@JsonKey(name: 'emp_id') String? empId, String? position,@JsonKey(name: 'dept') Department? department, String? account,@JsonKey(name: 'sup_id') int? supId, String? hired, String? due, String? eogs, String? status,@JsonKey(name: 'created') String? createdAt, String? attrition, Applicant? applicant, String? message, User? user
 });
 
 
@@ -69,8 +69,8 @@ class _$EmployeePayloadCopyWithImpl<$Res>
   return _then(_self.copyWith(
 id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int?,appId: freezed == appId ? _self.appId : appId // ignore: cast_nullable_to_non_nullable
-as int?,empId: freezed == empId ? _self.empId : empId // ignore: cast_nullable_to_non_nullable
-as int?,position: freezed == position ? _self.position : position // ignore: cast_nullable_to_non_nullable
+as String?,empId: freezed == empId ? _self.empId : empId // ignore: cast_nullable_to_non_nullable
+as String?,position: freezed == position ? _self.position : position // ignore: cast_nullable_to_non_nullable
 as String?,department: freezed == department ? _self.department : department // ignore: cast_nullable_to_non_nullable
 as Department?,account: freezed == account ? _self.account : account // ignore: cast_nullable_to_non_nullable
 as String?,supId: freezed == supId ? _self.supId : supId // ignore: cast_nullable_to_non_nullable
@@ -204,7 +204,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int? id,  int? appId,  int? empId,  String? position,  Department? department,  String? account,  int? supId,  String? hired,  String? due,  String? eogs,  String? status, @JsonKey(name: 'created_at')  String? createdAt,  String? attrition,  Applicant? applicant,  String? message,  User? user)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int? id, @JsonKey(name: 'app_id')  String? appId, @JsonKey(name: 'emp_id')  String? empId,  String? position, @JsonKey(name: 'dept')  Department? department,  String? account, @JsonKey(name: 'sup_id')  int? supId,  String? hired,  String? due,  String? eogs,  String? status, @JsonKey(name: 'created')  String? createdAt,  String? attrition,  Applicant? applicant,  String? message,  User? user)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _EmployeePayload() when $default != null:
 return $default(_that.id,_that.appId,_that.empId,_that.position,_that.department,_that.account,_that.supId,_that.hired,_that.due,_that.eogs,_that.status,_that.createdAt,_that.attrition,_that.applicant,_that.message,_that.user);case _:
@@ -225,7 +225,7 @@ return $default(_that.id,_that.appId,_that.empId,_that.position,_that.department
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int? id,  int? appId,  int? empId,  String? position,  Department? department,  String? account,  int? supId,  String? hired,  String? due,  String? eogs,  String? status, @JsonKey(name: 'created_at')  String? createdAt,  String? attrition,  Applicant? applicant,  String? message,  User? user)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int? id, @JsonKey(name: 'app_id')  String? appId, @JsonKey(name: 'emp_id')  String? empId,  String? position, @JsonKey(name: 'dept')  Department? department,  String? account, @JsonKey(name: 'sup_id')  int? supId,  String? hired,  String? due,  String? eogs,  String? status, @JsonKey(name: 'created')  String? createdAt,  String? attrition,  Applicant? applicant,  String? message,  User? user)  $default,) {final _that = this;
 switch (_that) {
 case _EmployeePayload():
 return $default(_that.id,_that.appId,_that.empId,_that.position,_that.department,_that.account,_that.supId,_that.hired,_that.due,_that.eogs,_that.status,_that.createdAt,_that.attrition,_that.applicant,_that.message,_that.user);case _:
@@ -245,7 +245,7 @@ return $default(_that.id,_that.appId,_that.empId,_that.position,_that.department
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int? id,  int? appId,  int? empId,  String? position,  Department? department,  String? account,  int? supId,  String? hired,  String? due,  String? eogs,  String? status, @JsonKey(name: 'created_at')  String? createdAt,  String? attrition,  Applicant? applicant,  String? message,  User? user)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int? id, @JsonKey(name: 'app_id')  String? appId, @JsonKey(name: 'emp_id')  String? empId,  String? position, @JsonKey(name: 'dept')  Department? department,  String? account, @JsonKey(name: 'sup_id')  int? supId,  String? hired,  String? due,  String? eogs,  String? status, @JsonKey(name: 'created')  String? createdAt,  String? attrition,  Applicant? applicant,  String? message,  User? user)?  $default,) {final _that = this;
 switch (_that) {
 case _EmployeePayload() when $default != null:
 return $default(_that.id,_that.appId,_that.empId,_that.position,_that.department,_that.account,_that.supId,_that.hired,_that.due,_that.eogs,_that.status,_that.createdAt,_that.attrition,_that.applicant,_that.message,_that.user);case _:
@@ -260,21 +260,21 @@ return $default(_that.id,_that.appId,_that.empId,_that.position,_that.department
 @JsonSerializable()
 
 class _EmployeePayload implements EmployeePayload {
-  const _EmployeePayload({this.id, this.appId, this.empId, this.position, this.department, this.account, this.supId, this.hired, this.due, this.eogs, this.status, @JsonKey(name: 'created_at') this.createdAt, this.attrition, this.applicant, this.message, this.user});
+  const _EmployeePayload({this.id, @JsonKey(name: 'app_id') this.appId, @JsonKey(name: 'emp_id') this.empId, this.position, @JsonKey(name: 'dept') this.department, this.account, @JsonKey(name: 'sup_id') this.supId, this.hired, this.due, this.eogs, this.status, @JsonKey(name: 'created') this.createdAt, this.attrition, this.applicant, this.message, this.user});
   factory _EmployeePayload.fromJson(Map<String, dynamic> json) => _$EmployeePayloadFromJson(json);
 
 @override final  int? id;
-@override final  int? appId;
-@override final  int? empId;
+@override@JsonKey(name: 'app_id') final  String? appId;
+@override@JsonKey(name: 'emp_id') final  String? empId;
 @override final  String? position;
-@override final  Department? department;
+@override@JsonKey(name: 'dept') final  Department? department;
 @override final  String? account;
-@override final  int? supId;
+@override@JsonKey(name: 'sup_id') final  int? supId;
 @override final  String? hired;
 @override final  String? due;
 @override final  String? eogs;
 @override final  String? status;
-@override@JsonKey(name: 'created_at') final  String? createdAt;
+@override@JsonKey(name: 'created') final  String? createdAt;
 @override final  String? attrition;
 @override final  Applicant? applicant;
 @override final  String? message;
@@ -313,7 +313,7 @@ abstract mixin class _$EmployeePayloadCopyWith<$Res> implements $EmployeePayload
   factory _$EmployeePayloadCopyWith(_EmployeePayload value, $Res Function(_EmployeePayload) _then) = __$EmployeePayloadCopyWithImpl;
 @override @useResult
 $Res call({
- int? id, int? appId, int? empId, String? position, Department? department, String? account, int? supId, String? hired, String? due, String? eogs, String? status,@JsonKey(name: 'created_at') String? createdAt, String? attrition, Applicant? applicant, String? message, User? user
+ int? id,@JsonKey(name: 'app_id') String? appId,@JsonKey(name: 'emp_id') String? empId, String? position,@JsonKey(name: 'dept') Department? department, String? account,@JsonKey(name: 'sup_id') int? supId, String? hired, String? due, String? eogs, String? status,@JsonKey(name: 'created') String? createdAt, String? attrition, Applicant? applicant, String? message, User? user
 });
 
 
@@ -334,8 +334,8 @@ class __$EmployeePayloadCopyWithImpl<$Res>
   return _then(_EmployeePayload(
 id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int?,appId: freezed == appId ? _self.appId : appId // ignore: cast_nullable_to_non_nullable
-as int?,empId: freezed == empId ? _self.empId : empId // ignore: cast_nullable_to_non_nullable
-as int?,position: freezed == position ? _self.position : position // ignore: cast_nullable_to_non_nullable
+as String?,empId: freezed == empId ? _self.empId : empId // ignore: cast_nullable_to_non_nullable
+as String?,position: freezed == position ? _self.position : position // ignore: cast_nullable_to_non_nullable
 as String?,department: freezed == department ? _self.department : department // ignore: cast_nullable_to_non_nullable
 as Department?,account: freezed == account ? _self.account : account // ignore: cast_nullable_to_non_nullable
 as String?,supId: freezed == supId ? _self.supId : supId // ignore: cast_nullable_to_non_nullable

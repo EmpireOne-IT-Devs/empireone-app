@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$Department {
 
- int? get id; String? get dept; String? get depthead; String? get site;@JsonKey(name: 'created_at') String? get createdAt; User? get user;
+ int? get id; String? get dept; String? get depthead; String? get site;@JsonKey(name: 'created') String? get createdAt; EmployeeUser? get user;
 /// Create a copy of Department
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -48,11 +48,11 @@ abstract mixin class $DepartmentCopyWith<$Res>  {
   factory $DepartmentCopyWith(Department value, $Res Function(Department) _then) = _$DepartmentCopyWithImpl;
 @useResult
 $Res call({
- int? id, String? dept, String? depthead, String? site,@JsonKey(name: 'created_at') String? createdAt, User? user
+ int? id, String? dept, String? depthead, String? site,@JsonKey(name: 'created') String? createdAt, EmployeeUser? user
 });
 
 
-$UserCopyWith<$Res>? get user;
+$EmployeeUserCopyWith<$Res>? get user;
 
 }
 /// @nodoc
@@ -73,19 +73,19 @@ as String?,depthead: freezed == depthead ? _self.depthead : depthead // ignore: 
 as String?,site: freezed == site ? _self.site : site // ignore: cast_nullable_to_non_nullable
 as String?,createdAt: freezed == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
 as String?,user: freezed == user ? _self.user : user // ignore: cast_nullable_to_non_nullable
-as User?,
+as EmployeeUser?,
   ));
 }
 /// Create a copy of Department
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
-$UserCopyWith<$Res>? get user {
+$EmployeeUserCopyWith<$Res>? get user {
     if (_self.user == null) {
     return null;
   }
 
-  return $UserCopyWith<$Res>(_self.user!, (value) {
+  return $EmployeeUserCopyWith<$Res>(_self.user!, (value) {
     return _then(_self.copyWith(user: value));
   });
 }
@@ -170,7 +170,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int? id,  String? dept,  String? depthead,  String? site, @JsonKey(name: 'created_at')  String? createdAt,  User? user)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int? id,  String? dept,  String? depthead,  String? site, @JsonKey(name: 'created')  String? createdAt,  EmployeeUser? user)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Department() when $default != null:
 return $default(_that.id,_that.dept,_that.depthead,_that.site,_that.createdAt,_that.user);case _:
@@ -191,7 +191,7 @@ return $default(_that.id,_that.dept,_that.depthead,_that.site,_that.createdAt,_t
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int? id,  String? dept,  String? depthead,  String? site, @JsonKey(name: 'created_at')  String? createdAt,  User? user)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int? id,  String? dept,  String? depthead,  String? site, @JsonKey(name: 'created')  String? createdAt,  EmployeeUser? user)  $default,) {final _that = this;
 switch (_that) {
 case _Department():
 return $default(_that.id,_that.dept,_that.depthead,_that.site,_that.createdAt,_that.user);case _:
@@ -211,7 +211,7 @@ return $default(_that.id,_that.dept,_that.depthead,_that.site,_that.createdAt,_t
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int? id,  String? dept,  String? depthead,  String? site, @JsonKey(name: 'created_at')  String? createdAt,  User? user)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int? id,  String? dept,  String? depthead,  String? site, @JsonKey(name: 'created')  String? createdAt,  EmployeeUser? user)?  $default,) {final _that = this;
 switch (_that) {
 case _Department() when $default != null:
 return $default(_that.id,_that.dept,_that.depthead,_that.site,_that.createdAt,_that.user);case _:
@@ -226,15 +226,15 @@ return $default(_that.id,_that.dept,_that.depthead,_that.site,_that.createdAt,_t
 @JsonSerializable()
 
 class _Department implements Department {
-  const _Department({this.id, this.dept, this.depthead, this.site, @JsonKey(name: 'created_at') this.createdAt, this.user});
+  const _Department({this.id, this.dept, this.depthead, this.site, @JsonKey(name: 'created') this.createdAt, this.user});
   factory _Department.fromJson(Map<String, dynamic> json) => _$DepartmentFromJson(json);
 
 @override final  int? id;
 @override final  String? dept;
 @override final  String? depthead;
 @override final  String? site;
-@override@JsonKey(name: 'created_at') final  String? createdAt;
-@override final  User? user;
+@override@JsonKey(name: 'created') final  String? createdAt;
+@override final  EmployeeUser? user;
 
 /// Create a copy of Department
 /// with the given fields replaced by the non-null parameter values.
@@ -269,11 +269,11 @@ abstract mixin class _$DepartmentCopyWith<$Res> implements $DepartmentCopyWith<$
   factory _$DepartmentCopyWith(_Department value, $Res Function(_Department) _then) = __$DepartmentCopyWithImpl;
 @override @useResult
 $Res call({
- int? id, String? dept, String? depthead, String? site,@JsonKey(name: 'created_at') String? createdAt, User? user
+ int? id, String? dept, String? depthead, String? site,@JsonKey(name: 'created') String? createdAt, EmployeeUser? user
 });
 
 
-@override $UserCopyWith<$Res>? get user;
+@override $EmployeeUserCopyWith<$Res>? get user;
 
 }
 /// @nodoc
@@ -294,7 +294,7 @@ as String?,depthead: freezed == depthead ? _self.depthead : depthead // ignore: 
 as String?,site: freezed == site ? _self.site : site // ignore: cast_nullable_to_non_nullable
 as String?,createdAt: freezed == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
 as String?,user: freezed == user ? _self.user : user // ignore: cast_nullable_to_non_nullable
-as User?,
+as EmployeeUser?,
   ));
 }
 
@@ -302,12 +302,12 @@ as User?,
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
-$UserCopyWith<$Res>? get user {
+$EmployeeUserCopyWith<$Res>? get user {
     if (_self.user == null) {
     return null;
   }
 
-  return $UserCopyWith<$Res>(_self.user!, (value) {
+  return $EmployeeUserCopyWith<$Res>(_self.user!, (value) {
     return _then(_self.copyWith(user: value));
   });
 }

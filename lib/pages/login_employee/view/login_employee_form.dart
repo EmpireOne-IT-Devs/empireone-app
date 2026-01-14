@@ -5,9 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../../home_employee/view/view.dart';
 
 class LoginEmployeeForm extends StatelessWidget {
   const LoginEmployeeForm({super.key});
@@ -18,7 +16,7 @@ class LoginEmployeeForm extends StatelessWidget {
 
     return BlocBuilder<LoginEmployeeBloc, LoginEmployeeState>(
       builder: (context, state) {
-        // print('here employeeid: ${state.employeeId}');
+        print('here employeeid: ${state.employeeId}');
         return Container(
           constraints: BoxConstraints(
             minHeight: 300, // Minimum height to maintain your UI design
@@ -124,7 +122,8 @@ class LoginEmployeeForm extends StatelessWidget {
                   padding: const EdgeInsets.only(top: 16.0),
                   child: ElevatedButton(
                     onPressed: () {
-                      context.push(HomeEmployeePage.route);
+                      // context.push(HomeEmployeePage.route);
+                      bloc.add(EmployeeIdVerified());
                     },
                     child: Text(AppLocalizations.of(context)?.login ?? ''),
                   ),

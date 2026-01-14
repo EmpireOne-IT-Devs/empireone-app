@@ -11,10 +11,10 @@ _Department _$DepartmentFromJson(Map<String, dynamic> json) => _Department(
   dept: json['dept'] as String?,
   depthead: json['depthead'] as String?,
   site: json['site'] as String?,
-  createdAt: json['created_at'] as String?,
+  createdAt: json['created'] as String?,
   user: json['user'] == null
       ? null
-      : User.fromJson(json['user'] as Map<String, dynamic>),
+      : EmployeeUser.fromJson(json['user'] as Map<String, dynamic>),
 );
 
 Map<String, dynamic> _$DepartmentToJson(_Department instance) =>
@@ -23,6 +23,6 @@ Map<String, dynamic> _$DepartmentToJson(_Department instance) =>
       'dept': instance.dept,
       'depthead': instance.depthead,
       'site': instance.site,
-      'created_at': instance.createdAt,
+      'created': instance.createdAt,
       'user': instance.user,
     };

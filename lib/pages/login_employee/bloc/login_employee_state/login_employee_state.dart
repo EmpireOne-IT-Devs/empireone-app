@@ -11,6 +11,7 @@ sealed class LoginEmployeeState with _$LoginEmployeeState {
   const factory LoginEmployeeState({
     @Default(TextFieldInput(errorType: ErrorType.empty)) TextFieldInput employeeId,
     @Default(RequestStatus.waiting) RequestStatus requestStatus,
+    @Default(RequestStatus.waiting) RequestStatus requestStatusSendOtp,
     @Default('') String message,
   }) = _LoginEmployeeState;
 }

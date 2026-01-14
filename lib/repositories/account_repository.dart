@@ -63,18 +63,28 @@ class AccountRepository {
   //   );
   // }
 
-  Future<Result<EmployeePayload>> employeeId({required String employeeId}) async {
+  Future<Result<EmployeePayload>> employeeId({
+    required String employeeId,
+  }) async {
     var result = await _accountService.employeeId(employeeId: employeeId);
-    return Result(
-      data: EmployeePayload.fromJson(jsonDecode(result.body)),
-      statusCode: result.statusCode,
-    );
+    // print('here result: $result');
+    if (result.statusCode == 200) {
+      final Map<String, dynamic> body = jsonDecode(result.body);
+      return Result(
+        data: EmployeePayload.fromJson(body['data']),
+        statusCode: result.statusCode,
+      );
+    } else {
+      // print('Failed URL: ${result.request?.url}');
+      // print('Error Body: ${result.body}');
+      throw Exception('Server Error: ${result.statusCode}');
+    }
   }
 
-    Future<Result<EmployeePayload>> sendOtp({required String email}) async {
+  Future<Result> sendOtp({required String email}) async {
     var result = await _accountService.sendOtp(email: email);
     return Result(
-      data: EmployeePayload.fromJson(jsonDecode(result.body)),
+      // data: EmployeePayload.fromJson(jsonDecode(result.body)),
       statusCode: result.statusCode,
     );
   }

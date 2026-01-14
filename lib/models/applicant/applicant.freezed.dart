@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$Applicant {
 
- int? get id; int? get appId; String? get fname; String? get mname; String? get lname; String? get suffix; String? get dob; String? get caddress; String? get paddress; int? get age; String? get marital; String? get gender; String? get religion; String? get nationality; String? get email; String? get phone; String? get mmname; String? get ffname; String? get educ; String? get courset; String? get sss; String? get tin; String? get philh; String? get pagibig; String? get ename; String? get eaddress; String? get relationship; String? get ephone; String? get status; String? get agreed; String? get callStatus; String? get site; String? get submitted;
+ int? get id;@JsonKey(name: 'app_id') String? get appId; String? get fname; String? get mname; String? get lname; String? get suffix; String? get dob; String? get caddress; String? get paddress; int? get age; String? get marital; String? get gender; String? get religion; String? get nationality; String? get email; String? get phone; String? get mmname; String? get ffname; String? get educ; String? get courset; String? get sss; String? get tin; String? get philh; String? get pagibig; String? get ename; String? get eaddress; String? get relationship; String? get ephone; String? get status; String? get agreed;@JsonKey(name: 'call_status') String? get callStatus; String? get site; String? get submitted;
 /// Create a copy of Applicant
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -48,7 +48,7 @@ abstract mixin class $ApplicantCopyWith<$Res>  {
   factory $ApplicantCopyWith(Applicant value, $Res Function(Applicant) _then) = _$ApplicantCopyWithImpl;
 @useResult
 $Res call({
- int? id, int? appId, String? fname, String? mname, String? lname, String? suffix, String? dob, String? caddress, String? paddress, int? age, String? marital, String? gender, String? religion, String? nationality, String? email, String? phone, String? mmname, String? ffname, String? educ, String? courset, String? sss, String? tin, String? philh, String? pagibig, String? ename, String? eaddress, String? relationship, String? ephone, String? status, String? agreed, String? callStatus, String? site, String? submitted
+ int? id,@JsonKey(name: 'app_id') String? appId, String? fname, String? mname, String? lname, String? suffix, String? dob, String? caddress, String? paddress, int? age, String? marital, String? gender, String? religion, String? nationality, String? email, String? phone, String? mmname, String? ffname, String? educ, String? courset, String? sss, String? tin, String? philh, String? pagibig, String? ename, String? eaddress, String? relationship, String? ephone, String? status, String? agreed,@JsonKey(name: 'call_status') String? callStatus, String? site, String? submitted
 });
 
 
@@ -69,7 +69,7 @@ class _$ApplicantCopyWithImpl<$Res>
   return _then(_self.copyWith(
 id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int?,appId: freezed == appId ? _self.appId : appId // ignore: cast_nullable_to_non_nullable
-as int?,fname: freezed == fname ? _self.fname : fname // ignore: cast_nullable_to_non_nullable
+as String?,fname: freezed == fname ? _self.fname : fname // ignore: cast_nullable_to_non_nullable
 as String?,mname: freezed == mname ? _self.mname : mname // ignore: cast_nullable_to_non_nullable
 as String?,lname: freezed == lname ? _self.lname : lname // ignore: cast_nullable_to_non_nullable
 as String?,suffix: freezed == suffix ? _self.suffix : suffix // ignore: cast_nullable_to_non_nullable
@@ -185,7 +185,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int? id,  int? appId,  String? fname,  String? mname,  String? lname,  String? suffix,  String? dob,  String? caddress,  String? paddress,  int? age,  String? marital,  String? gender,  String? religion,  String? nationality,  String? email,  String? phone,  String? mmname,  String? ffname,  String? educ,  String? courset,  String? sss,  String? tin,  String? philh,  String? pagibig,  String? ename,  String? eaddress,  String? relationship,  String? ephone,  String? status,  String? agreed,  String? callStatus,  String? site,  String? submitted)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int? id, @JsonKey(name: 'app_id')  String? appId,  String? fname,  String? mname,  String? lname,  String? suffix,  String? dob,  String? caddress,  String? paddress,  int? age,  String? marital,  String? gender,  String? religion,  String? nationality,  String? email,  String? phone,  String? mmname,  String? ffname,  String? educ,  String? courset,  String? sss,  String? tin,  String? philh,  String? pagibig,  String? ename,  String? eaddress,  String? relationship,  String? ephone,  String? status,  String? agreed, @JsonKey(name: 'call_status')  String? callStatus,  String? site,  String? submitted)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Applicant() when $default != null:
 return $default(_that.id,_that.appId,_that.fname,_that.mname,_that.lname,_that.suffix,_that.dob,_that.caddress,_that.paddress,_that.age,_that.marital,_that.gender,_that.religion,_that.nationality,_that.email,_that.phone,_that.mmname,_that.ffname,_that.educ,_that.courset,_that.sss,_that.tin,_that.philh,_that.pagibig,_that.ename,_that.eaddress,_that.relationship,_that.ephone,_that.status,_that.agreed,_that.callStatus,_that.site,_that.submitted);case _:
@@ -206,7 +206,7 @@ return $default(_that.id,_that.appId,_that.fname,_that.mname,_that.lname,_that.s
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int? id,  int? appId,  String? fname,  String? mname,  String? lname,  String? suffix,  String? dob,  String? caddress,  String? paddress,  int? age,  String? marital,  String? gender,  String? religion,  String? nationality,  String? email,  String? phone,  String? mmname,  String? ffname,  String? educ,  String? courset,  String? sss,  String? tin,  String? philh,  String? pagibig,  String? ename,  String? eaddress,  String? relationship,  String? ephone,  String? status,  String? agreed,  String? callStatus,  String? site,  String? submitted)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int? id, @JsonKey(name: 'app_id')  String? appId,  String? fname,  String? mname,  String? lname,  String? suffix,  String? dob,  String? caddress,  String? paddress,  int? age,  String? marital,  String? gender,  String? religion,  String? nationality,  String? email,  String? phone,  String? mmname,  String? ffname,  String? educ,  String? courset,  String? sss,  String? tin,  String? philh,  String? pagibig,  String? ename,  String? eaddress,  String? relationship,  String? ephone,  String? status,  String? agreed, @JsonKey(name: 'call_status')  String? callStatus,  String? site,  String? submitted)  $default,) {final _that = this;
 switch (_that) {
 case _Applicant():
 return $default(_that.id,_that.appId,_that.fname,_that.mname,_that.lname,_that.suffix,_that.dob,_that.caddress,_that.paddress,_that.age,_that.marital,_that.gender,_that.religion,_that.nationality,_that.email,_that.phone,_that.mmname,_that.ffname,_that.educ,_that.courset,_that.sss,_that.tin,_that.philh,_that.pagibig,_that.ename,_that.eaddress,_that.relationship,_that.ephone,_that.status,_that.agreed,_that.callStatus,_that.site,_that.submitted);case _:
@@ -226,7 +226,7 @@ return $default(_that.id,_that.appId,_that.fname,_that.mname,_that.lname,_that.s
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int? id,  int? appId,  String? fname,  String? mname,  String? lname,  String? suffix,  String? dob,  String? caddress,  String? paddress,  int? age,  String? marital,  String? gender,  String? religion,  String? nationality,  String? email,  String? phone,  String? mmname,  String? ffname,  String? educ,  String? courset,  String? sss,  String? tin,  String? philh,  String? pagibig,  String? ename,  String? eaddress,  String? relationship,  String? ephone,  String? status,  String? agreed,  String? callStatus,  String? site,  String? submitted)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int? id, @JsonKey(name: 'app_id')  String? appId,  String? fname,  String? mname,  String? lname,  String? suffix,  String? dob,  String? caddress,  String? paddress,  int? age,  String? marital,  String? gender,  String? religion,  String? nationality,  String? email,  String? phone,  String? mmname,  String? ffname,  String? educ,  String? courset,  String? sss,  String? tin,  String? philh,  String? pagibig,  String? ename,  String? eaddress,  String? relationship,  String? ephone,  String? status,  String? agreed, @JsonKey(name: 'call_status')  String? callStatus,  String? site,  String? submitted)?  $default,) {final _that = this;
 switch (_that) {
 case _Applicant() when $default != null:
 return $default(_that.id,_that.appId,_that.fname,_that.mname,_that.lname,_that.suffix,_that.dob,_that.caddress,_that.paddress,_that.age,_that.marital,_that.gender,_that.religion,_that.nationality,_that.email,_that.phone,_that.mmname,_that.ffname,_that.educ,_that.courset,_that.sss,_that.tin,_that.philh,_that.pagibig,_that.ename,_that.eaddress,_that.relationship,_that.ephone,_that.status,_that.agreed,_that.callStatus,_that.site,_that.submitted);case _:
@@ -241,11 +241,11 @@ return $default(_that.id,_that.appId,_that.fname,_that.mname,_that.lname,_that.s
 @JsonSerializable()
 
 class _Applicant implements Applicant {
-  const _Applicant({this.id, this.appId, this.fname, this.mname, this.lname, this.suffix, this.dob, this.caddress, this.paddress, this.age, this.marital, this.gender, this.religion, this.nationality, this.email, this.phone, this.mmname, this.ffname, this.educ, this.courset, this.sss, this.tin, this.philh, this.pagibig, this.ename, this.eaddress, this.relationship, this.ephone, this.status, this.agreed, this.callStatus, this.site, this.submitted});
+  const _Applicant({this.id, @JsonKey(name: 'app_id') this.appId, this.fname, this.mname, this.lname, this.suffix, this.dob, this.caddress, this.paddress, this.age, this.marital, this.gender, this.religion, this.nationality, this.email, this.phone, this.mmname, this.ffname, this.educ, this.courset, this.sss, this.tin, this.philh, this.pagibig, this.ename, this.eaddress, this.relationship, this.ephone, this.status, this.agreed, @JsonKey(name: 'call_status') this.callStatus, this.site, this.submitted});
   factory _Applicant.fromJson(Map<String, dynamic> json) => _$ApplicantFromJson(json);
 
 @override final  int? id;
-@override final  int? appId;
+@override@JsonKey(name: 'app_id') final  String? appId;
 @override final  String? fname;
 @override final  String? mname;
 @override final  String? lname;
@@ -274,7 +274,7 @@ class _Applicant implements Applicant {
 @override final  String? ephone;
 @override final  String? status;
 @override final  String? agreed;
-@override final  String? callStatus;
+@override@JsonKey(name: 'call_status') final  String? callStatus;
 @override final  String? site;
 @override final  String? submitted;
 
@@ -311,7 +311,7 @@ abstract mixin class _$ApplicantCopyWith<$Res> implements $ApplicantCopyWith<$Re
   factory _$ApplicantCopyWith(_Applicant value, $Res Function(_Applicant) _then) = __$ApplicantCopyWithImpl;
 @override @useResult
 $Res call({
- int? id, int? appId, String? fname, String? mname, String? lname, String? suffix, String? dob, String? caddress, String? paddress, int? age, String? marital, String? gender, String? religion, String? nationality, String? email, String? phone, String? mmname, String? ffname, String? educ, String? courset, String? sss, String? tin, String? philh, String? pagibig, String? ename, String? eaddress, String? relationship, String? ephone, String? status, String? agreed, String? callStatus, String? site, String? submitted
+ int? id,@JsonKey(name: 'app_id') String? appId, String? fname, String? mname, String? lname, String? suffix, String? dob, String? caddress, String? paddress, int? age, String? marital, String? gender, String? religion, String? nationality, String? email, String? phone, String? mmname, String? ffname, String? educ, String? courset, String? sss, String? tin, String? philh, String? pagibig, String? ename, String? eaddress, String? relationship, String? ephone, String? status, String? agreed,@JsonKey(name: 'call_status') String? callStatus, String? site, String? submitted
 });
 
 
@@ -332,7 +332,7 @@ class __$ApplicantCopyWithImpl<$Res>
   return _then(_Applicant(
 id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int?,appId: freezed == appId ? _self.appId : appId // ignore: cast_nullable_to_non_nullable
-as int?,fname: freezed == fname ? _self.fname : fname // ignore: cast_nullable_to_non_nullable
+as String?,fname: freezed == fname ? _self.fname : fname // ignore: cast_nullable_to_non_nullable
 as String?,mname: freezed == mname ? _self.mname : mname // ignore: cast_nullable_to_non_nullable
 as String?,lname: freezed == lname ? _self.lname : lname // ignore: cast_nullable_to_non_nullable
 as String?,suffix: freezed == suffix ? _self.suffix : suffix // ignore: cast_nullable_to_non_nullable
