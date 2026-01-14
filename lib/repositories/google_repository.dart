@@ -10,9 +10,10 @@ class GoogleRepository {
 
   Future<GoogleSignInAuthentication?> signIn() async {
     try {
-      return await _googleService.getAccessToken();
+      return await _googleService.signIn();
     } catch (e) {
       return null;
     }
   }
+
 }

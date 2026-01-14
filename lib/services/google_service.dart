@@ -1,31 +1,89 @@
+import 'dart:convert';
+
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:http/http.dart';
+// import 'package:http/http.dart' as http;
+// import 'dart:convert';
 
 class GoogleService {
   final GoogleSignIn googleSignIn;
   final String baseUrl;
 
   GoogleService(this.googleSignIn, this.baseUrl);
-
-  var gSignIn = GoogleSignIn(
-    serverClientId:
-        '301631048424-pdrvq2jm03jhca6d3abtp63jqmliuobo.apps.googleusercontent.com',
+  final GoogleSignIn _googleSignIn = GoogleSignIn(
     scopes: ['email', 'profile'],
+    serverClientId:
+        '543673078002-evvjccgs0cpm15bg3g4r35nko24aoheq.apps.googleusercontent.com',
   );
-
-  Future<GoogleSignInAuthentication?> getAccessToken() async {
-    final googleSigninAccount = await gSignIn.signIn();
-    final GoogleSignInAuthentication? googleAuth =
-        await googleSigninAccount?.authentication;
-    if (googleAuth != null) {
-      // final String? accessToken = googleAuth.accessToken;
-      // final String? idToken = googleAuth.idToken;
-      // print('here $accessToken');
-      // print('idtoken :: $idToken');
-    }
+  Future<GoogleSignInAuthentication?> signIn() async {
     try {
-      return await googleSigninAccount?.authentication;
+      final googleSignInAccount = await _googleSignIn.signIn();
+      if (googleSignInAccount == null) {
+        // User cancelled the login
+        print('Google Sign-In cancelled by user');
+        return null;
+      }
+
+      final auth = await googleSignInAccount.authentication;
+
+      print('AccessToken: ${auth.accessToken}');
+      print('IdToken: ${auth.idToken}'); 
+
+      return auth;
     } catch (e) {
+      print('Google SignIn Error: $e');
       return null;
     }
   }
+
+  Future<Response> signInTGoogle({ required String idToken}){
+      return get(Uri.parse('$baseUrl/auth/google/app?token={idToken}'), );
+  }
+  // Future<String?> getAccessToken() async {
+  //   print('letsss goooo agol');
+  //   final GoogleSignInAccount? googleSigninAccount = await _googleSignIn
+  //       .signIn();
+  //   print('account goolge : $googleSigninAccount');
+  //   final GoogleSignInAuthentication? googleAuth =
+  //       await googleSigninAccount?.authentication;
+  //   print('agool google auth: $googleAuth');
+  //   if (googleAuth != null) {
+  //     final String? accessToken = googleAuth.accessToken;
+  //     final String? idToken = googleAuth.idToken;
+  //     print('here $accessToken');
+  //     print('idtoken :: $idToken');
+  //     await sendTokenToBackend('$idToken');
+  //   }
+  //   return googleAuth?.idToken;
+  // }
+
+  // Future<bool> sendTokenToBackend(String token) async {
+  //   try {
+  //     final response = await http.get(
+  //       Uri.parse(
+  //         'https://empireone-bpo.com/api/auth/google/app?token=${token}',
+  //       ),
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //         'Accept': 'application/json',
+  //       },
+  //     );
+
+  //     if (response.statusCode == 200) {
+  //       final Map<String, dynamic> responseData = jsonDecode(response.body);
+  //       final bearerToken = responseData['token']?.toString();
+  //       print('Received backend token22: $token');
+  //       print('Bearer Token $bearerToken');
+  //       return true;
+  //     } else {
+  //       print(
+  //         'Backend login failed: ${response.statusCode} - ${response.body}',
+  //       );
+  //       return false;
+  //     }
+  //   } catch (e) {
+  //     print('Error sending token to backend: $e');
+  //     return false;
+  //   }
+  // }
 }

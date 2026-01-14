@@ -46,9 +46,10 @@ class LoginEmployeeBloc extends Bloc<LoginEmployeeEvent, LoginEmployeeState> {
     var result = await _accountRepository.employeeId(
       employeeId: employeeId.value,
     );
-    print('here ${result.data}');
+    print('result $result');
+    print('here data bloc: ${result.data}');
     print('eogs ${result.data?.eogs}');
-    print('here ${result.statusCode}');
+    print('status code bloc: ${result.statusCode}');
     var eogsEmail = result.data?.eogs;
     if (result.statusCode == 200 && eogsEmail != null) {
       _accountRepository.sendOtp(email: eogsEmail);
@@ -62,7 +63,7 @@ class LoginEmployeeBloc extends Bloc<LoginEmployeeEvent, LoginEmployeeState> {
       emit(
         state.copyWith(
           requestStatusSendOtp: RequestStatus.failure,
-          message: 'Employee ID not found',
+          message: state.message,
         ),
       );
     }

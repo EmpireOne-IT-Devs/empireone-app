@@ -38,9 +38,7 @@ class LoginEmployeePage extends StatelessWidget {
         showDialog(
           context: context,
           builder: (context) {
-            return Center(
-              child: ShowDialogError(message: state.message.toString()),
-            );
+            return Center(child: ShowDialogError(message: state.message));
           },
         );
         break;
@@ -54,7 +52,8 @@ class LoginEmployeePage extends StatelessWidget {
         RepositoryProvider(
           create: (context) => AccountRepository(
             accountService: AccountService(
-              baseUrl: 'https://empireone-hris.com/api',
+              baseUrl: 'https://empireone-bpo.com/api',
+              baseUrl2: 'https://empireone-hris.com/api',
             ),
           ),
         ),

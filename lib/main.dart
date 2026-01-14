@@ -23,9 +23,10 @@ import 'pages/verify_login/view/view.dart';
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   var baseUrl = 'https://empireone-bpo.com/api';
+  var baseUrl2 = 'https://empireone-hris.com/api';
 
   var accountRepository = AccountRepository(
-    accountService: AccountService(baseUrl: baseUrl),
+    accountService: AccountService(baseUrl: baseUrl, baseUrl2: baseUrl2),
   );
 
   runApp(
@@ -33,13 +34,9 @@ void main() {
       googleRepository: GoogleRepository(
         googleService: GoogleService(
           GoogleSignIn(
-            clientId:
-                '543673078002-bhqkbrhr7cpfapraq0cjb3hl30mavj53.apps.googleusercontent.com',
-            scopes: <String>[
-              'email',
-              'profile',
-              'https://www.googleapis.com/auth/contacts.readonly',
-            ],
+            serverClientId:
+                '543673078002-evvjccgs0cpm15bg3g4r35nko24aoheq.apps.googleusercontent.com',
+            scopes: ['email', 'profile'],
           ),
           baseUrl,
         ),

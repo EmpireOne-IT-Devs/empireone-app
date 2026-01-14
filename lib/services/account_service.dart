@@ -2,9 +2,12 @@ import 'package:http/http.dart';
 
 class AccountService {
   final String baseUrl;
-  AccountService({required this.baseUrl});
+  final String baseUrl2;
 
+  AccountService({required this.baseUrl, required this.baseUrl2});
+  
   Future<Response> login({required Map<String, dynamic> body}) {
+    print('url login : $baseUrl/auth/login');
     return post(Uri.parse('$baseUrl/auth/login'), body: body);
   }
 
@@ -13,10 +16,14 @@ class AccountService {
   }
 
   Future<Response> employeeId({required String employeeId}) {
-    return get(Uri.parse('$baseUrl/employee/$employeeId'));
+    print('url: $baseUrl2/employee/$employeeId');
+    print('employeid: $employeeId');
+    return get(Uri.parse('$baseUrl2/employee/$employeeId'));
   }
 
-  Future<Response> sendOtp({required String email}) {
-    return post(Uri.parse('$baseUrl/auth/send_otp/$email'));
+  Future<Response> sendOtp({required Map<String, dynamic> body}) {
+    print('eeooooogs: $body');
+    print('urlsendotp: $baseUrl');
+    return post(Uri.parse('$baseUrl/auth/send_otp'), body: body);
   }
 }

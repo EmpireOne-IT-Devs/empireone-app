@@ -145,7 +145,7 @@ class LoginEmployeeForm extends StatelessWidget {
                       TextButton(
                         onPressed: () {},
                         child: Text(
-                          AppLocalizations.of(context)?.createAccount ?? '',
+                          AppLocalizations.of(context)?.login ?? '',
                           textAlign: TextAlign.start,
                           style: GoogleFonts.inter(
                             textStyle: Theme.of(context).textTheme.bodyLarge

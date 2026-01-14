@@ -74,15 +74,24 @@ class AccountRepository {
         data: EmployeePayload.fromJson(body['data']),
         statusCode: result.statusCode,
       );
+    } else if (result.statusCode == 400 ||
+        result.statusCode == 401 ||
+        result.statusCode == 402 ||
+        result.statusCode == 403 ||
+        result.statusCode == 404) {
+      return Result<EmployeePayload>(statusCode: result.statusCode);
     } else {
-      // print('Failed URL: ${result.request?.url}');
-      // print('Error Body: ${result.body}');
+      print('Failed URL: ${result.request?.url}');
+      print('Error Body: ${result.body}');
       throw Exception('Server Error: ${result.statusCode}');
     }
   }
 
   Future<Result> sendOtp({required String email}) async {
-    var result = await _accountService.sendOtp(email: email);
+    var result = await _accountService.sendOtp(body: {'email': email});
+    print('result sendotp: ${result.body}');
+    print('statuscode sendotp: ${result.statusCode}');
+
     return Result(
       // data: EmployeePayload.fromJson(jsonDecode(result.body)),
       statusCode: result.statusCode,

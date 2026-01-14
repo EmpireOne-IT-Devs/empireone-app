@@ -90,7 +90,8 @@ class LoginPage extends StatelessWidget {
         RepositoryProvider(
           create: (context) => AccountRepository(
             accountService: AccountService(
-              baseUrl: 'https://empireone-bpo.com/api/auth',
+              baseUrl: 'https://empireone-bpo.com/api',
+              baseUrl2: 'https://empireone-hris.com/api',
             ),
           ),
         ),
