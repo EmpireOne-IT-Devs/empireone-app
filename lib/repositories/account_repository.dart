@@ -97,4 +97,15 @@ class AccountRepository {
       statusCode: result.statusCode,
     );
   }
+
+  Future<Result> verifyAccount({
+    required String email,
+    required String verificationCode,
+  }) async {
+    var result = await _accountService.verifyAccount(
+      email: 'email=$email',
+      params: 'otp=$verificationCode',
+    );
+    return Result(statusCode: result.statusCode);
+  }
 }

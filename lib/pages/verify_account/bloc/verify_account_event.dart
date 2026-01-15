@@ -9,3 +9,14 @@ class VerificationFieldChanged extends VerifyAccountEvent {
   const VerificationFieldChanged(this.index, this.value);
 }
 
+class VerificationScreenCreated extends VerifyAccountEvent {
+  const VerificationScreenCreated();
+}
+
+class VerifyAccountPressed extends VerifyAccountEvent {
+  const VerifyAccountPressed();
+}
+
+class ResendVerificationCodePressed extends VerifyAccountEvent {
+  const ResendVerificationCodePressed();
+}
