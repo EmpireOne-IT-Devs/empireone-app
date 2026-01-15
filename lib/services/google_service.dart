@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:http/http.dart';
 // import 'package:http/http.dart' as http;
@@ -8,8 +6,8 @@ import 'package:http/http.dart';
 class GoogleService {
   final GoogleSignIn googleSignIn;
   final String baseUrl;
-
-  GoogleService(this.googleSignIn, this.baseUrl);
+  
+  GoogleService(this.googleSignIn, this.baseUrl,);
   final GoogleSignIn _googleSignIn = GoogleSignIn(
     scopes: ['email', 'profile'],
     serverClientId:
@@ -27,7 +25,7 @@ class GoogleService {
       final auth = await googleSignInAccount.authentication;
 
       print('AccessToken: ${auth.accessToken}');
-      print('IdToken: ${auth.idToken}'); 
+      print('IdToken: ${auth.idToken}');
 
       return auth;
     } catch (e) {
@@ -36,9 +34,7 @@ class GoogleService {
     }
   }
 
-  Future<Response> signInTGoogle({ required String idToken}){
-      return get(Uri.parse('$baseUrl/auth/google/app?token={idToken}'), );
-  }
+
   // Future<String?> getAccessToken() async {
   //   print('letsss goooo agol');
   //   final GoogleSignInAccount? googleSigninAccount = await _googleSignIn

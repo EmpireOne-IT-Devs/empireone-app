@@ -84,7 +84,10 @@ class LoginPage extends StatelessWidget {
       providers: [
         RepositoryProvider<GoogleRepository>(
           create: (context) => GoogleRepository(
-            googleService: GoogleService(GoogleSignIn(), ''),
+            googleService: GoogleService(
+              GoogleSignIn(),
+              'https://empireone-bpo.com/api',
+            ),
           ),
         ),
         RepositoryProvider(

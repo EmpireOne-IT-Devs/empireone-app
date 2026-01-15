@@ -35,17 +35,6 @@ class AccountRepository {
     }
   }
 
-  Future<Result<AccountPayload>> signInTGoogle({
-    required String accessToken,
-  }) async {
-    var result = await _accountService.signInTGoogle(
-      body: {'access_token': accessToken},
-    );
-    return Result(
-      statusCode: result.statusCode,
-      data: AccountPayload.fromJson(jsonDecode(result.body)),
-    );
-  }
 
   //   Future<void> save({
   //   int? id,
@@ -108,5 +97,17 @@ class AccountRepository {
     print('result verify account: ${result.body}');
     print('result verify account: ${result.statusCode}');
     return Result(statusCode: result.statusCode);
+  }
+
+    Future<Result> signInTGoogle({
+    required String idToken,
+  }) async {
+    var result = await _accountService.signInTGoogle(
+      idToken: idToken,
+    );
+    return Result(
+      statusCode: result.statusCode,
+      // data: AccountPayload.fromJson(jsonDecode(result.body)),
+    );
   }
 }
