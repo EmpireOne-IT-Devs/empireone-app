@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$LoginEmployeeState {
 
- TextFieldInput get employeeId; RequestStatus get requestStatus; RequestStatus get requestStatusSendOtp; String get message;
+ TextFieldInput get employeeId; RequestStatus get requestStatus; RequestStatus get requestStatusSendOtp; String get message; String get eogsEmail;
 /// Create a copy of LoginEmployeeState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -25,16 +25,16 @@ $LoginEmployeeStateCopyWith<LoginEmployeeState> get copyWith => _$LoginEmployeeS
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is LoginEmployeeState&&(identical(other.employeeId, employeeId) || other.employeeId == employeeId)&&(identical(other.requestStatus, requestStatus) || other.requestStatus == requestStatus)&&(identical(other.requestStatusSendOtp, requestStatusSendOtp) || other.requestStatusSendOtp == requestStatusSendOtp)&&(identical(other.message, message) || other.message == message));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is LoginEmployeeState&&(identical(other.employeeId, employeeId) || other.employeeId == employeeId)&&(identical(other.requestStatus, requestStatus) || other.requestStatus == requestStatus)&&(identical(other.requestStatusSendOtp, requestStatusSendOtp) || other.requestStatusSendOtp == requestStatusSendOtp)&&(identical(other.message, message) || other.message == message)&&(identical(other.eogsEmail, eogsEmail) || other.eogsEmail == eogsEmail));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,employeeId,requestStatus,requestStatusSendOtp,message);
+int get hashCode => Object.hash(runtimeType,employeeId,requestStatus,requestStatusSendOtp,message,eogsEmail);
 
 @override
 String toString() {
-  return 'LoginEmployeeState(employeeId: $employeeId, requestStatus: $requestStatus, requestStatusSendOtp: $requestStatusSendOtp, message: $message)';
+  return 'LoginEmployeeState(employeeId: $employeeId, requestStatus: $requestStatus, requestStatusSendOtp: $requestStatusSendOtp, message: $message, eogsEmail: $eogsEmail)';
 }
 
 
@@ -45,7 +45,7 @@ abstract mixin class $LoginEmployeeStateCopyWith<$Res>  {
   factory $LoginEmployeeStateCopyWith(LoginEmployeeState value, $Res Function(LoginEmployeeState) _then) = _$LoginEmployeeStateCopyWithImpl;
 @useResult
 $Res call({
- TextFieldInput employeeId, RequestStatus requestStatus, RequestStatus requestStatusSendOtp, String message
+ TextFieldInput employeeId, RequestStatus requestStatus, RequestStatus requestStatusSendOtp, String message, String eogsEmail
 });
 
 
@@ -62,12 +62,13 @@ class _$LoginEmployeeStateCopyWithImpl<$Res>
 
 /// Create a copy of LoginEmployeeState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? employeeId = null,Object? requestStatus = null,Object? requestStatusSendOtp = null,Object? message = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? employeeId = null,Object? requestStatus = null,Object? requestStatusSendOtp = null,Object? message = null,Object? eogsEmail = null,}) {
   return _then(_self.copyWith(
 employeeId: null == employeeId ? _self.employeeId : employeeId // ignore: cast_nullable_to_non_nullable
 as TextFieldInput,requestStatus: null == requestStatus ? _self.requestStatus : requestStatus // ignore: cast_nullable_to_non_nullable
 as RequestStatus,requestStatusSendOtp: null == requestStatusSendOtp ? _self.requestStatusSendOtp : requestStatusSendOtp // ignore: cast_nullable_to_non_nullable
 as RequestStatus,message: null == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
+as String,eogsEmail: null == eogsEmail ? _self.eogsEmail : eogsEmail // ignore: cast_nullable_to_non_nullable
 as String,
   ));
 }
@@ -159,10 +160,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( TextFieldInput employeeId,  RequestStatus requestStatus,  RequestStatus requestStatusSendOtp,  String message)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( TextFieldInput employeeId,  RequestStatus requestStatus,  RequestStatus requestStatusSendOtp,  String message,  String eogsEmail)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _LoginEmployeeState() when $default != null:
-return $default(_that.employeeId,_that.requestStatus,_that.requestStatusSendOtp,_that.message);case _:
+return $default(_that.employeeId,_that.requestStatus,_that.requestStatusSendOtp,_that.message,_that.eogsEmail);case _:
   return orElse();
 
 }
@@ -180,10 +181,10 @@ return $default(_that.employeeId,_that.requestStatus,_that.requestStatusSendOtp,
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( TextFieldInput employeeId,  RequestStatus requestStatus,  RequestStatus requestStatusSendOtp,  String message)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( TextFieldInput employeeId,  RequestStatus requestStatus,  RequestStatus requestStatusSendOtp,  String message,  String eogsEmail)  $default,) {final _that = this;
 switch (_that) {
 case _LoginEmployeeState():
-return $default(_that.employeeId,_that.requestStatus,_that.requestStatusSendOtp,_that.message);}
+return $default(_that.employeeId,_that.requestStatus,_that.requestStatusSendOtp,_that.message,_that.eogsEmail);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -197,10 +198,10 @@ return $default(_that.employeeId,_that.requestStatus,_that.requestStatusSendOtp,
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( TextFieldInput employeeId,  RequestStatus requestStatus,  RequestStatus requestStatusSendOtp,  String message)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( TextFieldInput employeeId,  RequestStatus requestStatus,  RequestStatus requestStatusSendOtp,  String message,  String eogsEmail)?  $default,) {final _that = this;
 switch (_that) {
 case _LoginEmployeeState() when $default != null:
-return $default(_that.employeeId,_that.requestStatus,_that.requestStatusSendOtp,_that.message);case _:
+return $default(_that.employeeId,_that.requestStatus,_that.requestStatusSendOtp,_that.message,_that.eogsEmail);case _:
   return null;
 
 }
@@ -212,13 +213,14 @@ return $default(_that.employeeId,_that.requestStatus,_that.requestStatusSendOtp,
 
 
 class _LoginEmployeeState implements LoginEmployeeState {
-  const _LoginEmployeeState({this.employeeId = const TextFieldInput(errorType: ErrorType.empty), this.requestStatus = RequestStatus.waiting, this.requestStatusSendOtp = RequestStatus.waiting, this.message = ''});
+  const _LoginEmployeeState({this.employeeId = const TextFieldInput(errorType: ErrorType.empty), this.requestStatus = RequestStatus.waiting, this.requestStatusSendOtp = RequestStatus.waiting, this.message = '', this.eogsEmail = ''});
   
 
 @override@JsonKey() final  TextFieldInput employeeId;
 @override@JsonKey() final  RequestStatus requestStatus;
 @override@JsonKey() final  RequestStatus requestStatusSendOtp;
 @override@JsonKey() final  String message;
+@override@JsonKey() final  String eogsEmail;
 
 /// Create a copy of LoginEmployeeState
 /// with the given fields replaced by the non-null parameter values.
@@ -230,16 +232,16 @@ _$LoginEmployeeStateCopyWith<_LoginEmployeeState> get copyWith => __$LoginEmploy
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _LoginEmployeeState&&(identical(other.employeeId, employeeId) || other.employeeId == employeeId)&&(identical(other.requestStatus, requestStatus) || other.requestStatus == requestStatus)&&(identical(other.requestStatusSendOtp, requestStatusSendOtp) || other.requestStatusSendOtp == requestStatusSendOtp)&&(identical(other.message, message) || other.message == message));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _LoginEmployeeState&&(identical(other.employeeId, employeeId) || other.employeeId == employeeId)&&(identical(other.requestStatus, requestStatus) || other.requestStatus == requestStatus)&&(identical(other.requestStatusSendOtp, requestStatusSendOtp) || other.requestStatusSendOtp == requestStatusSendOtp)&&(identical(other.message, message) || other.message == message)&&(identical(other.eogsEmail, eogsEmail) || other.eogsEmail == eogsEmail));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,employeeId,requestStatus,requestStatusSendOtp,message);
+int get hashCode => Object.hash(runtimeType,employeeId,requestStatus,requestStatusSendOtp,message,eogsEmail);
 
 @override
 String toString() {
-  return 'LoginEmployeeState(employeeId: $employeeId, requestStatus: $requestStatus, requestStatusSendOtp: $requestStatusSendOtp, message: $message)';
+  return 'LoginEmployeeState(employeeId: $employeeId, requestStatus: $requestStatus, requestStatusSendOtp: $requestStatusSendOtp, message: $message, eogsEmail: $eogsEmail)';
 }
 
 
@@ -250,7 +252,7 @@ abstract mixin class _$LoginEmployeeStateCopyWith<$Res> implements $LoginEmploye
   factory _$LoginEmployeeStateCopyWith(_LoginEmployeeState value, $Res Function(_LoginEmployeeState) _then) = __$LoginEmployeeStateCopyWithImpl;
 @override @useResult
 $Res call({
- TextFieldInput employeeId, RequestStatus requestStatus, RequestStatus requestStatusSendOtp, String message
+ TextFieldInput employeeId, RequestStatus requestStatus, RequestStatus requestStatusSendOtp, String message, String eogsEmail
 });
 
 
@@ -267,12 +269,13 @@ class __$LoginEmployeeStateCopyWithImpl<$Res>
 
 /// Create a copy of LoginEmployeeState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? employeeId = null,Object? requestStatus = null,Object? requestStatusSendOtp = null,Object? message = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? employeeId = null,Object? requestStatus = null,Object? requestStatusSendOtp = null,Object? message = null,Object? eogsEmail = null,}) {
   return _then(_LoginEmployeeState(
 employeeId: null == employeeId ? _self.employeeId : employeeId // ignore: cast_nullable_to_non_nullable
 as TextFieldInput,requestStatus: null == requestStatus ? _self.requestStatus : requestStatus // ignore: cast_nullable_to_non_nullable
 as RequestStatus,requestStatusSendOtp: null == requestStatusSendOtp ? _self.requestStatusSendOtp : requestStatusSendOtp // ignore: cast_nullable_to_non_nullable
 as RequestStatus,message: null == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
+as String,eogsEmail: null == eogsEmail ? _self.eogsEmail : eogsEmail // ignore: cast_nullable_to_non_nullable
 as String,
   ));
 }

@@ -103,9 +103,10 @@ class AccountRepository {
     required String verificationCode,
   }) async {
     var result = await _accountService.verifyAccount(
-      email: 'email=$email',
-      params: 'otp=$verificationCode',
+      body: {'email': email, 'otp': verificationCode},
     );
+    print('result verify account: ${result.body}');
+    print('result verify account: ${result.statusCode}');
     return Result(statusCode: result.statusCode);
   }
 }

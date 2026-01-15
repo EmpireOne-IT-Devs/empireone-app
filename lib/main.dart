@@ -5,6 +5,7 @@ import 'package:empireone_app/pages/login_employee/view/view.dart';
 import 'package:empireone_app/pages/reset_password/view/view.dart';
 import 'package:empireone_app/pages/role/view/role_page.dart';
 import 'package:empireone_app/pages/ticket/ticket.dart';
+import 'package:empireone_app/pages/verify_account/bloc/bloc.dart';
 import 'package:empireone_app/repositories/account_repository.dart';
 import 'package:empireone_app/repositories/google_repository.dart';
 import 'package:empireone_app/services/account_service.dart';
@@ -207,7 +208,9 @@ final GoRouter _router = GoRouter(
         GoRoute(
           path: VerifyAccountPage.route,
           builder: (BuildContext context, GoRouterState state) {
-            return const VerifyAccountPage();
+            return VerifyAccountPage(
+              initialState: state.extra as VerifyAccountState,
+            );
           },
         ),
         GoRoute(

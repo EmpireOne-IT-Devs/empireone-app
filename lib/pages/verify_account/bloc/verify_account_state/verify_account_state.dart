@@ -10,8 +10,11 @@ sealed class VerifyAccountState with _$VerifyAccountState {
   // Added 'sealed'
   const factory VerifyAccountState({
     @Default([]) List<TextFieldInput> verificationFields,
-    @Default(TextFieldInput(errorType: ErrorType.empty)) TextFieldInput employeeId,
+    @Default(TextFieldInput(errorType: ErrorType.empty))
+    TextFieldInput employeeId,
     @Default(RequestStatus.waiting) RequestStatus requestStatus,
+    @Default(RequestStatus.waiting) RequestStatus requestStatusVerifyOtp,
     @Default('') String message,
+    required String email,
   }) = _VerifyAccountState;
 }

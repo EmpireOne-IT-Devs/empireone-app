@@ -13,5 +13,6 @@ sealed class LoginEmployeeState with _$LoginEmployeeState {
     @Default(RequestStatus.waiting) RequestStatus requestStatus,
     @Default(RequestStatus.waiting) RequestStatus requestStatusSendOtp,
     @Default('') String message,
+    @Default('') String eogsEmail,
   }) = _LoginEmployeeState;
 }

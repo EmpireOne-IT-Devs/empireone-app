@@ -53,10 +53,13 @@ class VerifyAccountBloc extends Bloc<VerifyAccountEvent, VerifyAccountState> {
   ) async {
     emit(state.copyWith(requestStatus: RequestStatus.waiting));
     emit(state.copyWith(requestStatus: RequestStatus.inProgress));
-
     var result = await _accountRepository.verifyAccount(
-      email: 'snickersjay10@gmail.com', verificationCode: state.verificationFields.map<String>((e) => e.value).join(),
+      email: state.email,
+      verificationCode: state.verificationFields
+          .map<String>((e) => e.value)
+          .join(),
     );
+    print('verifyaccount email: ${state.email}');
     print('here result verifyaccount status : ${result.statusCode}');
     switch (result.resultStatus) {
       case ResultStatus.success:
@@ -68,6 +71,7 @@ class VerifyAccountBloc extends Bloc<VerifyAccountEvent, VerifyAccountState> {
         //     token: token,
         //   );
         // }
+        print('successs');
         emit(state.copyWith(requestStatus: RequestStatus.success));
         break;
       case ResultStatus.error:

@@ -65,6 +65,7 @@ class _VerifyAccountFormState extends State<VerifyAccountForm> {
     var bloc = context.read<VerifyAccountBloc>();
     return BlocBuilder<VerifyAccountBloc, VerifyAccountState>(
       builder: (context, state) {
+        print('email verifiy: ${state.email}');
         return MultiBlocListener(
           listeners: [
             BlocListener<VerifyAccountBloc, VerifyAccountState>(

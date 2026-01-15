@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$VerifyAccountState {
 
- List<TextFieldInput> get verificationFields; TextFieldInput get employeeId; RequestStatus get requestStatus; String get message;
+ List<TextFieldInput> get verificationFields; TextFieldInput get employeeId; RequestStatus get requestStatus; RequestStatus get requestStatusVerifyOtp; String get message; String get email;
 /// Create a copy of VerifyAccountState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -25,16 +25,16 @@ $VerifyAccountStateCopyWith<VerifyAccountState> get copyWith => _$VerifyAccountS
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is VerifyAccountState&&const DeepCollectionEquality().equals(other.verificationFields, verificationFields)&&(identical(other.employeeId, employeeId) || other.employeeId == employeeId)&&(identical(other.requestStatus, requestStatus) || other.requestStatus == requestStatus)&&(identical(other.message, message) || other.message == message));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is VerifyAccountState&&const DeepCollectionEquality().equals(other.verificationFields, verificationFields)&&(identical(other.employeeId, employeeId) || other.employeeId == employeeId)&&(identical(other.requestStatus, requestStatus) || other.requestStatus == requestStatus)&&(identical(other.requestStatusVerifyOtp, requestStatusVerifyOtp) || other.requestStatusVerifyOtp == requestStatusVerifyOtp)&&(identical(other.message, message) || other.message == message)&&(identical(other.email, email) || other.email == email));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(verificationFields),employeeId,requestStatus,message);
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(verificationFields),employeeId,requestStatus,requestStatusVerifyOtp,message,email);
 
 @override
 String toString() {
-  return 'VerifyAccountState(verificationFields: $verificationFields, employeeId: $employeeId, requestStatus: $requestStatus, message: $message)';
+  return 'VerifyAccountState(verificationFields: $verificationFields, employeeId: $employeeId, requestStatus: $requestStatus, requestStatusVerifyOtp: $requestStatusVerifyOtp, message: $message, email: $email)';
 }
 
 
@@ -45,7 +45,7 @@ abstract mixin class $VerifyAccountStateCopyWith<$Res>  {
   factory $VerifyAccountStateCopyWith(VerifyAccountState value, $Res Function(VerifyAccountState) _then) = _$VerifyAccountStateCopyWithImpl;
 @useResult
 $Res call({
- List<TextFieldInput> verificationFields, TextFieldInput employeeId, RequestStatus requestStatus, String message
+ List<TextFieldInput> verificationFields, TextFieldInput employeeId, RequestStatus requestStatus, RequestStatus requestStatusVerifyOtp, String message, String email
 });
 
 
@@ -62,12 +62,14 @@ class _$VerifyAccountStateCopyWithImpl<$Res>
 
 /// Create a copy of VerifyAccountState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? verificationFields = null,Object? employeeId = null,Object? requestStatus = null,Object? message = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? verificationFields = null,Object? employeeId = null,Object? requestStatus = null,Object? requestStatusVerifyOtp = null,Object? message = null,Object? email = null,}) {
   return _then(_self.copyWith(
 verificationFields: null == verificationFields ? _self.verificationFields : verificationFields // ignore: cast_nullable_to_non_nullable
 as List<TextFieldInput>,employeeId: null == employeeId ? _self.employeeId : employeeId // ignore: cast_nullable_to_non_nullable
 as TextFieldInput,requestStatus: null == requestStatus ? _self.requestStatus : requestStatus // ignore: cast_nullable_to_non_nullable
+as RequestStatus,requestStatusVerifyOtp: null == requestStatusVerifyOtp ? _self.requestStatusVerifyOtp : requestStatusVerifyOtp // ignore: cast_nullable_to_non_nullable
 as RequestStatus,message: null == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
+as String,email: null == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
 as String,
   ));
 }
@@ -159,10 +161,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<TextFieldInput> verificationFields,  TextFieldInput employeeId,  RequestStatus requestStatus,  String message)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<TextFieldInput> verificationFields,  TextFieldInput employeeId,  RequestStatus requestStatus,  RequestStatus requestStatusVerifyOtp,  String message,  String email)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _VerifyAccountState() when $default != null:
-return $default(_that.verificationFields,_that.employeeId,_that.requestStatus,_that.message);case _:
+return $default(_that.verificationFields,_that.employeeId,_that.requestStatus,_that.requestStatusVerifyOtp,_that.message,_that.email);case _:
   return orElse();
 
 }
@@ -180,10 +182,10 @@ return $default(_that.verificationFields,_that.employeeId,_that.requestStatus,_t
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<TextFieldInput> verificationFields,  TextFieldInput employeeId,  RequestStatus requestStatus,  String message)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<TextFieldInput> verificationFields,  TextFieldInput employeeId,  RequestStatus requestStatus,  RequestStatus requestStatusVerifyOtp,  String message,  String email)  $default,) {final _that = this;
 switch (_that) {
 case _VerifyAccountState():
-return $default(_that.verificationFields,_that.employeeId,_that.requestStatus,_that.message);}
+return $default(_that.verificationFields,_that.employeeId,_that.requestStatus,_that.requestStatusVerifyOtp,_that.message,_that.email);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -197,10 +199,10 @@ return $default(_that.verificationFields,_that.employeeId,_that.requestStatus,_t
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<TextFieldInput> verificationFields,  TextFieldInput employeeId,  RequestStatus requestStatus,  String message)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<TextFieldInput> verificationFields,  TextFieldInput employeeId,  RequestStatus requestStatus,  RequestStatus requestStatusVerifyOtp,  String message,  String email)?  $default,) {final _that = this;
 switch (_that) {
 case _VerifyAccountState() when $default != null:
-return $default(_that.verificationFields,_that.employeeId,_that.requestStatus,_that.message);case _:
+return $default(_that.verificationFields,_that.employeeId,_that.requestStatus,_that.requestStatusVerifyOtp,_that.message,_that.email);case _:
   return null;
 
 }
@@ -212,7 +214,7 @@ return $default(_that.verificationFields,_that.employeeId,_that.requestStatus,_t
 
 
 class _VerifyAccountState implements VerifyAccountState {
-  const _VerifyAccountState({final  List<TextFieldInput> verificationFields = const [], this.employeeId = const TextFieldInput(errorType: ErrorType.empty), this.requestStatus = RequestStatus.waiting, this.message = ''}): _verificationFields = verificationFields;
+  const _VerifyAccountState({final  List<TextFieldInput> verificationFields = const [], this.employeeId = const TextFieldInput(errorType: ErrorType.empty), this.requestStatus = RequestStatus.waiting, this.requestStatusVerifyOtp = RequestStatus.waiting, this.message = '', required this.email}): _verificationFields = verificationFields;
   
 
  final  List<TextFieldInput> _verificationFields;
@@ -224,7 +226,9 @@ class _VerifyAccountState implements VerifyAccountState {
 
 @override@JsonKey() final  TextFieldInput employeeId;
 @override@JsonKey() final  RequestStatus requestStatus;
+@override@JsonKey() final  RequestStatus requestStatusVerifyOtp;
 @override@JsonKey() final  String message;
+@override final  String email;
 
 /// Create a copy of VerifyAccountState
 /// with the given fields replaced by the non-null parameter values.
@@ -236,16 +240,16 @@ _$VerifyAccountStateCopyWith<_VerifyAccountState> get copyWith => __$VerifyAccou
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _VerifyAccountState&&const DeepCollectionEquality().equals(other._verificationFields, _verificationFields)&&(identical(other.employeeId, employeeId) || other.employeeId == employeeId)&&(identical(other.requestStatus, requestStatus) || other.requestStatus == requestStatus)&&(identical(other.message, message) || other.message == message));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _VerifyAccountState&&const DeepCollectionEquality().equals(other._verificationFields, _verificationFields)&&(identical(other.employeeId, employeeId) || other.employeeId == employeeId)&&(identical(other.requestStatus, requestStatus) || other.requestStatus == requestStatus)&&(identical(other.requestStatusVerifyOtp, requestStatusVerifyOtp) || other.requestStatusVerifyOtp == requestStatusVerifyOtp)&&(identical(other.message, message) || other.message == message)&&(identical(other.email, email) || other.email == email));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_verificationFields),employeeId,requestStatus,message);
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_verificationFields),employeeId,requestStatus,requestStatusVerifyOtp,message,email);
 
 @override
 String toString() {
-  return 'VerifyAccountState(verificationFields: $verificationFields, employeeId: $employeeId, requestStatus: $requestStatus, message: $message)';
+  return 'VerifyAccountState(verificationFields: $verificationFields, employeeId: $employeeId, requestStatus: $requestStatus, requestStatusVerifyOtp: $requestStatusVerifyOtp, message: $message, email: $email)';
 }
 
 
@@ -256,7 +260,7 @@ abstract mixin class _$VerifyAccountStateCopyWith<$Res> implements $VerifyAccoun
   factory _$VerifyAccountStateCopyWith(_VerifyAccountState value, $Res Function(_VerifyAccountState) _then) = __$VerifyAccountStateCopyWithImpl;
 @override @useResult
 $Res call({
- List<TextFieldInput> verificationFields, TextFieldInput employeeId, RequestStatus requestStatus, String message
+ List<TextFieldInput> verificationFields, TextFieldInput employeeId, RequestStatus requestStatus, RequestStatus requestStatusVerifyOtp, String message, String email
 });
 
 
@@ -273,12 +277,14 @@ class __$VerifyAccountStateCopyWithImpl<$Res>
 
 /// Create a copy of VerifyAccountState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? verificationFields = null,Object? employeeId = null,Object? requestStatus = null,Object? message = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? verificationFields = null,Object? employeeId = null,Object? requestStatus = null,Object? requestStatusVerifyOtp = null,Object? message = null,Object? email = null,}) {
   return _then(_VerifyAccountState(
 verificationFields: null == verificationFields ? _self._verificationFields : verificationFields // ignore: cast_nullable_to_non_nullable
 as List<TextFieldInput>,employeeId: null == employeeId ? _self.employeeId : employeeId // ignore: cast_nullable_to_non_nullable
 as TextFieldInput,requestStatus: null == requestStatus ? _self.requestStatus : requestStatus // ignore: cast_nullable_to_non_nullable
+as RequestStatus,requestStatusVerifyOtp: null == requestStatusVerifyOtp ? _self.requestStatusVerifyOtp : requestStatusVerifyOtp // ignore: cast_nullable_to_non_nullable
 as RequestStatus,message: null == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
+as String,email: null == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
 as String,
   ));
 }

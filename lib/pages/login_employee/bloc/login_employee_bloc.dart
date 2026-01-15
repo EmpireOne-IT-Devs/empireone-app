@@ -51,12 +51,16 @@ class LoginEmployeeBloc extends Bloc<LoginEmployeeEvent, LoginEmployeeState> {
     print('eogs ${result.data?.eogs}');
     print('status code bloc: ${result.statusCode}');
     var eogsEmail = result.data?.eogs;
+    print('eogsemail bloc: $eogsEmail');
+    emit(state.copyWith(eogsEmail: eogsEmail ?? ''));
+    print('state employeeid eogs: $eogsEmail');
     if (result.statusCode == 200 && eogsEmail != null) {
       _accountRepository.sendOtp(email: eogsEmail);
       emit(
         state.copyWith(
           requestStatusSendOtp: RequestStatus.success,
           requestStatus: RequestStatus.success,
+          eogsEmail: eogsEmail,
         ),
       );
     } else {

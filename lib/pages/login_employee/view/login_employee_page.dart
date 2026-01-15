@@ -2,6 +2,7 @@ import 'package:empireone_app/models/models.dart';
 import 'package:empireone_app/pages/login/widgets/widgets.dart';
 import 'package:empireone_app/pages/login_employee/bloc/bloc.dart';
 import 'package:empireone_app/pages/login_employee/login_employee.dart';
+import 'package:empireone_app/pages/verify_account/bloc/bloc.dart';
 import 'package:empireone_app/pages/verify_account/view/view.dart';
 import 'package:empireone_app/pages/widgets/circular_progress_dialog.dart';
 import 'package:empireone_app/repositories/account_repository.dart';
@@ -16,6 +17,7 @@ class LoginEmployeePage extends StatelessWidget {
   const LoginEmployeePage({super.key});
 
   void listener(BuildContext context, LoginEmployeeState state) {
+    print('login listener ${state.eogsEmail}');
     switch (state.requestStatusSendOtp) {
       case RequestStatus.waiting:
         break;
@@ -31,7 +33,10 @@ class LoginEmployeePage extends StatelessWidget {
       case RequestStatus.success:
         Navigator.of(context, rootNavigator: true).pop();
         Future.delayed(const Duration(milliseconds: 3000));
-        context.push(VerifyAccountPage.route);
+        context.push(
+          VerifyAccountPage.route,
+          extra: VerifyAccountState(email: state.eogsEmail),
+        );
         break;
       case RequestStatus.failure:
         Navigator.pop(context);

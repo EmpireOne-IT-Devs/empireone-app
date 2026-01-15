@@ -28,12 +28,10 @@ class AccountService {
   }
 
   Future<Response> verifyAccount({
-    required String email,
-    String? params,
+   required Map<String, dynamic> body
   }) async {
-    print('params: $params');
+    print('body: $body');
     print('urlsendotp: $baseUrl');
-    print('dota2 : $baseUrl/auth/send_otp?$email${params ?? ''}');
-    return post(Uri.parse('$baseUrl/auth/send_otp?$email&${params ?? ''}'));
+    return post(Uri.parse('$baseUrl/auth/send_otp'), body: body);
   }
 }
