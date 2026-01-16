@@ -120,5 +120,11 @@ class AppLocalizationsEn extends AppLocalizations {
   String get ticketing => 'Ticketing';
 
   @override
+  String get name => 'Name';
+
+  @override
+  String get enterYourName => 'Enter your name';
+
+  @override
   String get youCanLogNewPassword => 'You can now log in with your new password';
 }

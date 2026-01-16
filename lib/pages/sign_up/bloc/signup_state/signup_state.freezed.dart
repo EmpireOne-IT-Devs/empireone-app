@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$SignupState {
 
- TextFieldInput get signupEmail; TextFieldInput get signupPassword; TextFieldInput get signupConfirmPassword; bool get isChecked; RequestStatus get requestStatus;
+ TextFieldInput get name; TextFieldInput get signupEmail; TextFieldInput get signupPassword; TextFieldInput get signupConfirmPassword; bool get isChecked; String get message; RequestStatus get requestStatus;
 /// Create a copy of SignupState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -25,16 +25,16 @@ $SignupStateCopyWith<SignupState> get copyWith => _$SignupStateCopyWithImpl<Sign
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is SignupState&&(identical(other.signupEmail, signupEmail) || other.signupEmail == signupEmail)&&(identical(other.signupPassword, signupPassword) || other.signupPassword == signupPassword)&&(identical(other.signupConfirmPassword, signupConfirmPassword) || other.signupConfirmPassword == signupConfirmPassword)&&(identical(other.isChecked, isChecked) || other.isChecked == isChecked)&&(identical(other.requestStatus, requestStatus) || other.requestStatus == requestStatus));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SignupState&&(identical(other.name, name) || other.name == name)&&(identical(other.signupEmail, signupEmail) || other.signupEmail == signupEmail)&&(identical(other.signupPassword, signupPassword) || other.signupPassword == signupPassword)&&(identical(other.signupConfirmPassword, signupConfirmPassword) || other.signupConfirmPassword == signupConfirmPassword)&&(identical(other.isChecked, isChecked) || other.isChecked == isChecked)&&(identical(other.message, message) || other.message == message)&&(identical(other.requestStatus, requestStatus) || other.requestStatus == requestStatus));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,signupEmail,signupPassword,signupConfirmPassword,isChecked,requestStatus);
+int get hashCode => Object.hash(runtimeType,name,signupEmail,signupPassword,signupConfirmPassword,isChecked,message,requestStatus);
 
 @override
 String toString() {
-  return 'SignupState(signupEmail: $signupEmail, signupPassword: $signupPassword, signupConfirmPassword: $signupConfirmPassword, isChecked: $isChecked, requestStatus: $requestStatus)';
+  return 'SignupState(name: $name, signupEmail: $signupEmail, signupPassword: $signupPassword, signupConfirmPassword: $signupConfirmPassword, isChecked: $isChecked, message: $message, requestStatus: $requestStatus)';
 }
 
 
@@ -45,11 +45,11 @@ abstract mixin class $SignupStateCopyWith<$Res>  {
   factory $SignupStateCopyWith(SignupState value, $Res Function(SignupState) _then) = _$SignupStateCopyWithImpl;
 @useResult
 $Res call({
- TextFieldInput signupEmail, TextFieldInput signupPassword, TextFieldInput signupConfirmPassword, bool isChecked, RequestStatus requestStatus
+ TextFieldInput name, TextFieldInput signupEmail, TextFieldInput signupPassword, TextFieldInput signupConfirmPassword, bool isChecked, String message, RequestStatus requestStatus
 });
 
 
-$TextFieldInputCopyWith<$Res> get signupEmail;$TextFieldInputCopyWith<$Res> get signupPassword;$TextFieldInputCopyWith<$Res> get signupConfirmPassword;
+$TextFieldInputCopyWith<$Res> get name;$TextFieldInputCopyWith<$Res> get signupEmail;$TextFieldInputCopyWith<$Res> get signupPassword;$TextFieldInputCopyWith<$Res> get signupConfirmPassword;
 
 }
 /// @nodoc
@@ -62,17 +62,28 @@ class _$SignupStateCopyWithImpl<$Res>
 
 /// Create a copy of SignupState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? signupEmail = null,Object? signupPassword = null,Object? signupConfirmPassword = null,Object? isChecked = null,Object? requestStatus = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? name = null,Object? signupEmail = null,Object? signupPassword = null,Object? signupConfirmPassword = null,Object? isChecked = null,Object? message = null,Object? requestStatus = null,}) {
   return _then(_self.copyWith(
-signupEmail: null == signupEmail ? _self.signupEmail : signupEmail // ignore: cast_nullable_to_non_nullable
+name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as TextFieldInput,signupEmail: null == signupEmail ? _self.signupEmail : signupEmail // ignore: cast_nullable_to_non_nullable
 as TextFieldInput,signupPassword: null == signupPassword ? _self.signupPassword : signupPassword // ignore: cast_nullable_to_non_nullable
 as TextFieldInput,signupConfirmPassword: null == signupConfirmPassword ? _self.signupConfirmPassword : signupConfirmPassword // ignore: cast_nullable_to_non_nullable
 as TextFieldInput,isChecked: null == isChecked ? _self.isChecked : isChecked // ignore: cast_nullable_to_non_nullable
-as bool,requestStatus: null == requestStatus ? _self.requestStatus : requestStatus // ignore: cast_nullable_to_non_nullable
+as bool,message: null == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
+as String,requestStatus: null == requestStatus ? _self.requestStatus : requestStatus // ignore: cast_nullable_to_non_nullable
 as RequestStatus,
   ));
 }
 /// Create a copy of SignupState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$TextFieldInputCopyWith<$Res> get name {
+  
+  return $TextFieldInputCopyWith<$Res>(_self.name, (value) {
+    return _then(_self.copyWith(name: value));
+  });
+}/// Create a copy of SignupState
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
@@ -178,10 +189,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( TextFieldInput signupEmail,  TextFieldInput signupPassword,  TextFieldInput signupConfirmPassword,  bool isChecked,  RequestStatus requestStatus)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( TextFieldInput name,  TextFieldInput signupEmail,  TextFieldInput signupPassword,  TextFieldInput signupConfirmPassword,  bool isChecked,  String message,  RequestStatus requestStatus)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _SignupState() when $default != null:
-return $default(_that.signupEmail,_that.signupPassword,_that.signupConfirmPassword,_that.isChecked,_that.requestStatus);case _:
+return $default(_that.name,_that.signupEmail,_that.signupPassword,_that.signupConfirmPassword,_that.isChecked,_that.message,_that.requestStatus);case _:
   return orElse();
 
 }
@@ -199,10 +210,10 @@ return $default(_that.signupEmail,_that.signupPassword,_that.signupConfirmPasswo
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( TextFieldInput signupEmail,  TextFieldInput signupPassword,  TextFieldInput signupConfirmPassword,  bool isChecked,  RequestStatus requestStatus)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( TextFieldInput name,  TextFieldInput signupEmail,  TextFieldInput signupPassword,  TextFieldInput signupConfirmPassword,  bool isChecked,  String message,  RequestStatus requestStatus)  $default,) {final _that = this;
 switch (_that) {
 case _SignupState():
-return $default(_that.signupEmail,_that.signupPassword,_that.signupConfirmPassword,_that.isChecked,_that.requestStatus);}
+return $default(_that.name,_that.signupEmail,_that.signupPassword,_that.signupConfirmPassword,_that.isChecked,_that.message,_that.requestStatus);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -216,10 +227,10 @@ return $default(_that.signupEmail,_that.signupPassword,_that.signupConfirmPasswo
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( TextFieldInput signupEmail,  TextFieldInput signupPassword,  TextFieldInput signupConfirmPassword,  bool isChecked,  RequestStatus requestStatus)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( TextFieldInput name,  TextFieldInput signupEmail,  TextFieldInput signupPassword,  TextFieldInput signupConfirmPassword,  bool isChecked,  String message,  RequestStatus requestStatus)?  $default,) {final _that = this;
 switch (_that) {
 case _SignupState() when $default != null:
-return $default(_that.signupEmail,_that.signupPassword,_that.signupConfirmPassword,_that.isChecked,_that.requestStatus);case _:
+return $default(_that.name,_that.signupEmail,_that.signupPassword,_that.signupConfirmPassword,_that.isChecked,_that.message,_that.requestStatus);case _:
   return null;
 
 }
@@ -231,13 +242,15 @@ return $default(_that.signupEmail,_that.signupPassword,_that.signupConfirmPasswo
 
 
 class _SignupState implements SignupState {
-  const _SignupState({this.signupEmail = const TextFieldInput(errorType: ErrorType.empty), this.signupPassword = const TextFieldInput(errorType: ErrorType.empty), this.signupConfirmPassword = const TextFieldInput(errorType: ErrorType.empty), this.isChecked = false, this.requestStatus = RequestStatus.waiting});
+  const _SignupState({this.name = const TextFieldInput(errorType: ErrorType.empty), this.signupEmail = const TextFieldInput(errorType: ErrorType.empty), this.signupPassword = const TextFieldInput(errorType: ErrorType.empty), this.signupConfirmPassword = const TextFieldInput(errorType: ErrorType.empty), this.isChecked = false, this.message = '', this.requestStatus = RequestStatus.waiting});
   
 
+@override@JsonKey() final  TextFieldInput name;
 @override@JsonKey() final  TextFieldInput signupEmail;
 @override@JsonKey() final  TextFieldInput signupPassword;
 @override@JsonKey() final  TextFieldInput signupConfirmPassword;
 @override@JsonKey() final  bool isChecked;
+@override@JsonKey() final  String message;
 @override@JsonKey() final  RequestStatus requestStatus;
 
 /// Create a copy of SignupState
@@ -250,16 +263,16 @@ _$SignupStateCopyWith<_SignupState> get copyWith => __$SignupStateCopyWithImpl<_
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SignupState&&(identical(other.signupEmail, signupEmail) || other.signupEmail == signupEmail)&&(identical(other.signupPassword, signupPassword) || other.signupPassword == signupPassword)&&(identical(other.signupConfirmPassword, signupConfirmPassword) || other.signupConfirmPassword == signupConfirmPassword)&&(identical(other.isChecked, isChecked) || other.isChecked == isChecked)&&(identical(other.requestStatus, requestStatus) || other.requestStatus == requestStatus));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SignupState&&(identical(other.name, name) || other.name == name)&&(identical(other.signupEmail, signupEmail) || other.signupEmail == signupEmail)&&(identical(other.signupPassword, signupPassword) || other.signupPassword == signupPassword)&&(identical(other.signupConfirmPassword, signupConfirmPassword) || other.signupConfirmPassword == signupConfirmPassword)&&(identical(other.isChecked, isChecked) || other.isChecked == isChecked)&&(identical(other.message, message) || other.message == message)&&(identical(other.requestStatus, requestStatus) || other.requestStatus == requestStatus));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,signupEmail,signupPassword,signupConfirmPassword,isChecked,requestStatus);
+int get hashCode => Object.hash(runtimeType,name,signupEmail,signupPassword,signupConfirmPassword,isChecked,message,requestStatus);
 
 @override
 String toString() {
-  return 'SignupState(signupEmail: $signupEmail, signupPassword: $signupPassword, signupConfirmPassword: $signupConfirmPassword, isChecked: $isChecked, requestStatus: $requestStatus)';
+  return 'SignupState(name: $name, signupEmail: $signupEmail, signupPassword: $signupPassword, signupConfirmPassword: $signupConfirmPassword, isChecked: $isChecked, message: $message, requestStatus: $requestStatus)';
 }
 
 
@@ -270,11 +283,11 @@ abstract mixin class _$SignupStateCopyWith<$Res> implements $SignupStateCopyWith
   factory _$SignupStateCopyWith(_SignupState value, $Res Function(_SignupState) _then) = __$SignupStateCopyWithImpl;
 @override @useResult
 $Res call({
- TextFieldInput signupEmail, TextFieldInput signupPassword, TextFieldInput signupConfirmPassword, bool isChecked, RequestStatus requestStatus
+ TextFieldInput name, TextFieldInput signupEmail, TextFieldInput signupPassword, TextFieldInput signupConfirmPassword, bool isChecked, String message, RequestStatus requestStatus
 });
 
 
-@override $TextFieldInputCopyWith<$Res> get signupEmail;@override $TextFieldInputCopyWith<$Res> get signupPassword;@override $TextFieldInputCopyWith<$Res> get signupConfirmPassword;
+@override $TextFieldInputCopyWith<$Res> get name;@override $TextFieldInputCopyWith<$Res> get signupEmail;@override $TextFieldInputCopyWith<$Res> get signupPassword;@override $TextFieldInputCopyWith<$Res> get signupConfirmPassword;
 
 }
 /// @nodoc
@@ -287,18 +300,29 @@ class __$SignupStateCopyWithImpl<$Res>
 
 /// Create a copy of SignupState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? signupEmail = null,Object? signupPassword = null,Object? signupConfirmPassword = null,Object? isChecked = null,Object? requestStatus = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? name = null,Object? signupEmail = null,Object? signupPassword = null,Object? signupConfirmPassword = null,Object? isChecked = null,Object? message = null,Object? requestStatus = null,}) {
   return _then(_SignupState(
-signupEmail: null == signupEmail ? _self.signupEmail : signupEmail // ignore: cast_nullable_to_non_nullable
+name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as TextFieldInput,signupEmail: null == signupEmail ? _self.signupEmail : signupEmail // ignore: cast_nullable_to_non_nullable
 as TextFieldInput,signupPassword: null == signupPassword ? _self.signupPassword : signupPassword // ignore: cast_nullable_to_non_nullable
 as TextFieldInput,signupConfirmPassword: null == signupConfirmPassword ? _self.signupConfirmPassword : signupConfirmPassword // ignore: cast_nullable_to_non_nullable
 as TextFieldInput,isChecked: null == isChecked ? _self.isChecked : isChecked // ignore: cast_nullable_to_non_nullable
-as bool,requestStatus: null == requestStatus ? _self.requestStatus : requestStatus // ignore: cast_nullable_to_non_nullable
+as bool,message: null == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
+as String,requestStatus: null == requestStatus ? _self.requestStatus : requestStatus // ignore: cast_nullable_to_non_nullable
 as RequestStatus,
   ));
 }
 
 /// Create a copy of SignupState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$TextFieldInputCopyWith<$Res> get name {
+  
+  return $TextFieldInputCopyWith<$Res>(_self.name, (value) {
+    return _then(_self.copyWith(name: value));
+  });
+}/// Create a copy of SignupState
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')

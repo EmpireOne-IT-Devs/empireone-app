@@ -11,6 +11,7 @@ import 'package:empireone_app/repositories/google_repository.dart';
 import 'package:empireone_app/services/account_service.dart';
 import 'package:empireone_app/services/services.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
@@ -32,6 +33,7 @@ void main() {
 
   runApp(
     EmpireOne(
+      accountRepository: accountRepository,
       googleRepository: GoogleRepository(
         googleService: GoogleService(
           GoogleSignIn(
@@ -42,114 +44,127 @@ void main() {
           baseUrl,
         ),
       ),
-      accountRepository: accountRepository,
     ),
   );
 }
 
-class EmpireOne extends StatelessWidget {
-  final GoogleRepository googleRepository;
+class EmpireOne extends StatefulWidget {
   final AccountRepository accountRepository;
+  final GoogleRepository googleRepository;
   const EmpireOne({
     super.key,
-    required this.googleRepository,
     required this.accountRepository,
+    required this.googleRepository,
   });
 
+  @override
+  State<EmpireOne> createState() => _EmpireOneState();
+}
+
+class _EmpireOneState extends State<EmpireOne> {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      localizationsDelegates: AppLocalizations.localizationsDelegates,
-      supportedLocales: AppLocalizations.supportedLocales,
-      debugShowCheckedModeBanner: false,
-      routerConfig: _router,
-      title: 'EmpireOne',
-      theme: ThemeData(
-        scaffoldBackgroundColor: Color(0xFF1329A9),
-        colorScheme: ColorScheme(
-          brightness: Brightness.light,
-          primary: Color(0xFF1329A9),
-          onPrimary: Color(0xFF374151),
-          inversePrimary: Color(0xFFFFF5E9),
-          secondary: Color(0xFF337ace),
-          onSecondary: Color(0xFF98DED9),
-          error: Color(0xFFFF6B6B),
-          onError: Color(0xFF1329A9),
-          surface: Color(0xFF1329A9),
-          onSurface: Color(0xFFFFFFFF),
-          onSurfaceVariant: Color(0xFFCCCCCC),
-          onTertiary: Color(0xFF4B5563),
-          primaryContainer: Color(0xFFF9FCFF),
-          tertiary: Color(0xFF000000),
-          inverseSurface: Color(0xFFF4F4F6),
-          surfaceContainer: Color(0XFF34A853),
-        ),
-        textTheme: const TextTheme(
-          displayLarge: TextStyle(fontSize: 64, fontWeight: FontWeight.w400),
-          displayMedium: TextStyle(fontSize: 45, fontWeight: FontWeight.w700),
-          displaySmall: TextStyle(fontSize: 36, fontWeight: FontWeight.w400),
-          headlineLarge: TextStyle(fontSize: 32, fontWeight: FontWeight.w700),
-          headlineMedium: TextStyle(fontSize: 28, fontWeight: FontWeight.w400),
-          headlineSmall: TextStyle(fontSize: 24, fontWeight: FontWeight.w700),
-          titleLarge: TextStyle(fontSize: 22, fontWeight: FontWeight.w700),
-          titleMedium: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
-          titleSmall: TextStyle(fontSize: 14, fontWeight: FontWeight.w700),
-          labelLarge: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
-          labelMedium: TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
-          labelSmall: TextStyle(fontSize: 11, fontWeight: FontWeight.w500),
-          bodyLarge: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
-          bodyMedium: TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
-          bodySmall: TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
-        ),
-        appBarTheme: AppBarTheme(toolbarHeight: 50, elevation: 0),
-        elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ElevatedButton.styleFrom(
-            fixedSize: const Size(316, 56),
-            shape: RoundedRectangleBorder(
+    return MultiRepositoryProvider(
+      providers: [RepositoryProvider.value(value: widget.accountRepository)],
+      child: MaterialApp.router(
+        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        supportedLocales: AppLocalizations.supportedLocales,
+        debugShowCheckedModeBanner: false,
+        routerConfig: _router,
+        title: 'EmpireOne',
+        theme: ThemeData(
+          scaffoldBackgroundColor: Color(0xFF1329A9),
+          colorScheme: ColorScheme(
+            brightness: Brightness.light,
+            primary: Color(0xFF1329A9),
+            onPrimary: Color(0xFF374151),
+            inversePrimary: Color(0xFFFFF5E9),
+            secondary: Color(0xFF337ace),
+            onSecondary: Color(0xFF98DED9),
+            error: Color(0xFFFF6B6B),
+            onError: Color(0xFF1329A9),
+            surface: Color(0xFF1329A9),
+            onSurface: Color(0xFFFFFFFF),
+            onSurfaceVariant: Color(0xFFCCCCCC),
+            onTertiary: Color(0xFF4B5563),
+            primaryContainer: Color(0xFFF9FCFF),
+            tertiary: Color(0xFF000000),
+            inverseSurface: Color(0xFFF4F4F6),
+            surfaceContainer: Color(0XFF34A853),
+            outline: Color(0XFF9CA3AF),
+          ),
+          textTheme: const TextTheme(
+            displayLarge: TextStyle(fontSize: 64, fontWeight: FontWeight.w400),
+            displayMedium: TextStyle(fontSize: 45, fontWeight: FontWeight.w700),
+            displaySmall: TextStyle(fontSize: 36, fontWeight: FontWeight.w400),
+            headlineLarge: TextStyle(fontSize: 32, fontWeight: FontWeight.w700),
+            headlineMedium: TextStyle(
+              fontSize: 28,
+              fontWeight: FontWeight.w400,
+            ),
+            headlineSmall: TextStyle(fontSize: 24, fontWeight: FontWeight.w700),
+            titleLarge: TextStyle(fontSize: 22, fontWeight: FontWeight.w700),
+            titleMedium: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
+            titleSmall: TextStyle(fontSize: 14, fontWeight: FontWeight.w700),
+            labelLarge: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+            labelMedium: TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
+            labelSmall: TextStyle(fontSize: 11, fontWeight: FontWeight.w500),
+            bodyLarge: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
+            bodyMedium: TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
+            bodySmall: TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
+          ),
+          appBarTheme: AppBarTheme(toolbarHeight: 50, elevation: 0),
+          elevatedButtonTheme: ElevatedButtonThemeData(
+            style: ElevatedButton.styleFrom(
+              fixedSize: const Size(316, 56),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+              foregroundColor: const Color(0xFFFFFFFF),
+              // minimumSize: Size(double.infinity, 65),
+              minimumSize: const Size(double.infinity, 48),
+              elevation: 0,
+              backgroundColor: Color(0xFF1329A9),
+            ),
+          ),
+          inputDecorationTheme: InputDecorationTheme(
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10),
+              borderSide: BorderSide(width: 0.5, color: Color(0xFF4B5563)),
+            ),
+            enabledBorder: OutlineInputBorder(
+              borderSide: BorderSide(width: 0.5, color: Color(0xFF4B5563)),
               borderRadius: BorderRadius.circular(10),
             ),
-            foregroundColor: const Color(0xFFFFFFFF),
-            // minimumSize: Size(double.infinity, 65),
-            minimumSize: const Size(double.infinity, 48),
-            elevation: 0,
-            backgroundColor: Color(0xFF1329A9),
-          ),
-        ),
-        inputDecorationTheme: InputDecorationTheme(
-          focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10),
-            borderSide: BorderSide(width: 0.5, color: Color(0xFF4B5563)),
-          ),
-          enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(width: 0.5, color: Color(0xFF4B5563)),
-            borderRadius: BorderRadius.circular(10),
-          ),
-          // contentPadding: EdgeInsets.symmetric(vertical: 15),
-          isDense: true, // Crucial for manual height control
-          contentPadding: const EdgeInsets.fromLTRB(15, 16, 15, 16),
-          errorBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10),
-            borderSide: BorderSide(width: 0.5, color: Color(0xFF4B5563)),
-          ),
-          focusedErrorBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10),
-            borderSide: BorderSide(width: 0.5, color: Color(0xFF4B5563)),
-          ),
-          errorStyle: TextStyle(color: Theme.of(context).colorScheme.onPrimary),
-        ),
-        outlinedButtonTheme: OutlinedButtonThemeData(
-          style: OutlinedButton.styleFrom(
-            fixedSize: const Size(316, 52),
-            minimumSize: const Size(double.infinity, 56),
-            side: BorderSide(width: 2, color: Color(0xFF1329A9)),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadiusGeometry.circular(12),
+            // contentPadding: EdgeInsets.symmetric(vertical: 15),
+            isDense: true, // Crucial for manual height control
+            contentPadding: const EdgeInsets.fromLTRB(15, 16, 15, 16),
+            errorBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10),
+              borderSide: BorderSide(width: 0.5, color: Color(0xFF4B5563)),
+            ),
+            focusedErrorBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10),
+              borderSide: BorderSide(width: 0.5, color: Color(0xFF4B5563)),
+            ),
+            errorStyle: TextStyle(
+              color: Theme.of(context).colorScheme.onPrimary,
             ),
           ),
-        ),
-        textSelectionTheme: TextSelectionThemeData(
-          cursorColor: Theme.of(context).colorScheme.onPrimary,
+          outlinedButtonTheme: OutlinedButtonThemeData(
+            style: OutlinedButton.styleFrom(
+              fixedSize: const Size(316, 52),
+              minimumSize: const Size(double.infinity, 56),
+              side: BorderSide(width: 2, color: Color(0xFF1329A9)),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadiusGeometry.circular(12),
+              ),
+            ),
+          ),
+          textSelectionTheme: TextSelectionThemeData(
+            cursorColor: Theme.of(context).colorScheme.onPrimary,
+          ),
         ),
       ),
     );
@@ -161,7 +176,7 @@ final GoRouter _router = GoRouter(
     GoRoute(
       path: '/',
       builder: (BuildContext context, GoRouterState state) {
-        return LoginPage();
+        return SignupPage();
         // return AnimatedSplashScreen(
         //   splash: Padding(
         //     padding: const EdgeInsets.symmetric(horizontal: 32),

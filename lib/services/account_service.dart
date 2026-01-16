@@ -27,18 +27,23 @@ class AccountService {
     return post(Uri.parse('$baseUrl/auth/send_otp'), body: body);
   }
 
-  Future<Response> verifyAccount({
-   required Map<String, dynamic> body
-  }) async {
+  Future<Response> verifyAccount({required Map<String, dynamic> body}) async {
     print('body: $body');
     print('urlsendotp: $baseUrl');
     return post(Uri.parse('$baseUrl/auth/send_otp'), body: body);
   }
 
-    Future<Response> signInTGoogle({required String idToken}) {
+  Future<Response> signInTGoogle({required String idToken}) {
     print('baseurl $baseUrl');
     print('url all: $baseUrl/auth/google/app?token=$idToken');
     print('idd: $idToken');
     return get(Uri.parse('$baseUrl/auth/google/app?token=$idToken'));
   }
+
+  Future<Response> signUp({required Map<String, dynamic> body}) async {
+    print('url signup: $baseUrl/auth/job_seeker_sign_up');
+    print('body signup: $body');
+    return post(Uri.parse('$baseUrl/auth/job_seeker_sign_up'), body: body);
+  }
 }
+

@@ -46,14 +46,14 @@ class LoginEmployeeBloc extends Bloc<LoginEmployeeEvent, LoginEmployeeState> {
     var result = await _accountRepository.employeeId(
       employeeId: employeeId.value,
     );
-    print('result $result');
-    print('here data bloc: ${result.data}');
-    print('eogs ${result.data?.eogs}');
-    print('status code bloc: ${result.statusCode}');
+    // print('result $result');
+    // print('here data bloc: ${result.data}');
+    // print('eogs ${result.data?.eogs}');
+    // print('status code bloc: ${result.statusCode}');
     var eogsEmail = result.data?.eogs;
-    print('eogsemail bloc: $eogsEmail');
+    // print('eogsemail bloc: $eogsEmail');
     emit(state.copyWith(eogsEmail: eogsEmail ?? ''));
-    print('state employeeid eogs: $eogsEmail');
+    // print('state employeeid eogs: $eogsEmail');
     if (result.statusCode == 200 && eogsEmail != null) {
       _accountRepository.sendOtp(email: eogsEmail);
       emit(

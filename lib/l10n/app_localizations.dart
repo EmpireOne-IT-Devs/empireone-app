@@ -315,6 +315,18 @@ abstract class AppLocalizations {
   /// **'Ticketing'**
   String get ticketing;
 
+  /// No description provided for @name.
+  ///
+  /// In en, this message translates to:
+  /// **'Name'**
+  String get name;
+
+  /// No description provided for @enterYourName.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your name'**
+  String get enterYourName;
+
   /// No description provided for @youCanLogNewPassword.
   ///
   /// In en, this message translates to:

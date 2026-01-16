@@ -17,6 +17,10 @@ class SignupForm extends StatelessWidget {
     var bloc = context.read<SignupBloc>();
     return BlocBuilder<SignupBloc, SignupState>(
       builder: (context, state) {
+        print('name: ${state.name.value}');
+        print('signupEmail: ${state.signupEmail.value}');
+        print('signupPassword: ${state.signupPassword.value}');
+        print('signupConfirmPassword: ${state.signupConfirmPassword.value}');
         return Container(
           constraints: BoxConstraints(
             minHeight: 400, // Minimum height to maintain your UI design
@@ -47,6 +51,41 @@ class SignupForm extends StatelessWidget {
                     left: 0,
                     right: 0,
                     top: 0,
+                  ),
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      AppLocalizations.of(context)?.name ?? '',
+                      style: GoogleFonts.inter(
+                        textStyle: Theme.of(context).textTheme.labelMedium
+                            ?.copyWith(
+                              color: Theme.of(context).colorScheme.onPrimary,
+                              fontSize: 11.9,
+                            ),
+                      ),
+                    ),
+                  ),
+                ),
+                LabeledTextField(
+                  // error: Text(state.signupEmail.errorType.message.toString()),
+                  onChanged: (value) {
+                    bloc.add(NameChanged(value));
+                  },
+                  hintText: AppLocalizations.of(context)?.enterYourName ?? '',
+                  prefixIcon: Icon(
+                    Icons.person_2_outlined,
+                    size: 25,
+                    color: Theme.of(context).colorScheme.outline,
+                    weight: 2,
+                  ),
+                  textInputAction: TextInputAction.next,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(
+                    bottom: 16,
+                    left: 0,
+                    right: 0,
+                    top: 16,
                   ),
                   child: Align(
                     alignment: Alignment.centerLeft,

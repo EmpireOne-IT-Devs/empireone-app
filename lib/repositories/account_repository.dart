@@ -6,8 +6,26 @@ import 'package:empireone_app/services/account_service.dart';
 
 class AccountRepository {
   final AccountService _accountService;
+
   AccountRepository({required AccountService accountService})
     : _accountService = accountService;
+
+  Future<Result> signupJobSeeker({
+    required String name,
+    required String email,
+    required String password,
+    required String passwordConfirmation,
+  }) async {
+    var result = await _accountService.signUp(
+      body: {
+        'name': name,
+        'email': email,
+        'password': password,
+        'password_confirmation': passwordConfirmation,
+      },
+    );
+    return Result(statusCode: result.statusCode);
+  }
 
   Future<Result<AccountPayload>> login({
     required String email,
@@ -34,23 +52,6 @@ class AccountRepository {
       );
     }
   }
-
-
-  //   Future<void> save({
-  //   int? id,
-  //   String? token,
-  //   String? email,
-  //   int? userId,
-  // }) async {
-  //   await _accountDao.add(
-  //     AccountTableCompanion.insert(
-  //       id: id ?? 0,
-  //       token: token ?? '',
-  //       email: Value(email),
-  //       userId: userId ?? 0,
-  //     ),
-  //   );
-  // }
 
   Future<Result<EmployeePayload>> employeeId({
     required String employeeId,
@@ -99,12 +100,8 @@ class AccountRepository {
     return Result(statusCode: result.statusCode);
   }
 
-    Future<Result> signInTGoogle({
-    required String idToken,
-  }) async {
-    var result = await _accountService.signInTGoogle(
-      idToken: idToken,
-    );
+  Future<Result> signInTGoogle({required String idToken}) async {
+    var result = await _accountService.signInTGoogle(idToken: idToken);
     return Result(
       statusCode: result.statusCode,
       // data: AccountPayload.fromJson(jsonDecode(result.body)),

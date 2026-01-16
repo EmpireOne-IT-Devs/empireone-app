@@ -3,3 +3,7 @@ export 'result/result.dart';
 export 'account/account.dart';
 export 'user/user.dart';
 export 'account_payload/account_payload.dart';
+export 'department/department.dart';
+export 'employee_payload/employee_payload.dart';
+export 'employee_user/employee_user.dart';
+export 'applicant/applicant.dart';
