@@ -20,7 +20,7 @@ import 'pages/password_reset/view/view.dart';
 import 'pages/sign_up/view/view.dart';
 import 'pages/signup_employee/view/view.dart';
 import 'pages/verify_account/view/view.dart';
-import 'pages/verify_login/view/view.dart';
+import 'pages/verify_signup/view/view.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -176,7 +176,7 @@ final GoRouter _router = GoRouter(
     GoRoute(
       path: '/',
       builder: (BuildContext context, GoRouterState state) {
-        return SignupPage();
+        return VerifySignupPage();
         // return AnimatedSplashScreen(
         //   splash: Padding(
         //     padding: const EdgeInsets.symmetric(horizontal: 32),
@@ -191,9 +191,9 @@ final GoRouter _router = GoRouter(
       },
       routes: <RouteBase>[
         GoRoute(
-          path: VerifyLoginPage.route,
+          path: VerifySignupPage.route,
           builder: (BuildContext context, GoRouterState state) {
-            return const VerifyLoginPage();
+            return const VerifySignupPage();
           },
         ),
         GoRoute(

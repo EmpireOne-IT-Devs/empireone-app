@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class VerifyLoginHeading extends StatelessWidget {
-  const VerifyLoginHeading({super.key});
+class VerifySignupHeading extends StatelessWidget {
+  const VerifySignupHeading({super.key});
 
   @override
   Widget build(BuildContext context) {

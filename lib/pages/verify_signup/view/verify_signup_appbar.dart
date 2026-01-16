@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class VerifyLoginAppbar extends StatelessWidget {
-  const VerifyLoginAppbar({super.key});
+class VerifySignupAppbar extends StatelessWidget {
+  const VerifySignupAppbar({super.key});
 
   @override
   Widget build(BuildContext context) {

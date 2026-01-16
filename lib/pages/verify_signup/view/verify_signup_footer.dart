@@ -2,8 +2,8 @@ import 'package:empireone_app/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class VerifyLoginFooter extends StatelessWidget {
-  const VerifyLoginFooter({super.key});
+class VerifySignupFooter extends StatelessWidget {
+  const VerifySignupFooter({super.key});
 
   @override
   Widget build(BuildContext context) {

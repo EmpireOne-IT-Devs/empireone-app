@@ -1,10 +1,10 @@
 import 'package:empireone_app/l10n/app_localizations.dart';
-import 'package:empireone_app/pages/verify_login/widgets/verification_field.dart';
+import 'package:empireone_app/pages/verify_signup/widgets/verification_field.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class VerifyLoginForm extends StatelessWidget {
-  const VerifyLoginForm({super.key});
+class VerifySignupForm extends StatelessWidget {
+  const VerifySignupForm({super.key});
 
   @override
   Widget build(BuildContext context) {

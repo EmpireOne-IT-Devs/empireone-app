@@ -1,22 +1,22 @@
-import 'package:empireone_app/pages/verify_login/view/view.dart';
+import 'package:empireone_app/pages/verify_signup/view/view.dart';
 import 'package:flutter/material.dart';
 
-class VerifyLoginPage extends StatelessWidget {
-  static const route = '/verify_login';
+class VerifySignupPage extends StatelessWidget {
+  static const route = '/verify_signup';
 
-  const VerifyLoginPage({super.key});
+  const VerifySignupPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
       body: CustomScrollView(
         slivers: [
-          SliverToBoxAdapter(child: VerifyLoginAppbar()),
-          SliverToBoxAdapter(child: VerifyLoginHeading()),
+          SliverToBoxAdapter(child: VerifySignupAppbar()),
+          SliverToBoxAdapter(child: VerifySignupHeading()),
           SliverToBoxAdapter(
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 16),
-              child: VerifyLoginForm(),
+              child: VerifySignupForm(),
             ),
           ),
           SliverToBoxAdapter(
@@ -24,7 +24,7 @@ class VerifyLoginPage extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 32),
               child: Align(
                 alignment: Alignment.bottomCenter,
-                child: VerifyLoginFooter(),
+                child: VerifySignupFooter(),
               ),
             ),
           ),
