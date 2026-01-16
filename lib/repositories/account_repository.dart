@@ -10,6 +10,25 @@ class AccountRepository {
   AccountRepository({required AccountService accountService})
     : _accountService = accountService;
 
+  Future<Result> jobSeekerVerifyOtp({
+    required String name,
+    required String email,
+    required String password,
+    required String passwordConfirmation,
+  }) async {
+    var result = await _accountService.jobSeekerVerifyOtp(
+      body: {
+        'name': name,
+        'email': email,
+        'password': password,
+        'password_confirmation': passwordConfirmation,
+      },
+    );
+    print('result body ${result.body}');
+    print('statusCode ${result.statusCode}');
+    return Result(statusCode: result.statusCode);
+  }
+
   Future<Result> signupJobSeeker({
     required String name,
     required String email,

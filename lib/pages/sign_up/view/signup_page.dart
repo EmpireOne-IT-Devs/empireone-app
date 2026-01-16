@@ -2,6 +2,8 @@ import 'package:empireone_app/models/models.dart';
 import 'package:empireone_app/pages/login/widgets/show_dialog_error.dart';
 import 'package:empireone_app/pages/sign_up/bloc/bloc.dart';
 import 'package:empireone_app/pages/sign_up/view/view.dart';
+import 'package:empireone_app/pages/verify_signup/bloc/bloc.dart'
+    show VerifySignupState;
 import 'package:empireone_app/pages/verify_signup/view/view.dart';
 import 'package:empireone_app/pages/widgets/circular_progress_dialog.dart';
 import 'package:empireone_app/repositories/account_repository.dart';
@@ -29,7 +31,15 @@ class SignupPage extends StatelessWidget {
         break;
       case RequestStatus.success:
         Future.delayed(const Duration(milliseconds: 3000));
-        context.push(VerifySignupPage.route);
+        context.push(
+          VerifySignupPage.route,
+          extra: VerifySignupState(
+            name: state.name.value,
+            signupEmail: state.signupEmail.value,
+            signupPassword: state.signupPassword.value,
+            signupConfirmPassword: state.signupConfirmPassword.value,
+          ),
+        );
         break;
       case RequestStatus.failure:
         Navigator.pop(context);

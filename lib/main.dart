@@ -6,6 +6,7 @@ import 'package:empireone_app/pages/reset_password/view/view.dart';
 import 'package:empireone_app/pages/role/view/role_page.dart';
 import 'package:empireone_app/pages/ticket/ticket.dart';
 import 'package:empireone_app/pages/verify_account/bloc/bloc.dart';
+import 'package:empireone_app/pages/verify_signup/bloc/bloc.dart';
 import 'package:empireone_app/repositories/account_repository.dart';
 import 'package:empireone_app/repositories/google_repository.dart';
 import 'package:empireone_app/services/account_service.dart';
@@ -66,7 +67,9 @@ class _EmpireOneState extends State<EmpireOne> {
   @override
   Widget build(BuildContext context) {
     return MultiRepositoryProvider(
-      providers: [RepositoryProvider.value(value: widget.accountRepository)],
+      providers: [
+        RepositoryProvider.value(value: widget.accountRepository),
+      ],
       child: MaterialApp.router(
         localizationsDelegates: AppLocalizations.localizationsDelegates,
         supportedLocales: AppLocalizations.supportedLocales,
@@ -176,24 +179,15 @@ final GoRouter _router = GoRouter(
     GoRoute(
       path: '/',
       builder: (BuildContext context, GoRouterState state) {
-        return VerifySignupPage();
-        // return AnimatedSplashScreen(
-        //   splash: Padding(
-        //     padding: const EdgeInsets.symmetric(horizontal: 32),
-        //     child: Image.asset('assets/empireone.png'),
-        //   ),
-        //   nextScreen: SigninPage(),
-        //   splashIconSize: 2000,
-        //   centered: true,
-        //   backgroundColor: Colors.black,
-        //   duration: 3100,
-        // );
+        return SignupPage();
       },
       routes: <RouteBase>[
-        GoRoute(
+                GoRoute(
           path: VerifySignupPage.route,
           builder: (BuildContext context, GoRouterState state) {
-            return const VerifySignupPage();
+            return VerifySignupPage(
+              initialState: state.extra as VerifySignupState
+            );
           },
         ),
         GoRoute(

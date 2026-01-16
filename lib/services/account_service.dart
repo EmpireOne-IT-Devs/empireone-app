@@ -45,5 +45,12 @@ class AccountService {
     print('body signup: $body');
     return post(Uri.parse('$baseUrl/auth/job_seeker_sign_up'), body: body);
   }
-}
 
+  Future<Response> jobSeekerVerifyOtp({
+    required Map<String, dynamic> body,
+  }) async {
+    print('$baseUrl/auth/job_seeker_verify_otp');
+    print('body: $body');
+    return post(Uri.parse('$baseUrl/auth/job_seeker_verify_otp'), body: body);
+  }
+}

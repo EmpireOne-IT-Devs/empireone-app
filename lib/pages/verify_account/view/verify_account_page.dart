@@ -49,11 +49,6 @@ class VerifyAccountPage extends StatelessWidget {
         break;
     }
   }
-
-
-
-
-
    
   @override
   Widget build(BuildContext context) {
