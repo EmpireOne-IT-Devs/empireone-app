@@ -33,10 +33,6 @@ class _VerifyAccountFormState extends State<VerifyAccountForm> {
     int index,
   ) {
     var value = state.verificationFields[index].value;
-    print('value $value');
-    print('statevalue: ${state.verificationFields[index].value}');
-    print('value length: ${value.length}');
-    print('index: $index');
     if (value.length == 1 && index < 5) {
       FocusScope.of(context).nextFocus();
     } else if (value.isEmpty && index > 0) {
@@ -65,7 +61,6 @@ class _VerifyAccountFormState extends State<VerifyAccountForm> {
     var bloc = context.read<VerifyAccountBloc>();
     return BlocBuilder<VerifyAccountBloc, VerifyAccountState>(
       builder: (context, state) {
-        print('email verifiy: ${state.email}');
         return MultiBlocListener(
           listeners: [
             BlocListener<VerifyAccountBloc, VerifyAccountState>(

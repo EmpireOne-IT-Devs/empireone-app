@@ -14,6 +14,7 @@ class Result<T> {
       case 400:
       case 401:
       case 404:
+      case 422:
         return ResultStatus.error;
       default:
         return ResultStatus.none;

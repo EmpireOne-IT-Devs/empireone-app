@@ -17,10 +17,6 @@ class SignupForm extends StatelessWidget {
     var bloc = context.read<SignupBloc>();
     return BlocBuilder<SignupBloc, SignupState>(
       builder: (context, state) {
-        print('name: ${state.name.value}');
-        print('signupEmail: ${state.signupEmail.value}');
-        print('signupPassword: ${state.signupPassword.value}');
-        print('signupConfirmPassword: ${state.signupConfirmPassword.value}');
         return Container(
           constraints: BoxConstraints(
             minHeight: 400, // Minimum height to maintain your UI design

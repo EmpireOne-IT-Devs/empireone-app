@@ -1,5 +1,4 @@
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:http/http.dart';
 // import 'package:http/http.dart' as http;
 // import 'dart:convert';
 
@@ -18,18 +17,14 @@ class GoogleService {
       final googleSignInAccount = await _googleSignIn.signIn();
       if (googleSignInAccount == null) {
         // User cancelled the login
-        print('Google Sign-In cancelled by user');
         return null;
       }
 
       final auth = await googleSignInAccount.authentication;
 
-      print('AccessToken: ${auth.accessToken}');
-      print('IdToken: ${auth.idToken}');
 
       return auth;
     } catch (e) {
-      print('Google SignIn Error: $e');
       return null;
     }
   }

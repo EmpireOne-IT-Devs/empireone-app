@@ -19,16 +19,15 @@ class SignupBloc extends Bloc<SignupEvent, SignupState> {
   }
 
   void _signupPressed(SignupPressed event, Emitter<SignupState> emit) async {
-    print('name: ${state.name.value}');
-    print('email: ${state.signupEmail.value}');
-    print('password: ${state.signupPassword.value}');
-    print('passwordConfirmation: ${state.signupConfirmPassword.value}');
+    emit(state.copyWith(requestStatus: RequestStatus.waiting));
+    emit(state.copyWith(requestStatus: RequestStatus.inProgress));
     var result = await _accountRepository.signupJobSeeker(
       name: state.name.value,
       email: state.signupEmail.value,
       password: state.signupPassword.value,
       passwordConfirmation: state.signupConfirmPassword.value,
     );
+    print('result bloc: ${result.resultStatus}');
     switch (result.resultStatus) {
       case ResultStatus.success:
         emit(state.copyWith(requestStatus: RequestStatus.success));
@@ -86,7 +85,6 @@ class SignupBloc extends Bloc<SignupEvent, SignupState> {
       value: event.signupEmail,
       errorType: errorType,
     );
-    print('email val: $signupEmailVal');
     emit(state.copyWith(signupEmail: signupEmailVal));
   }
 

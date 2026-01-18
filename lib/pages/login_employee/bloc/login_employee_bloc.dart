@@ -33,7 +33,6 @@ class LoginEmployeeBloc extends Bloc<LoginEmployeeEvent, LoginEmployeeState> {
       errorType: errorType,
     );
     emit(state.copyWith(employeeId: employeeId));
-    print('hereemploy id: $employeeId');
   }
 
   void _employeeIdVerified(

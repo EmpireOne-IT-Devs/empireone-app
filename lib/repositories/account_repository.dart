@@ -25,8 +25,7 @@ class AccountRepository {
         'otp': verificationCodeSignup,
       },
     );
-    print('result body ${result.body}');
-    print('statusCode ${result.statusCode}');
+
     return Result(statusCode: result.statusCode);
   }
 
@@ -91,16 +90,14 @@ class AccountRepository {
         result.statusCode == 404) {
       return Result<EmployeePayload>(statusCode: result.statusCode);
     } else {
-      print('Failed URL: ${result.request?.url}');
-      print('Error Body: ${result.body}');
+
       throw Exception('Server Error: ${result.statusCode}');
     }
   }
 
   Future<Result> sendOtp({required String email}) async {
     var result = await _accountService.sendOtp(body: {'email': email});
-    print('result sendotp: ${result.body}');
-    print('statuscode sendotp: ${result.statusCode}');
+
 
     return Result(
       // data: EmployeePayload.fromJson(jsonDecode(result.body)),
@@ -115,8 +112,7 @@ class AccountRepository {
     var result = await _accountService.verifyAccount(
       body: {'email': email, 'otp': verificationCode},
     );
-    print('result verify account: ${result.body}');
-    print('result verify account: ${result.statusCode}');
+
     return Result(statusCode: result.statusCode);
   }
 

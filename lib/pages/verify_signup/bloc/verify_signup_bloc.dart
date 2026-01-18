@@ -1,4 +1,4 @@
-import 'package:empireone_app/models/textfield_input/textfield_input.dart';
+import 'package:empireone_app/models/models.dart';
 import 'package:empireone_app/pages/verify_signup/bloc/bloc.dart';
 import 'package:empireone_app/repositories/account_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -25,7 +25,6 @@ class VerifySignupBloc extends Bloc<VerifySignupEvent, VerifySignupState> {
     verifyFieldsSignup[event.index] = verifyFieldsSignup[event.index].copyWith(
       value: event.value,
     );
-    print('bloc $verifyFieldsSignup');
     emit(state.copyWith(verificationFieldsSignup: verifyFieldsSignup));
   }
 
@@ -51,6 +50,8 @@ class VerifySignupBloc extends Bloc<VerifySignupEvent, VerifySignupState> {
     VerifySignupOtpPressed event,
     Emitter<VerifySignupState> emit,
   ) async {
+    emit(state.copyWith(requestStatus: RequestStatus.waiting));
+    emit(state.copyWith(requestStatus: RequestStatus.inProgress));
     var result = await _accountRepository.jobSeekerVerifyOtp(
       name: state.name,
       email: state.signupEmail,
@@ -60,7 +61,15 @@ class VerifySignupBloc extends Bloc<VerifySignupEvent, VerifySignupState> {
           .map<String>((e) => e.value)
           .join(),
     );
-    print('status code: ${result.resultStatus}');
-    print('status code: ${result.statusCode}');
+    switch (result.resultStatus) {
+      case ResultStatus.success:
+        emit(state.copyWith(requestStatus: RequestStatus.success));
+        break;
+      case ResultStatus.error:
+        emit(state.copyWith(requestStatus: RequestStatus.failure));
+        break;
+      case ResultStatus.none:
+        break;
+    }
   }
 }

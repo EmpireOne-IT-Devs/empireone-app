@@ -1,5 +1,4 @@
 import 'package:empireone_app/pages/ticket/view/ticket_page.dart';
-import 'package:empireone_app/pages/verify_signup/view/view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';

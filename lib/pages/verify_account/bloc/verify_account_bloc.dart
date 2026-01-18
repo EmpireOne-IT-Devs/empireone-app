@@ -26,7 +26,6 @@ class VerifyAccountBloc extends Bloc<VerifyAccountEvent, VerifyAccountState> {
       value: event.value,
     );
     emit(state.copyWith(verificationFields: verificationFields));
-    print('verification field $verificationFields');
   }
 
   void _verificationScreenCreated(
@@ -59,19 +58,9 @@ class VerifyAccountBloc extends Bloc<VerifyAccountEvent, VerifyAccountState> {
           .map<String>((e) => e.value)
           .join(),
     );
-    print('verifyaccount email: ${state.email}');
-    print('here result verifyaccount status : ${result.statusCode}');
+
     switch (result.resultStatus) {
       case ResultStatus.success:
-        // var accountId = result.data?.account?.id;
-        // var token = result.data?.accessToken;
-        // if (accountId != null && token != null) {
-        //   await _accountRepository.save(
-        //     id: accountId,
-        //     token: token,
-        //   );
-        // }
-        print('successs');
         emit(state.copyWith(requestStatus: RequestStatus.success));
         break;
       case ResultStatus.error:

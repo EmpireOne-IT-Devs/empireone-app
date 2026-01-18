@@ -76,9 +76,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     var token = googleSignInAuthentication?.accessToken;
     var tokenId = googleSignInAuthentication?.idToken;
     var result = await _accountRepository.signInTGoogle(idToken: tokenId ?? '');
-    print('googletoken $token');
-    print('tokenId $tokenId');
-    print('result google api: ${result.statusCode}');
+
     if (token != null) {
       // print('googletoken $token');
     }

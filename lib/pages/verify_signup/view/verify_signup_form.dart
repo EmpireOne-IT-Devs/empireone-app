@@ -33,10 +33,6 @@ class _VerifySignupFormState extends State<VerifySignupForm> {
     int index,
   ) {
     var value = state.verificationFieldsSignup[index].value;
-    print('value $value');
-    print('statevalue: ${state.verificationFieldsSignup[index].value}');
-    print('value length: ${value.length}');
-    print('index: $index');
     if (value.length == 1 && index < 5) {
       FocusScope.of(context).nextFocus();
     } else if (value.isEmpty && index > 0) {
@@ -49,11 +45,6 @@ class _VerifySignupFormState extends State<VerifySignupForm> {
     var bloc = context.read<VerifySignupBloc>();
     return BlocBuilder<VerifySignupBloc, VerifySignupState>(
       builder: (context, state) {
-        print('name: ${state.name}');
-        print('email: ${state.signupEmail}');
-        print('password: ${state.signupPassword}');
-        print('passwordConfirmation: ${state.signupConfirmPassword}');
-        print('fields ${state.verificationFieldsSignup}');
         return MultiBlocListener(
           listeners: [
             BlocListener<VerifySignupBloc, VerifySignupState>(

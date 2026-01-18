@@ -1,7 +1,5 @@
 // ignore_for_file: invalid_annotation_target, depend_on_referenced_packages
 
-import 'package:empireone_app/models/applicant/applicant.dart';
-import 'package:empireone_app/models/department/department.dart';
 import 'package:empireone_app/models/models.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 

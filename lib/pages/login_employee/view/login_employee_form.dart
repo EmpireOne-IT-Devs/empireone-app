@@ -16,8 +16,6 @@ class LoginEmployeeForm extends StatelessWidget {
 
     return BlocBuilder<LoginEmployeeBloc, LoginEmployeeState>(
       builder: (context, state) {
-        print('here employeeid: ${state.employeeId}');
-        print('state eogsEmail: ${state.eogsEmail}');
         return Container(
           constraints: BoxConstraints(
             minHeight: 300, // Minimum height to maintain your UI design
