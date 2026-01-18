@@ -123,4 +123,12 @@ class AccountRepository {
       // data: AccountPayload.fromJson(jsonDecode(result.body)),
     );
   }
+
+  Future<Result> forgotPassword({required String email}) async{
+    var result = await _accountService.forgotPassword(
+      body: {
+        'email': email,
+      } );
+    return Result(statusCode: result.statusCode);
+  }
 }

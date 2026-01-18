@@ -39,4 +39,11 @@ class AccountService {
     print('body: $body');
     return post(Uri.parse('$baseUrl/auth/job_seeker_verify_otp'), body: body);
   }
+
+  Future<Response> forgotPassword({required Map<String, dynamic> body}) {
+    return post(
+      Uri.parse('$baseUrl/auth/forgot_password_send_otp'),
+      body: body,
+    );
+  }
 }
