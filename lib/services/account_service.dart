@@ -42,7 +42,7 @@ class AccountService {
 
   Future<Response> signUp({required Map<String, dynamic> body}) async {
     print('url signup: $baseUrl/auth/job_seeker_sign_up');
-    print('body signup: $body');
+    print(' $body');
     return post(Uri.parse('$baseUrl/auth/job_seeker_sign_up'), body: body);
   }
 

@@ -42,22 +42,6 @@ class _VerifySignupFormState extends State<VerifySignupForm> {
     } else if (value.isEmpty && index > 0) {
       FocusScope.of(context).previousFocus();
     }
-    // if (value.isNotEmpty) {
-    //   if (index + 1 == focusNodes.length) {
-    //     FocusScope.of(context).unfocus();
-    //   } else {
-    //     focusNodes[index + 1].requestFocus();
-    //   }
-    // } else if (value.isEmpty) {
-    //   if (index == 0) {
-    //   } else {
-    //     controllers[index - 1].value = const TextEditingValue(
-    //       text: '\u200b',
-    //       selection: TextSelection(baseOffset: 1, extentOffset: 1),
-    //     );
-    //     focusNodes[index - 1].requestFocus();
-    //   }
-    // }
   }
 
   @override
@@ -65,6 +49,10 @@ class _VerifySignupFormState extends State<VerifySignupForm> {
     var bloc = context.read<VerifySignupBloc>();
     return BlocBuilder<VerifySignupBloc, VerifySignupState>(
       builder: (context, state) {
+        print('name: ${state.name}');
+        print('email: ${state.signupEmail}');
+        print('password: ${state.signupPassword}');
+        print('passwordConfirmation: ${state.signupConfirmPassword}');
         print('fields ${state.verificationFieldsSignup}');
         return MultiBlocListener(
           listeners: [

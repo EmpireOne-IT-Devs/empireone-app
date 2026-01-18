@@ -51,11 +51,14 @@ class VerifySignupBloc extends Bloc<VerifySignupEvent, VerifySignupState> {
     VerifySignupOtpPressed event,
     Emitter<VerifySignupState> emit,
   ) async {
-    var result = await _accountRepository.signupJobSeeker(
+    var result = await _accountRepository.jobSeekerVerifyOtp(
       name: state.name,
       email: state.signupEmail,
-      password: state.signupEmail,
+      password: state.signupPassword,
       passwordConfirmation: state.signupConfirmPassword,
+      verificationCodeSignup: state.verificationFieldsSignup
+          .map<String>((e) => e.value)
+          .join(),
     );
     print('status code: ${result.resultStatus}');
     print('status code: ${result.statusCode}');

@@ -17,7 +17,6 @@ class LoginEmployeePage extends StatelessWidget {
   const LoginEmployeePage({super.key});
 
   void listener(BuildContext context, LoginEmployeeState state) {
-    print('login listener ${state.eogsEmail}');
     switch (state.requestStatusSendOtp) {
       case RequestStatus.waiting:
         break;

@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:empireone_app/models/employee_payload/employee_payload.dart';
 import 'package:empireone_app/models/models.dart';
 import 'package:empireone_app/services/account_service.dart';
 
@@ -15,6 +14,7 @@ class AccountRepository {
     required String email,
     required String password,
     required String passwordConfirmation,
+    required String verificationCodeSignup,
   }) async {
     var result = await _accountService.jobSeekerVerifyOtp(
       body: {
@@ -22,6 +22,7 @@ class AccountRepository {
         'email': email,
         'password': password,
         'password_confirmation': passwordConfirmation,
+        'otp': verificationCodeSignup,
       },
     );
     print('result body ${result.body}');
