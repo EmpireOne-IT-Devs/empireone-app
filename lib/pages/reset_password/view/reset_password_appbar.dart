@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class ResetPasswordAppbar extends StatelessWidget {
   const ResetPasswordAppbar({super.key});
@@ -7,7 +8,9 @@ class ResetPasswordAppbar extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppBar(
       leading: IconButton(
-        onPressed: () {},
+        onPressed: () {
+          context.pop();
+        },
         icon: ClipRRect(
           borderRadius: BorderRadiusGeometry.circular(12),
           child: Image.asset(
