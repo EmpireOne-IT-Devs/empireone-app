@@ -13,5 +13,8 @@ sealed class ResetPasswordState with _$ResetPasswordState {
     TextFieldInput resetNewPassword,
     @Default(TextFieldInput(errorType: ErrorType.empty))
     TextFieldInput resetConfirmNewPassword,
+    @Default(RequestStatus.waiting) RequestStatus requestStatus,
+    @Default('') String message,
+    required String emailResetPass,
   }) = _ResetPasswordState;
 }

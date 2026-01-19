@@ -136,4 +136,18 @@ class AccountRepository {
     );
     return Result(statusCode: result.statusCode);
   }
+
+    Future<Result> resetPassword({
+    required String email,
+    required String password,
+    required String passwordConfirmation,
+  }) async {
+    var result = await _accountService.resetPassword(
+      body: {
+      'email': email,
+      'password': password,
+      'password_confirmation': passwordConfirmation},
+    );
+    return Result(statusCode: result.statusCode);
+  }
 }

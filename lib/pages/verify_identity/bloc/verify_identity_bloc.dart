@@ -1,3 +1,4 @@
+import 'package:empireone_app/models/models.dart';
 import 'package:empireone_app/models/textfield_input/textfield_input.dart';
 import 'package:empireone_app/pages/verify_identity/bloc/bloc.dart';
 import 'package:empireone_app/repositories/account_repository.dart';
@@ -22,6 +23,8 @@ class VerifyIdentityBloc
     VerifyIdentitytPressed event,
     Emitter<VerifyIdentityState> emit,
   ) async {
+    emit(state.copyWith(requestStatus: RequestStatus.waiting));
+    emit(state.copyWith(requestStatus: RequestStatus.inProgress));
     print('here emailforgotpassval: ${state.emailForgotPassVal}');
     var result = await _accountRepository.forgotPasswordVerifyOtp(
       otp: state.verificationFieldsVerIdentity
@@ -30,6 +33,16 @@ class VerifyIdentityBloc
       email: state.emailForgotPassVal,
     );
     print('here status : ${result.resultStatus}');
+    switch (result.resultStatus) {
+      case ResultStatus.success:
+        emit(state.copyWith(requestStatus: RequestStatus.success));
+        break;
+      case ResultStatus.error:
+        emit(state.copyWith(requestStatus: RequestStatus.failure));
+        break;
+      case ResultStatus.none:
+        break;
+    }
   }
 
   void _verificationFieldVerIdentityChanged(

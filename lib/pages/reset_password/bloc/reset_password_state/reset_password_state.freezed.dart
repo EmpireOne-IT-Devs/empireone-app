@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$ResetPasswordState {
 
- TextFieldInput get resetNewPassword; TextFieldInput get resetConfirmNewPassword;
+ TextFieldInput get resetNewPassword; TextFieldInput get resetConfirmNewPassword; RequestStatus get requestStatus; String get message; String get emailResetPass;
 /// Create a copy of ResetPasswordState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -25,16 +25,16 @@ $ResetPasswordStateCopyWith<ResetPasswordState> get copyWith => _$ResetPasswordS
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ResetPasswordState&&(identical(other.resetNewPassword, resetNewPassword) || other.resetNewPassword == resetNewPassword)&&(identical(other.resetConfirmNewPassword, resetConfirmNewPassword) || other.resetConfirmNewPassword == resetConfirmNewPassword));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ResetPasswordState&&(identical(other.resetNewPassword, resetNewPassword) || other.resetNewPassword == resetNewPassword)&&(identical(other.resetConfirmNewPassword, resetConfirmNewPassword) || other.resetConfirmNewPassword == resetConfirmNewPassword)&&(identical(other.requestStatus, requestStatus) || other.requestStatus == requestStatus)&&(identical(other.message, message) || other.message == message)&&(identical(other.emailResetPass, emailResetPass) || other.emailResetPass == emailResetPass));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,resetNewPassword,resetConfirmNewPassword);
+int get hashCode => Object.hash(runtimeType,resetNewPassword,resetConfirmNewPassword,requestStatus,message,emailResetPass);
 
 @override
 String toString() {
-  return 'ResetPasswordState(resetNewPassword: $resetNewPassword, resetConfirmNewPassword: $resetConfirmNewPassword)';
+  return 'ResetPasswordState(resetNewPassword: $resetNewPassword, resetConfirmNewPassword: $resetConfirmNewPassword, requestStatus: $requestStatus, message: $message, emailResetPass: $emailResetPass)';
 }
 
 
@@ -45,7 +45,7 @@ abstract mixin class $ResetPasswordStateCopyWith<$Res>  {
   factory $ResetPasswordStateCopyWith(ResetPasswordState value, $Res Function(ResetPasswordState) _then) = _$ResetPasswordStateCopyWithImpl;
 @useResult
 $Res call({
- TextFieldInput resetNewPassword, TextFieldInput resetConfirmNewPassword
+ TextFieldInput resetNewPassword, TextFieldInput resetConfirmNewPassword, RequestStatus requestStatus, String message, String emailResetPass
 });
 
 
@@ -62,11 +62,14 @@ class _$ResetPasswordStateCopyWithImpl<$Res>
 
 /// Create a copy of ResetPasswordState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? resetNewPassword = null,Object? resetConfirmNewPassword = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? resetNewPassword = null,Object? resetConfirmNewPassword = null,Object? requestStatus = null,Object? message = null,Object? emailResetPass = null,}) {
   return _then(_self.copyWith(
 resetNewPassword: null == resetNewPassword ? _self.resetNewPassword : resetNewPassword // ignore: cast_nullable_to_non_nullable
 as TextFieldInput,resetConfirmNewPassword: null == resetConfirmNewPassword ? _self.resetConfirmNewPassword : resetConfirmNewPassword // ignore: cast_nullable_to_non_nullable
-as TextFieldInput,
+as TextFieldInput,requestStatus: null == requestStatus ? _self.requestStatus : requestStatus // ignore: cast_nullable_to_non_nullable
+as RequestStatus,message: null == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
+as String,emailResetPass: null == emailResetPass ? _self.emailResetPass : emailResetPass // ignore: cast_nullable_to_non_nullable
+as String,
   ));
 }
 /// Create a copy of ResetPasswordState
@@ -166,10 +169,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( TextFieldInput resetNewPassword,  TextFieldInput resetConfirmNewPassword)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( TextFieldInput resetNewPassword,  TextFieldInput resetConfirmNewPassword,  RequestStatus requestStatus,  String message,  String emailResetPass)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _ResetPasswordState() when $default != null:
-return $default(_that.resetNewPassword,_that.resetConfirmNewPassword);case _:
+return $default(_that.resetNewPassword,_that.resetConfirmNewPassword,_that.requestStatus,_that.message,_that.emailResetPass);case _:
   return orElse();
 
 }
@@ -187,10 +190,10 @@ return $default(_that.resetNewPassword,_that.resetConfirmNewPassword);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( TextFieldInput resetNewPassword,  TextFieldInput resetConfirmNewPassword)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( TextFieldInput resetNewPassword,  TextFieldInput resetConfirmNewPassword,  RequestStatus requestStatus,  String message,  String emailResetPass)  $default,) {final _that = this;
 switch (_that) {
 case _ResetPasswordState():
-return $default(_that.resetNewPassword,_that.resetConfirmNewPassword);}
+return $default(_that.resetNewPassword,_that.resetConfirmNewPassword,_that.requestStatus,_that.message,_that.emailResetPass);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -204,10 +207,10 @@ return $default(_that.resetNewPassword,_that.resetConfirmNewPassword);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( TextFieldInput resetNewPassword,  TextFieldInput resetConfirmNewPassword)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( TextFieldInput resetNewPassword,  TextFieldInput resetConfirmNewPassword,  RequestStatus requestStatus,  String message,  String emailResetPass)?  $default,) {final _that = this;
 switch (_that) {
 case _ResetPasswordState() when $default != null:
-return $default(_that.resetNewPassword,_that.resetConfirmNewPassword);case _:
+return $default(_that.resetNewPassword,_that.resetConfirmNewPassword,_that.requestStatus,_that.message,_that.emailResetPass);case _:
   return null;
 
 }
@@ -219,11 +222,14 @@ return $default(_that.resetNewPassword,_that.resetConfirmNewPassword);case _:
 
 
 class _ResetPasswordState implements ResetPasswordState {
-  const _ResetPasswordState({this.resetNewPassword = const TextFieldInput(errorType: ErrorType.empty), this.resetConfirmNewPassword = const TextFieldInput(errorType: ErrorType.empty)});
+  const _ResetPasswordState({this.resetNewPassword = const TextFieldInput(errorType: ErrorType.empty), this.resetConfirmNewPassword = const TextFieldInput(errorType: ErrorType.empty), this.requestStatus = RequestStatus.waiting, this.message = '', required this.emailResetPass});
   
 
 @override@JsonKey() final  TextFieldInput resetNewPassword;
 @override@JsonKey() final  TextFieldInput resetConfirmNewPassword;
+@override@JsonKey() final  RequestStatus requestStatus;
+@override@JsonKey() final  String message;
+@override final  String emailResetPass;
 
 /// Create a copy of ResetPasswordState
 /// with the given fields replaced by the non-null parameter values.
@@ -235,16 +241,16 @@ _$ResetPasswordStateCopyWith<_ResetPasswordState> get copyWith => __$ResetPasswo
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ResetPasswordState&&(identical(other.resetNewPassword, resetNewPassword) || other.resetNewPassword == resetNewPassword)&&(identical(other.resetConfirmNewPassword, resetConfirmNewPassword) || other.resetConfirmNewPassword == resetConfirmNewPassword));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ResetPasswordState&&(identical(other.resetNewPassword, resetNewPassword) || other.resetNewPassword == resetNewPassword)&&(identical(other.resetConfirmNewPassword, resetConfirmNewPassword) || other.resetConfirmNewPassword == resetConfirmNewPassword)&&(identical(other.requestStatus, requestStatus) || other.requestStatus == requestStatus)&&(identical(other.message, message) || other.message == message)&&(identical(other.emailResetPass, emailResetPass) || other.emailResetPass == emailResetPass));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,resetNewPassword,resetConfirmNewPassword);
+int get hashCode => Object.hash(runtimeType,resetNewPassword,resetConfirmNewPassword,requestStatus,message,emailResetPass);
 
 @override
 String toString() {
-  return 'ResetPasswordState(resetNewPassword: $resetNewPassword, resetConfirmNewPassword: $resetConfirmNewPassword)';
+  return 'ResetPasswordState(resetNewPassword: $resetNewPassword, resetConfirmNewPassword: $resetConfirmNewPassword, requestStatus: $requestStatus, message: $message, emailResetPass: $emailResetPass)';
 }
 
 
@@ -255,7 +261,7 @@ abstract mixin class _$ResetPasswordStateCopyWith<$Res> implements $ResetPasswor
   factory _$ResetPasswordStateCopyWith(_ResetPasswordState value, $Res Function(_ResetPasswordState) _then) = __$ResetPasswordStateCopyWithImpl;
 @override @useResult
 $Res call({
- TextFieldInput resetNewPassword, TextFieldInput resetConfirmNewPassword
+ TextFieldInput resetNewPassword, TextFieldInput resetConfirmNewPassword, RequestStatus requestStatus, String message, String emailResetPass
 });
 
 
@@ -272,11 +278,14 @@ class __$ResetPasswordStateCopyWithImpl<$Res>
 
 /// Create a copy of ResetPasswordState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? resetNewPassword = null,Object? resetConfirmNewPassword = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? resetNewPassword = null,Object? resetConfirmNewPassword = null,Object? requestStatus = null,Object? message = null,Object? emailResetPass = null,}) {
   return _then(_ResetPasswordState(
 resetNewPassword: null == resetNewPassword ? _self.resetNewPassword : resetNewPassword // ignore: cast_nullable_to_non_nullable
 as TextFieldInput,resetConfirmNewPassword: null == resetConfirmNewPassword ? _self.resetConfirmNewPassword : resetConfirmNewPassword // ignore: cast_nullable_to_non_nullable
-as TextFieldInput,
+as TextFieldInput,requestStatus: null == requestStatus ? _self.requestStatus : requestStatus // ignore: cast_nullable_to_non_nullable
+as RequestStatus,message: null == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
+as String,emailResetPass: null == emailResetPass ? _self.emailResetPass : emailResetPass // ignore: cast_nullable_to_non_nullable
+as String,
   ));
 }
 

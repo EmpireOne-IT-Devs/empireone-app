@@ -209,7 +209,9 @@ class ResetPasswordForm extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 16),
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      bloc.add(ResetPasswordPressed());
+                    },
                     child: Text(
                       AppLocalizations.of(context)?.resetPassword ?? '',
                       style: GoogleFonts.inter(

@@ -2,6 +2,7 @@ import 'package:empireone_app/l10n/app_localizations.dart';
 import 'package:empireone_app/pages/home_employee/view/view.dart';
 import 'package:empireone_app/pages/login/view/view.dart';
 import 'package:empireone_app/pages/login_employee/view/view.dart';
+import 'package:empireone_app/pages/reset_password/bloc/bloc.dart';
 import 'package:empireone_app/pages/reset_password/view/view.dart';
 import 'package:empireone_app/pages/role/view/role_page.dart';
 import 'package:empireone_app/pages/ticket/ticket.dart';
@@ -239,7 +240,10 @@ final GoRouter _router = GoRouter(
         GoRoute(
           path: ResetPasswordPage.route,
           builder: (BuildContext context, GoRouterState state) {
-            return const ResetPasswordPage();
+            return  ResetPasswordPage(
+              initialState: state.extra as ResetPasswordState,
+
+            );
           },
         ),
         GoRoute(

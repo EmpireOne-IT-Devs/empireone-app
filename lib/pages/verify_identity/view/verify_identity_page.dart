@@ -1,5 +1,6 @@
 import 'package:empireone_app/models/models.dart';
 import 'package:empireone_app/pages/login/widgets/show_dialog_error.dart';
+import 'package:empireone_app/pages/reset_password/bloc/reset_password_state/reset_password_state.dart';
 import 'package:empireone_app/pages/reset_password/view/view.dart';
 import 'package:empireone_app/pages/verify_identity/bloc/bloc.dart';
 import 'package:empireone_app/pages/verify_identity/view/view.dart';
@@ -35,7 +36,10 @@ class VerifyIdentityPage extends StatelessWidget {
       case RequestStatus.success:
         Navigator.of(context, rootNavigator: true).pop();
         Future.delayed(const Duration(milliseconds: 3000));
-        context.push(ResetPasswordPage.route);
+        context.push(
+          ResetPasswordPage.route,
+          extra: ResetPasswordState(emailResetPass: state.emailForgotPassVal),
+        );
         break;
       case RequestStatus.failure:
         Navigator.pop(context);
