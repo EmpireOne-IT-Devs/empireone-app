@@ -327,6 +327,12 @@ abstract class AppLocalizations {
   /// **'Enter your name'**
   String get enterYourName;
 
+  /// No description provided for @verifyIdentity.
+  ///
+  /// In en, this message translates to:
+  /// **'Verify Identity'**
+  String get verifyIdentity;
+
   /// No description provided for @youCanLogNewPassword.
   ///
   /// In en, this message translates to:

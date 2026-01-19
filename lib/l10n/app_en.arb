@@ -38,5 +38,6 @@
   "ticketing": "Ticketing",
   "name": "Name",
   "enterYourName": "Enter your name",
+  "verifyIdentity": "Verify Identity",
   "youCanLogNewPassword": "You can now log in with your new password"
   }

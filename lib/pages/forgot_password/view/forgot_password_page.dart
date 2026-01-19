@@ -2,6 +2,8 @@ import 'package:empireone_app/models/result/result.dart';
 import 'package:empireone_app/pages/forgot_password/bloc/bloc.dart';
 import 'package:empireone_app/pages/forgot_password/forgot_password.dart';
 import 'package:empireone_app/pages/login/widgets/show_dialog_error.dart';
+import 'package:empireone_app/pages/verify_identity/bloc/bloc.dart';
+import 'package:empireone_app/pages/verify_identity/view/view.dart';
 import 'package:empireone_app/pages/widgets/circular_progress_dialog.dart';
 import 'package:empireone_app/repositories/account_repository.dart';
 import 'package:flutter/material.dart';
@@ -25,23 +27,26 @@ class ForgotPasswordPage extends StatelessWidget {
         );
         break;
       case RequestStatus.success:
-        // context.go(HomeEmployeePage.route);
-        // context.push()
+        Future.delayed(const Duration(milliseconds: 3000));
+        print('emailsend: ${state.emailForgotPassVal.value}');
+        context.push(
+          VerifyIdentityPage.route,
+          extra: VerifyIdentityState(
+            emailForgotPassVal: state.emailForgotPassVal.value,
+          ),
+        );
         break;
       case RequestStatus.failure:
         Navigator.pop(context);
         showDialog(
           context: context,
           builder: (context) {
-            return Center(
-              child: ShowDialogError(message: ''),
-            );
+            return Center(child: ShowDialogError(message: ''));
           },
         );
         break;
     }
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +56,7 @@ class ForgotPasswordPage extends StatelessWidget {
         accountRepository: RepositoryProvider.of<AccountRepository>(context),
       ),
       child: BlocListener<ForgotPasswordBloc, ForgotPasswordState>(
-        listener: (context, state) => listenerForgotPass(context,state),
+        listener: (context, state) => listenerForgotPass(context, state),
         child: const Scaffold(
           body: CustomScrollView(
             slivers: [

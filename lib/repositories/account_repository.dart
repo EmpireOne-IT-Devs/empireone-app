@@ -90,14 +90,12 @@ class AccountRepository {
         result.statusCode == 404) {
       return Result<EmployeePayload>(statusCode: result.statusCode);
     } else {
-
       throw Exception('Server Error: ${result.statusCode}');
     }
   }
 
   Future<Result> sendOtp({required String email}) async {
     var result = await _accountService.sendOtp(body: {'email': email});
-
 
     return Result(
       // data: EmployeePayload.fromJson(jsonDecode(result.body)),
@@ -124,11 +122,18 @@ class AccountRepository {
     );
   }
 
-  Future<Result> forgotPassword({required String email}) async{
-    var result = await _accountService.forgotPassword(
-      body: {
-        'email': email,
-      } );
+  Future<Result> forgotPassword({required String email}) async {
+    var result = await _accountService.forgotPassword(body: {'email': email});
+    return Result(statusCode: result.statusCode);
+  }
+
+  Future<Result> forgotPasswordVerifyOtp({
+    required String otp,
+    required String email,
+  }) async {
+    var result = await _accountService.forgotPasswordVerifyOtp(
+      body: {'otp': otp, 'email': email},
+    );
     return Result(statusCode: result.statusCode);
   }
 }

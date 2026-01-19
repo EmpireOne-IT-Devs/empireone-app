@@ -6,6 +6,8 @@ import 'package:empireone_app/pages/reset_password/view/view.dart';
 import 'package:empireone_app/pages/role/view/role_page.dart';
 import 'package:empireone_app/pages/ticket/ticket.dart';
 import 'package:empireone_app/pages/verify_account/bloc/bloc.dart';
+import 'package:empireone_app/pages/verify_identity/bloc/bloc.dart';
+import 'package:empireone_app/pages/verify_identity/view/view.dart';
 import 'package:empireone_app/pages/verify_signup/bloc/bloc.dart';
 import 'package:empireone_app/repositories/account_repository.dart';
 import 'package:empireone_app/repositories/google_repository.dart';
@@ -67,9 +69,7 @@ class _EmpireOneState extends State<EmpireOne> {
   @override
   Widget build(BuildContext context) {
     return MultiRepositoryProvider(
-      providers: [
-        RepositoryProvider.value(value: widget.accountRepository),
-      ],
+      providers: [RepositoryProvider.value(value: widget.accountRepository)],
       child: MaterialApp.router(
         localizationsDelegates: AppLocalizations.localizationsDelegates,
         supportedLocales: AppLocalizations.supportedLocales,
@@ -182,11 +182,19 @@ final GoRouter _router = GoRouter(
         return ForgotPasswordPage();
       },
       routes: <RouteBase>[
-                GoRoute(
+        GoRoute(
+          path: VerifyIdentityPage.route,
+          builder: (BuildContext context, GoRouterState state) {
+            return VerifyIdentityPage(
+              initialState: state.extra as VerifyIdentityState,
+            );
+          },
+        ),
+        GoRoute(
           path: VerifySignupPage.route,
           builder: (BuildContext context, GoRouterState state) {
             return VerifySignupPage(
-              initialState: state.extra as VerifySignupState
+              initialState: state.extra as VerifySignupState,
             );
           },
         ),

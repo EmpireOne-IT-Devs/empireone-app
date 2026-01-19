@@ -1,38 +1,39 @@
 import 'package:empireone_app/l10n/app_localizations.dart';
 import 'package:empireone_app/pages/verify_account/bloc/bloc.dart';
-import 'package:empireone_app/pages/verify_account/widgets/widgets.dart';
+import 'package:empireone_app/pages/verify_identity/bloc/bloc.dart';
+import 'package:empireone_app/pages/verify_identity/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class VerifyAccountForm extends StatefulWidget {
-  const VerifyAccountForm({super.key});
+class VerifyIdentityForm extends StatefulWidget {
+  const VerifyIdentityForm({super.key});
 
   @override
-  State<VerifyAccountForm> createState() => _VerifyAccountFormState();
+  State<VerifyIdentityForm> createState() => _VerifyIdentityFormState();
 }
 
-class _VerifyAccountFormState extends State<VerifyAccountForm> {
+class _VerifyIdentityFormState extends State<VerifyIdentityForm> {
   List<TextEditingController> controllers = [];
   List<FocusNode> focusNodes = [];
 
-  void lengthListener(BuildContext context, VerifyAccountState state) {
+  void lengthListener(BuildContext context, VerifyIdentityState state) {
     controllers = List.generate(
-      state.verificationFields.length,
+      state.verificationFieldsVerIdentity.length,
       (index) => TextEditingController(),
     );
     focusNodes = List.generate(
-      state.verificationFields.length,
+      state.verificationFieldsVerIdentity.length,
       (index) => FocusNode(),
     );
   }
 
   void valueListener(
     BuildContext context,
-    VerifyAccountState state,
+    VerifyIdentityState state,
     int index,
   ) {
-    var value = state.verificationFields[index].value;
+    var value = state.verificationFieldsVerIdentity[index].value;
     if (value.length == 1 && index < 5) {
       FocusScope.of(context).nextFocus();
     } else if (value.isEmpty && index > 0) {
@@ -56,31 +57,33 @@ class _VerifyAccountFormState extends State<VerifyAccountForm> {
     // }
   }
 
-
   @override
   Widget build(BuildContext context) {
-    var bloc = context.read<VerifyAccountBloc>();
-    return BlocBuilder<VerifyAccountBloc, VerifyAccountState>(
+    var bloc = context.read<VerifyIdentityBloc>();
+    return BlocBuilder<VerifyIdentityBloc, VerifyIdentityState>(
       builder: (context, state) {
+        print('email: ${state.emailForgotPassVal}');
+        print('here field: ${state.verificationFieldsVerIdentity}');
         return MultiBlocListener(
           listeners: [
-            BlocListener<VerifyAccountBloc, VerifyAccountState>(
+            BlocListener<VerifyIdentityBloc, VerifyIdentityState>(
               listenWhen: (previous, current) =>
-                  previous.verificationFields.length !=
-                  current.verificationFields.length,
+                  previous.verificationFieldsVerIdentity.length !=
+                  current.verificationFieldsVerIdentity.length,
               listener: (context, state) => lengthListener(context, state),
             ),
-            ...List<BlocListener>.generate(state.verificationFields.length, (
-              index,
-            ) {
-              return BlocListener<VerifyAccountBloc, VerifyAccountState>(
-                listenWhen: (previous, current) =>
-                    previous.verificationFields[index].value !=
-                    current.verificationFields[index].value,
-                listener: (context, state) =>
-                    valueListener(context, state, index),
-              );
-            }),
+            ...List<BlocListener>.generate(
+              state.verificationFieldsVerIdentity.length,
+              (index) {
+                return BlocListener<VerifyIdentityBloc, VerifyIdentityState>(
+                  listenWhen: (previous, current) =>
+                      previous.verificationFieldsVerIdentity[index].value !=
+                      current.verificationFieldsVerIdentity[index].value,
+                  listener: (context, state) =>
+                      valueListener(context, state, index),
+                );
+              },
+            ),
           ],
           child: Container(
             constraints: BoxConstraints(minHeight: 324, maxWidth: 364),
@@ -170,11 +173,17 @@ class _VerifyAccountFormState extends State<VerifyAccountForm> {
                         return SizedBox(
                           width: 48,
                           height: 56,
-                          child: VerifyAccountField(
+                          child: VerifyIdentityField(
                             controller: controllers[index],
                             focusNode: focusNodes[index],
                             onChanged: (value) {
-                              bloc.add(VerificationFieldChanged(index, value));
+                              bloc.add(
+                                VerificationFieldVerIdentityChanged(
+                                  index,
+                                  value,
+                                ),
+                              );
+                              // bloc.add(VerificationFieldChanged(index, value));
                             },
                             textAlign: TextAlign.center,
                             inputDecoration: InputDecoration(
@@ -182,59 +191,31 @@ class _VerifyAccountFormState extends State<VerifyAccountForm> {
                                 context,
                               ).colorScheme.onPrimary,
                               enabledBorder:
-                                  state.verificationFields[index].value.isEmpty
-                                  ? (Theme.of(
-                                              context,
-                                            ).inputDecorationTheme.enabledBorder
-                                            as OutlineInputBorder)
-                                        .copyWith(
-                                          borderSide: BorderSide(
-                                            width: 2,
-                                            color: Theme.of(context)
-                                                .colorScheme
-                                                .onPrimary
-                                                .withValues(alpha: 0.20),
-                                          ),
-                                        )
-                                  : (Theme.of(
-                                              context,
-                                            ).inputDecorationTheme.enabledBorder
-                                            as OutlineInputBorder)
-                                        .copyWith(
-                                          borderSide: BorderSide(
-                                            width: 2,
-                                            color: Theme.of(
-                                              context,
-                                            ).colorScheme.onSecondary,
-                                          ),
+                                  (Theme.of(
+                                            context,
+                                          ).inputDecorationTheme.enabledBorder
+                                          as OutlineInputBorder)
+                                      .copyWith(
+                                        borderSide: BorderSide(
+                                          width: 2,
+                                          color: Theme.of(
+                                            context,
+                                          ).colorScheme.onSecondary,
                                         ),
+                                      ),
                               focusedBorder:
-                                  state.verificationFields[index].value.isEmpty
-                                  ? (Theme.of(
-                                              context,
-                                            ).inputDecorationTheme.focusedBorder
-                                            as OutlineInputBorder)
-                                        .copyWith(
-                                          borderSide: BorderSide(
-                                            width: 2,
-                                            color: Theme.of(context)
-                                                .colorScheme
-                                                .onPrimary
-                                                .withValues(alpha: 0.20),
-                                          ),
-                                        )
-                                  : (Theme.of(
-                                              context,
-                                            ).inputDecorationTheme.focusedBorder
-                                            as OutlineInputBorder)
-                                        .copyWith(
-                                          borderSide: BorderSide(
-                                            width: 2,
-                                            color: Theme.of(
-                                              context,
-                                            ).colorScheme.onSecondary,
-                                          ),
+                                  (Theme.of(
+                                            context,
+                                          ).inputDecorationTheme.focusedBorder
+                                          as OutlineInputBorder)
+                                      .copyWith(
+                                        borderSide: BorderSide(
+                                          width: 2,
+                                          color: Theme.of(
+                                            context,
+                                          ).colorScheme.onSecondary,
                                         ),
+                                      ),
                             ),
                             textStyle: GoogleFonts.mada(
                               color: Theme.of(context).colorScheme.onPrimary,
@@ -281,7 +262,7 @@ class _VerifyAccountFormState extends State<VerifyAccountForm> {
                     padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
                     child: ElevatedButton(
                       onPressed: () {
-                        bloc.add(VerifyAccountPressed());
+                        bloc.add(VerifyIdentitytPressed());
                       },
                       child: Text(
                         'Verify Code',

@@ -46,4 +46,15 @@ class AccountService {
       body: body,
     );
   }
+
+  Future<Response> forgotPasswordVerifyOtp({
+    required Map<String, dynamic> body,
+  }) async {
+    print('url forgot: $baseUrl/auth/forgot_password_verify_otp');
+    print('forgot: $body');
+    return post(
+      Uri.parse('$baseUrl/auth/forgot_password_verify_otp'),
+      body: body,
+    );
+  }
 }

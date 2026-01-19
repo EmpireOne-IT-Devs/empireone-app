@@ -126,5 +126,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get enterYourName => 'Enter your name';
 
   @override
+  String get verifyIdentity => 'Verify Identity';
+
+  @override
   String get youCanLogNewPassword => 'You can now log in with your new password';
 }
