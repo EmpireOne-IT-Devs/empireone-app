@@ -52,10 +52,6 @@ class ResetPasswordBloc extends Bloc<ResetPasswordEvent, ResetPasswordState> {
       errorType = ErrorType.empty;
     } else if (event.resetNewPassword.length < 6) {
       errorType = ErrorType.length;
-    } else if (!RegExp(r'[A-Z]').hasMatch(event.resetNewPassword)) {
-      errorType = ErrorType.uppercaseLetter;
-    } else if (!RegExp(r'[0-9]').hasMatch(event.resetNewPassword)) {
-      errorType = ErrorType.digitNumber;
     } else {
       errorType = ErrorType.none;
     }
@@ -76,12 +72,8 @@ class ResetPasswordBloc extends Bloc<ResetPasswordEvent, ResetPasswordState> {
     var errorType = ErrorType.none;
     if (event.resetConfirmNewPassword.isEmpty) {
       errorType = ErrorType.empty;
-    } else if (event.resetConfirmNewPassword.length < 8) {
+    } else if (event.resetConfirmNewPassword.length < 6) {
       errorType = ErrorType.length;
-    } else if (!RegExp(r'[A-Z]').hasMatch(event.resetConfirmNewPassword)) {
-      errorType = ErrorType.uppercaseLetter;
-    } else if (!RegExp(r'[0-9]').hasMatch(event.resetConfirmNewPassword)) {
-      errorType = ErrorType.digitNumber;
     } else {
       errorType = ErrorType.none;
     }
