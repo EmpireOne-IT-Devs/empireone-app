@@ -80,63 +80,41 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiRepositoryProvider(
-      providers: [
-        RepositoryProvider<GoogleRepository>(
-          create: (context) => GoogleRepository(
-            googleService: GoogleService(
-              GoogleSignIn(),
-              'https://empireone-bpo.com/api',
-            ),
+    return BlocProvider<LoginBloc>(
+      create: (context) => LoginBloc(
+        googleRepository:RepositoryProvider.of<GoogleRepository>(context),
+        initialState: const LoginState(),
+        accountRepository: RepositoryProvider.of<AccountRepository>(context),
+      ),
+      child: MultiBlocListener(
+        listeners: [
+          BlocListener<LoginBloc, LoginState>(
+            listener: (context, state) => listener(context, state),
           ),
-        ),
-        RepositoryProvider(
-          create: (context) => AccountRepository(
-            accountService: AccountService(
-              baseUrl: 'https://empireone-bpo.com/api',
-              baseUrl2: 'https://empireone-hris.com/api',
-            ),
+          BlocListener<LoginBloc, LoginState>(
+            listenWhen: (previous, current) =>
+                previous.googleSigninRequestStatus !=
+                current.googleSigninRequestStatus,
+            listener: (context, state) => listenerGoogleLogin(context, state),
           ),
-        ),
-      ],
-      child: BlocProvider<LoginBloc>(
-        create: (context) => LoginBloc(
-          googleRepository: GoogleRepository(
-            googleService: GoogleService(GoogleSignIn(), ''),
-          ),
-          initialState: const LoginState(),
-          accountRepository: RepositoryProvider.of<AccountRepository>(context),
-        ),
-        child: MultiBlocListener(
-          listeners: [
-            BlocListener<LoginBloc, LoginState>(
-              listener: (context, state) => listener(context, state),
-            ),
-            BlocListener<LoginBloc, LoginState>(
-              listenWhen: (previous, current) =>
-                  previous.googleSigninRequestStatus !=
-                  current.googleSigninRequestStatus,
-              listener: (context, state) => listenerGoogleLogin(context, state),
-            ),
-          ],
-          child: Scaffold(
-            body: CustomScrollView(
-              slivers: [
-                SliverToBoxAdapter(child: LoginAppbar()),
-                SliverToBoxAdapter(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 48),
-                    child: LoginHeading(),
-                  ),
+        ],
+        child: Scaffold(
+          body: CustomScrollView(
+            slivers: [
+              SliverToBoxAdapter(child: LoginAppbar()),
+              SliverToBoxAdapter(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 48),
+                  child: LoginHeading(),
                 ),
-                SliverToBoxAdapter(
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(16, 16, 16, 32),
-                    child: LoginForm(),
-                  ),
+              ),
+              SliverToBoxAdapter(
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(16, 16, 16, 32),
+                  child: LoginForm(),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),

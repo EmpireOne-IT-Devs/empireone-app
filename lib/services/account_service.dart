@@ -23,6 +23,8 @@ class AccountService {
   }
 
   Future<Response> signInTGoogle({required String idToken}) {
+    print('signingoogle: $baseUrl/auth/google/app?token=$idToken');
+    print('idToken $idToken');
     return get(Uri.parse('$baseUrl/auth/google/app?token=$idToken'));
   }
 

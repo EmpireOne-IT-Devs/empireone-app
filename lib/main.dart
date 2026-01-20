@@ -70,7 +70,10 @@ class _EmpireOneState extends State<EmpireOne> {
   @override
   Widget build(BuildContext context) {
     return MultiRepositoryProvider(
-      providers: [RepositoryProvider.value(value: widget.accountRepository)],
+      providers: [
+        RepositoryProvider.value(value: widget.accountRepository),
+        RepositoryProvider.value(value: widget.googleRepository),
+      ],
       child: MaterialApp.router(
         localizationsDelegates: AppLocalizations.localizationsDelegates,
         supportedLocales: AppLocalizations.supportedLocales,
@@ -180,7 +183,7 @@ final GoRouter _router = GoRouter(
     GoRoute(
       path: '/',
       builder: (BuildContext context, GoRouterState state) {
-        return ForgotPasswordPage();
+        return LoginPage();
       },
       routes: <RouteBase>[
         GoRoute(
@@ -240,9 +243,8 @@ final GoRouter _router = GoRouter(
         GoRoute(
           path: ResetPasswordPage.route,
           builder: (BuildContext context, GoRouterState state) {
-            return  ResetPasswordPage(
+            return ResetPasswordPage(
               initialState: state.extra as ResetPasswordState,
-
             );
           },
         ),
