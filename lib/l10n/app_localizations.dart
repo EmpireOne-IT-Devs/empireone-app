@@ -333,6 +333,18 @@ abstract class AppLocalizations {
   /// **'Verify Identity'**
   String get verifyIdentity;
 
+  /// No description provided for @submit.
+  ///
+  /// In en, this message translates to:
+  /// **'Submit'**
+  String get submit;
+
+  /// No description provided for @employeeidverification.
+  ///
+  /// In en, this message translates to:
+  /// **'Employee Id Verification'**
+  String get employeeidverification;
+
   /// No description provided for @youCanLogNewPassword.
   ///
   /// In en, this message translates to:

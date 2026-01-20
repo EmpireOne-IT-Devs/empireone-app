@@ -6,12 +6,9 @@ import 'package:empireone_app/pages/login/widgets/widgets.dart';
 import 'package:empireone_app/pages/widgets/circular_progress_dialog.dart';
 import 'package:empireone_app/repositories/account_repository.dart';
 import 'package:empireone_app/repositories/repositories.dart';
-import 'package:empireone_app/services/account_service.dart';
-import 'package:empireone_app/services/services.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 
 class LoginPage extends StatelessWidget {
   static const route = '/login';

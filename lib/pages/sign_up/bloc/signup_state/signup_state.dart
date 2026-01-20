@@ -20,5 +20,6 @@ sealed class SignupState with _$SignupState {
     @Default(false) bool isChecked,
     @Default('') String message,
     @Default(RequestStatus.waiting) RequestStatus requestStatus,
+    @Default(RequestStatus.waiting) RequestStatus googleSignupRequestStatus,
   }) = _SignupState;
 }

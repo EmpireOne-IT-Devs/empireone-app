@@ -1,14 +1,18 @@
 import 'package:empireone_app/models/models.dart';
 import 'package:empireone_app/pages/sign_up/bloc/bloc.dart';
 import 'package:empireone_app/repositories/account_repository.dart';
+import 'package:empireone_app/repositories/repositories.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SignupBloc extends Bloc<SignupEvent, SignupState> {
   final AccountRepository _accountRepository;
+  final GoogleRepository _googleRepository;
   SignupBloc({
     required SignupState initialState,
     required AccountRepository accountRepository,
-  }) : _accountRepository = accountRepository,
+    required GoogleRepository googleRepository,
+  }) : _googleRepository = googleRepository,
+       _accountRepository = accountRepository,
        super(initialState) {
     on<SignupEmailChanged>(_signupEmailChanged);
     on<NameChanged>(_nameChanged);
@@ -16,9 +20,34 @@ class SignupBloc extends Bloc<SignupEvent, SignupState> {
     on<SignupConfirmPasswordChanged>(_signupConfirmPassword);
     on<SignupAgreementCheckBoxPressed>(_signupAgreementCheckBoxPressed);
     on<SignupPressed>(_signupPressed);
+    on<GoogleSignupPressed>(_googleSignupPressed);
   }
 
-  void _signupPressed(SignupPressed event, Emitter<SignupState> emit) async {
+  Future<void> _googleSignupPressed(
+    GoogleSignupPressed event,
+    Emitter<SignupState> emit,
+  ) async {
+    var googleSignInAuthentication = await _googleRepository.signIn();
+    var tokenId = googleSignInAuthentication?.idToken;
+    emit(state.copyWith(requestStatus: RequestStatus.inProgress));
+    var result = await _accountRepository.signInTGoogle(idToken: tokenId ?? '');
+    print('bloc result: ${result.resultStatus}');
+    switch (result.resultStatus) {
+      case ResultStatus.success:
+        emit(state.copyWith(googleSignupRequestStatus: RequestStatus.success));
+        break;
+      case ResultStatus.error:
+        emit(state.copyWith(googleSignupRequestStatus: RequestStatus.failure));
+        break;
+      case ResultStatus.none:
+        break;
+    }
+  }
+
+  Future<void> _signupPressed(
+    SignupPressed event,
+    Emitter<SignupState> emit,
+  ) async {
     emit(state.copyWith(requestStatus: RequestStatus.waiting));
     emit(state.copyWith(requestStatus: RequestStatus.inProgress));
     var result = await _accountRepository.signupJobSeeker(

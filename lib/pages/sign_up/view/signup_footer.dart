@@ -1,7 +1,9 @@
 import 'package:empireone_app/l10n/app_localizations.dart';
+import 'package:empireone_app/pages/login/view/view.dart';
 import 'package:empireone_app/pages/sign_up/bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class SignupFooter extends StatelessWidget {
@@ -17,7 +19,6 @@ class SignupFooter extends StatelessWidget {
             ElevatedButton(
               onPressed: () {
                 bloc.add(SignupPressed());
-                // context.push(VerifyAccountPage.route);
               },
               child: Text(
                 AppLocalizations.of(context)?.createAccount ?? '',
@@ -62,14 +63,16 @@ class SignupFooter extends StatelessWidget {
               ),
             ),
             OutlinedButton(
-              onPressed: () {},
+              onPressed: () {
+                bloc.add(GoogleSignupPressed());
+              },
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Image.asset('assets/images/google.png'),
                   Padding(
-                    padding: const EdgeInsets.only(top: 16, bottom: 8),
+                    padding: const EdgeInsets.only(left: 8.0),
                     child: Text(
                       AppLocalizations.of(context)?.continueWithGoogle ?? '',
                       style: GoogleFonts.inter(
@@ -102,7 +105,9 @@ class SignupFooter extends StatelessWidget {
                     ),
                   ),
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      context.push(LoginPage.route);
+                    },
                     child: Text(
                       AppLocalizations.of(context)?.login ?? '',
                       style: GoogleFonts.inter(

@@ -1,6 +1,6 @@
 import 'package:empireone_app/l10n/app_localizations.dart';
 import 'package:empireone_app/pages/login/bloc/bloc.dart';
-import 'package:empireone_app/pages/sign_up/view/view.dart';
+import 'package:empireone_app/pages/role/view/view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -107,7 +107,7 @@ class LoginFooter extends StatelessWidget {
                   ),
                   TextButton(
                     onPressed: () {
-                      context.push(SignupPage.route);
+                      context.push(RolePage.route);
                     },
                     child: Text(
                       AppLocalizations.of(context)?.createAccount ?? '',

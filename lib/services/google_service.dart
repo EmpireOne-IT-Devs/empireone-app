@@ -19,10 +19,9 @@ class GoogleService {
         // User cancelled the login
         return null;
       }
-
+      print('googleSignInAccount: $googleSignInAccount');
       final auth = await googleSignInAccount.authentication;
-
-
+      print('auth: $auth');
       return auth;
     } catch (e) {
       return null;

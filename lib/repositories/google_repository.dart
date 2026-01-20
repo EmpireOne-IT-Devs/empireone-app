@@ -15,6 +15,4 @@ class GoogleRepository {
       return null;
     }
   }
-
-
 }

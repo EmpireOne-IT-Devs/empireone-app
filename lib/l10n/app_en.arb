@@ -39,5 +39,7 @@
   "name": "Name",
   "enterYourName": "Enter your name",
   "verifyIdentity": "Verify Identity",
+  "submit": "Submit",
+  "employeeidverification": "Employee Id Verification",
   "youCanLogNewPassword": "You can now log in with your new password"
   }

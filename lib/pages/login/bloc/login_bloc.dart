@@ -72,11 +72,11 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     GooglePressed event,
     Emitter<LoginState> emit,
   ) async {
-    emit(state.copyWith(requestStatus: RequestStatus.waiting));
-    emit(state.copyWith(requestStatus: RequestStatus.inProgress));
     var googleSignInAuthentication = await _googleRepository.signIn();
     var token = googleSignInAuthentication?.accessToken;
     var tokenId = googleSignInAuthentication?.idToken;
+    emit(state.copyWith(requestStatus: RequestStatus.waiting));
+    emit(state.copyWith(requestStatus: RequestStatus.inProgress));
     var result = await _accountRepository.signInTGoogle(idToken: tokenId ?? '');
     print('bloc result: ${result.resultStatus}');
     if (token != null) {

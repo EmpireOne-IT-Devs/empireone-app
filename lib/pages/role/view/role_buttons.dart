@@ -1,6 +1,7 @@
 import 'package:empireone_app/pages/login/view/view.dart';
 import 'package:empireone_app/pages/login_employee/view/view.dart';
 import 'package:empireone_app/pages/role/role.dart';
+import 'package:empireone_app/pages/sign_up/view/view.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -62,7 +63,7 @@ class RoleButtons extends StatelessWidget {
           width: 133,
           child: RoleButton(
             onPressed: () {
-              context.push(LoginPage.route);
+              context.push(SignupPage.route);
             },
             text: Stack(
               children: [

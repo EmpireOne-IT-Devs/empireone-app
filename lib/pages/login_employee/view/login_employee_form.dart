@@ -18,7 +18,7 @@ class LoginEmployeeForm extends StatelessWidget {
       builder: (context, state) {
         return Container(
           constraints: BoxConstraints(
-            minHeight: 300, // Minimum height to maintain your UI design
+            minHeight: 250, // Minimum height to maintain your UI design
             maxWidth: 500, // Good practice for web/tablet layouts
           ),
           decoration: BoxDecoration(
@@ -32,7 +32,7 @@ class LoginEmployeeForm extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: Text(
-                    AppLocalizations.of(context)?.login ?? '',
+                    AppLocalizations.of(context)?.employeeidverification ?? '',
                     style: GoogleFonts.inter(
                       textStyle: Theme.of(context).textTheme.titleLarge,
                       color: Theme.of(context).colorScheme.primary,
@@ -70,7 +70,7 @@ class LoginEmployeeForm extends StatelessWidget {
                     'assets/icons/employeeicon.svg',
                     fit: BoxFit.contain,
                   ),
-                  textInputAction: TextInputAction.next,
+                  textInputAction: TextInputAction.done,
                   textInputType: TextInputType.number,
                   textInputFormatter: [
                     FilteringTextInputFormatter.digitsOnly,
@@ -124,41 +124,41 @@ class LoginEmployeeForm extends StatelessWidget {
                       // context.push(HomeEmployeePage.route);
                       bloc.add(EmployeeIdVerified());
                     },
-                    child: Text(AppLocalizations.of(context)?.login ?? ''),
+                    child: Text(AppLocalizations.of(context)?.submit ?? ''),
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 8),
-                  child: Row(
-                    children: [
-                      Text(
-                        AppLocalizations.of(context)?.dontHaveAnAccount ?? '',
-                        style: GoogleFonts.inter(
-                          textStyle: Theme.of(context).textTheme.bodyMedium
-                              ?.copyWith(
-                                color: Theme.of(context).colorScheme.onTertiary,
-                                fontSize: 13.6,
-                              ),
-                        ),
-                      ),
-                      TextButton(
-                        onPressed: () {},
-                        child: Text(
-                          AppLocalizations.of(context)?.login ?? '',
-                          textAlign: TextAlign.start,
-                          style: GoogleFonts.inter(
-                            textStyle: Theme.of(context).textTheme.bodyLarge
-                                ?.copyWith(
-                                  color: Theme.of(context).colorScheme.primary,
-                                  fontSize: 13.6,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+                // Padding(
+                //   padding: const EdgeInsets.symmetric(vertical: 8),
+                //   child: Row(
+                //     children: [
+                //       Text(
+                //         AppLocalizations.of(context)?.dontHaveAnAccount ?? '',
+                //         style: GoogleFonts.inter(
+                //           textStyle: Theme.of(context).textTheme.bodyMedium
+                //               ?.copyWith(
+                //                 color: Theme.of(context).colorScheme.onTertiary,
+                //                 fontSize: 13.6,
+                //               ),
+                //         ),
+                //       ),
+                //       TextButton(
+                //         onPressed: () {},
+                //         child: Text(
+                //           AppLocalizations.of(context)?.createAccount ?? '',
+                //           textAlign: TextAlign.start,
+                //           style: GoogleFonts.inter(
+                //             textStyle: Theme.of(context).textTheme.bodyLarge
+                //                 ?.copyWith(
+                //                   color: Theme.of(context).colorScheme.primary,
+                //                   fontSize: 13.6,
+                //                   fontWeight: FontWeight.w600,
+                //                 ),
+                //           ),
+                //         ),
+                //       ),
+                //     ],
+                //   ),
+                // ),
               ],
             ),
           ),

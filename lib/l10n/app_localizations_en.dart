@@ -129,5 +129,11 @@ class AppLocalizationsEn extends AppLocalizations {
   String get verifyIdentity => 'Verify Identity';
 
   @override
+  String get submit => 'Submit';
+
+  @override
+  String get employeeidverification => 'Employee Id Verification';
+
+  @override
   String get youCanLogNewPassword => 'You can now log in with your new password';
 }

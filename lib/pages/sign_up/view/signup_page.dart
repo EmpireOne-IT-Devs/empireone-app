@@ -1,4 +1,5 @@
 import 'package:empireone_app/models/models.dart';
+import 'package:empireone_app/pages/home_employee/view/view.dart';
 import 'package:empireone_app/pages/login/widgets/show_dialog_error.dart';
 import 'package:empireone_app/pages/sign_up/bloc/bloc.dart';
 import 'package:empireone_app/pages/sign_up/view/view.dart';
@@ -7,6 +8,7 @@ import 'package:empireone_app/pages/verify_signup/bloc/bloc.dart'
 import 'package:empireone_app/pages/verify_signup/view/view.dart';
 import 'package:empireone_app/pages/widgets/circular_progress_dialog.dart';
 import 'package:empireone_app/repositories/account_repository.dart';
+import 'package:empireone_app/repositories/repositories.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -53,15 +55,57 @@ class SignupPage extends StatelessWidget {
     }
   }
 
+  void listenerGoogleSignup(BuildContext context, SignupState state) {
+    switch (state.googleSignupRequestStatus) {
+      case RequestStatus.waiting:
+        break;
+      case RequestStatus.inProgress:
+        showDialog(
+          context: context,
+          barrierDismissible: false,
+          builder: (context) {
+            return const Center(child: CircularProgressDialog());
+          },
+        );
+        break;
+      case RequestStatus.success:
+        Future.delayed(const Duration(milliseconds: 3000));
+        context.go(HomeEmployeePage.route);
+        break;
+      case RequestStatus.failure:
+        Navigator.pop(context);
+        showDialog(
+          context: context,
+          builder: (context) {
+            return Center(
+              child: ShowDialogError(message: state.message.toString()),
+            );
+          },
+        );
+        break;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => SignupBloc(
+        googleRepository: RepositoryProvider.of<GoogleRepository>(context),
         initialState: SignupState(),
         accountRepository: RepositoryProvider.of<AccountRepository>(context),
       ),
-      child: BlocListener<SignupBloc, SignupState>(
-        listener: (context, state) => listenerSignup(context, state),
+      child: MultiBlocListener(
+        listeners: [
+          BlocListener<SignupBloc, SignupState>(
+            listener: (context, state) => listenerSignup(context, state),
+          ),
+          BlocListener<SignupBloc, SignupState>(
+            listenWhen: (previous, current) =>
+                previous.googleSignupRequestStatus !=
+                current.googleSignupRequestStatus,
+            listener: (context, state) => listenerGoogleSignup(context, state),
+          ),
+        ],
         child: Scaffold(
           appBar: AppBar(),
           body: CustomScrollView(

@@ -30,3 +30,7 @@ class SignupAgreementCheckBoxPressed extends SignupEvent {
 class SignupPressed extends SignupEvent {
   const SignupPressed();
 }
+
+class GoogleSignupPressed extends SignupEvent {
+  const GoogleSignupPressed();
+}
