@@ -64,7 +64,8 @@ class LoginForm extends StatelessWidget {
                   ),
                 ),
                 LabeledTextField(
-                  error: Text(state.email.errorType.message.toString()),
+                  error: Text(state.email.errorType.message.toString(),
+                  ),
                   onChanged: (value) {
                     bloc.add(EmailChanged(value));
                   },
@@ -85,7 +86,9 @@ class LoginForm extends StatelessWidget {
                       style: GoogleFonts.inter(
                         textStyle: Theme.of(context).textTheme.labelMedium
                             ?.copyWith(
-                              color: Theme.of(context).colorScheme.onPrimary,
+                              color: Theme.of(
+                                context,
+                              ).colorScheme.onPrimary,
                               fontSize: 11.9,
                             ),
                       ),

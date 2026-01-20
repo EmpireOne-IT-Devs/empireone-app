@@ -1,9 +1,12 @@
 import 'package:empireone_app/l10n/app_localizations.dart';
+import 'package:empireone_app/models/models.dart';
 import 'package:empireone_app/pages/forgot_password/bloc/bloc.dart';
+import 'package:empireone_app/pages/login/view/view.dart';
 import 'package:empireone_app/pages/widgets/labeled_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ForgotPasswordForm extends StatelessWidget {
@@ -44,6 +47,9 @@ class ForgotPasswordForm extends StatelessWidget {
                   ),
                 ),
                 LabeledTextField(
+                  error: Text(
+                    state.emailForgotPassVal.errorType.message.toString(),
+                  ),
                   onChanged: (value) {
                     bloc.add(EmailForgotPassValChanged(value));
                   },
@@ -58,8 +64,15 @@ class ForgotPasswordForm extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 16),
                   child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: state.emailForgotPassVal.value.isNotEmpty
+                          ? Color(0xFF1329A9)
+                          : Color(0xFF1329A9).withValues(alpha: 0.5),
+                    ),
                     onPressed: () {
-                      bloc.add(SendVerificationCodePressed());
+                      if (state.emailForgotPassVal.value.isNotEmpty) {
+                        bloc.add(SendVerificationCodePressed());
+                      }
                     },
                     child: Text(
                       AppLocalizations.of(context)?.sendVerificationCode ?? '',
@@ -75,14 +88,17 @@ class ForgotPasswordForm extends StatelessWidget {
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 8.0),
-                  child: Text(
-                    AppLocalizations.of(context)?.backToLogin ?? '',
-                    style: GoogleFonts.inter(
-                      textStyle: Theme.of(context).textTheme.bodyMedium
-                          ?.copyWith(fontSize: 11.9)
-                          .copyWith(
-                            color: Theme.of(context).colorScheme.onTertiary,
-                          ),
+                  child: TextButton(
+                    onPressed: () => context.push(LoginPage.route),
+                    child: Text(
+                      AppLocalizations.of(context)?.backToLogin ?? '',
+                      style: GoogleFonts.inter(
+                        textStyle: Theme.of(context).textTheme.bodyMedium
+                            ?.copyWith(fontSize: 11.9)
+                            .copyWith(
+                              color: Theme.of(context).colorScheme.onTertiary,
+                            ),
+                      ),
                     ),
                   ),
                 ),

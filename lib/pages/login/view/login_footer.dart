@@ -1,4 +1,5 @@
 import 'package:empireone_app/l10n/app_localizations.dart';
+import 'package:empireone_app/models/models.dart';
 import 'package:empireone_app/pages/login/bloc/bloc.dart';
 import 'package:empireone_app/pages/role/view/view.dart';
 import 'package:flutter/material.dart';
@@ -18,8 +19,18 @@ class LoginFooter extends StatelessWidget {
         return Column(
           children: [
             ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor:
+                    state.email.errorType == ErrorType.none &&
+                        state.password.errorType == ErrorType.none
+                    ? Color(0xFF1329A9)
+                    : Color(0xFF1329A9).withValues(alpha: 0.5),
+              ),
               onPressed: () {
-                bloc.add(LoginPressed());
+                if (state.email.value.isNotEmpty &&
+                    state.password.value.isNotEmpty) {
+                  bloc.add(LoginPressed());
+                }
               },
               child: Text(
                 AppLocalizations.of(context)?.login ?? '',

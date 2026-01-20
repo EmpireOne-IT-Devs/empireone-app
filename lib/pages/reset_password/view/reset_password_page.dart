@@ -21,6 +21,7 @@ class ResetPasswordPage extends StatelessWidget {
     BuildContext context,
     ResetPasswordState state,
   ) async {
+    print('error: ${state.message}');
     switch (state.requestStatus) {
       case RequestStatus.waiting:
         break;

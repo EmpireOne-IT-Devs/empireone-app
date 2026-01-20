@@ -119,16 +119,12 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     Emitter<LoginState> emit,
   ) async {
     emit(state.copyWith(requestStatus: RequestStatus.inProgress));
-
     var result = await _accountRepository.login(
       email: state.email.value,
       password: state.password.value,
     );
     switch (result.resultStatus) {
       case ResultStatus.success:
-        var userId = result.data?.user?.id;
-        var token = result.data?.token;
-        if (userId != null && token != null) {}
         emit(
           state.copyWith(
             message: result.data?.message ?? '',

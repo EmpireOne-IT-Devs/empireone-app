@@ -15,7 +15,10 @@ class LoginEmployeePage extends StatelessWidget {
 
   const LoginEmployeePage({super.key});
 
-  void listener(BuildContext context, LoginEmployeeState state) {
+  void listenerLoginEmployeePressed(
+    BuildContext context,
+    LoginEmployeeState state,
+  ) {
     switch (state.requestStatusSendOtp) {
       case RequestStatus.waiting:
         break;
@@ -56,7 +59,8 @@ class LoginEmployeePage extends StatelessWidget {
         accountRepository: RepositoryProvider.of<AccountRepository>(context),
       ),
       child: BlocListener<LoginEmployeeBloc, LoginEmployeeState>(
-        listener: (context, state) => listener(context, state),
+        listener: (context, state) =>
+            listenerLoginEmployeePressed(context, state),
         child: const Scaffold(
           body: CustomScrollView(
             slivers: [

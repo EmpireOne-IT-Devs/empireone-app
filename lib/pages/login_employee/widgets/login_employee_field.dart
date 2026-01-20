@@ -8,13 +8,17 @@ class LoginEmployeeField extends StatelessWidget {
   final Widget prefixIcon;
   final TextInputAction textInputAction;
   final TextInputType textInputType;
-  final List<TextInputFormatter>?  textInputFormatter;
+  final List<TextInputFormatter>? textInputFormatter;
+  final Widget error;
   const LoginEmployeeField({
     super.key,
     required this.hintText,
     this.onChanged,
     required this.prefixIcon,
-    required this.textInputAction, required this.textInputType, required this.textInputFormatter,
+    required this.textInputAction,
+    required this.textInputType,
+    required this.textInputFormatter,
+    required this.error,
   });
 
   @override
@@ -45,6 +49,10 @@ class LoginEmployeeField extends StatelessWidget {
         prefixIconConstraints: const BoxConstraints(
           minWidth: 20,
           minHeight: 20,
+        ),
+        error: error,
+        errorStyle: TextStyle(
+          color: Theme.of(context).colorScheme.onPrimary.withValues(alpha: 0.5),
         ),
       ),
     );

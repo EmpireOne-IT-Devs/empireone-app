@@ -150,6 +150,10 @@ class AccountRepository {
         'password_confirmation': passwordConfirmation,
       },
     );
-    return Result(statusCode: result.statusCode);
+    if (result.statusCode == 200) {
+      return Result(statusCode: result.statusCode);
+    } else {
+      return Result(statusCode: result.statusCode, data: result.body);
+    }
   }
 }

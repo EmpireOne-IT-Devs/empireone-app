@@ -1,4 +1,5 @@
 import 'package:empireone_app/l10n/app_localizations.dart';
+import 'package:empireone_app/models/models.dart';
 import 'package:empireone_app/pages/sign_up/bloc/signup_bloc.dart';
 import 'package:empireone_app/pages/sign_up/bloc/signup_event.dart';
 import 'package:empireone_app/pages/sign_up/bloc/signup_state/signup_state.dart';
@@ -64,6 +65,7 @@ class SignupForm extends StatelessWidget {
                 ),
                 LabeledTextField(
                   // error: Text(state.signupEmail.errorType.message.toString()),
+                  error: Text(state.name.errorType.message.toString()),
                   onChanged: (value) {
                     bloc.add(NameChanged(value));
                   },
@@ -98,7 +100,7 @@ class SignupForm extends StatelessWidget {
                   ),
                 ),
                 LabeledTextField(
-                  // error: Text(state.signupEmail.errorType.message.toString()),
+                  error: Text(state.signupEmail.errorType.message.toString()),
                   onChanged: (value) {
                     bloc.add(SignupEmailChanged(value));
                   },
@@ -130,9 +132,9 @@ class SignupForm extends StatelessWidget {
                   onChanged: (value) {
                     bloc.add(SignupPasswordChanged(value));
                   },
-                  // error: Text(
-                  //   state.signupPassword.errorType.message.toString(),
-                  // ),
+                  error: Text(
+                    state.signupPassword.errorType.message.toString(),
+                  ),
                   hintText:
                       AppLocalizations.of(context)?.enterYourPassword ?? '',
                   prefixIcon: SvgPicture.asset(
@@ -161,9 +163,9 @@ class SignupForm extends StatelessWidget {
                   onChanged: (value) {
                     bloc.add(SignupConfirmPasswordChanged(value));
                   },
-                  // error: Text(
-                  //   state.signupConfirmPassword.errorType.message.toString(),
-                  // ),
+                  error: Text(
+                    state.signupConfirmPassword.errorType.message.toString(),
+                  ),
                   hintText: AppLocalizations.of(context)?.confirmPassword ?? '',
                   prefixIcon: SvgPicture.asset(
                     'assets/icons/passwordlock.svg',
@@ -171,55 +173,58 @@ class SignupForm extends StatelessWidget {
                   ),
                   textInputAction: TextInputAction.done,
                 ),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Checkbox(
-                      onChanged: (value) {
-                        bloc.add(
-                          SignupAgreementCheckBoxPressed(state.isChecked),
-                        );
-                      },
-                      side: BorderSide(width: 0.5),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadiusGeometry.circular(3),
+                Padding(
+                  padding: const EdgeInsets.only(top: 8.0),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Checkbox(
+                        onChanged: (value) {
+                          bloc.add(
+                            SignupAgreementCheckBoxPressed(state.isChecked),
+                          );
+                        },
+                        side: BorderSide(width: 0.5),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadiusGeometry.circular(3),
+                        ),
+                        activeColor: Theme.of(
+                          context,
+                        ).colorScheme.primaryContainer,
+                        value: state.isChecked,
                       ),
-                      activeColor: Theme.of(
-                        context,
-                      ).colorScheme.primaryContainer,
-                      value: state.isChecked,
-                    ),
-                    const SizedBox(width: 8),
-                    Expanded(
-                      child: Text.rich(
-                        TextSpan(
-                          style: GoogleFonts.mada(
-                            color: Theme.of(context).colorScheme.onTertiary,
-                          ).copyWith(fontSize: 12),
-                          children: [
-                            TextSpan(
-                              text:
-                                  '${AppLocalizations.of(context)?.imAgreeToThe} ',
-                            ),
-                            TextSpan(
-                              text: 'Terms of Service',
-                              style: TextStyle(
-                                color: Theme.of(context).colorScheme.primary,
+                      const SizedBox(width: 8),
+                      Expanded(
+                        child: Text.rich(
+                          TextSpan(
+                            style: GoogleFonts.mada(
+                              color: Theme.of(context).colorScheme.onTertiary,
+                            ).copyWith(fontSize: 12),
+                            children: [
+                              TextSpan(
+                                text:
+                                    '${AppLocalizations.of(context)?.imAgreeToThe} ',
                               ),
-                              // Use TapGestureRecognizer here for clicks in 2025
-                            ),
-                            const TextSpan(text: ' and '),
-                            TextSpan(
-                              text: 'Privacy Policy',
-                              style: TextStyle(
-                                color: Theme.of(context).colorScheme.primary,
+                              TextSpan(
+                                text: 'Terms of Service',
+                                style: TextStyle(
+                                  color: Theme.of(context).colorScheme.primary,
+                                ),
+                                // Use TapGestureRecognizer here for clicks in 2025
                               ),
-                            ),
-                          ],
+                              const TextSpan(text: ' and '),
+                              TextSpan(
+                                text: 'Privacy Policy',
+                                style: TextStyle(
+                                  color: Theme.of(context).colorScheme.primary,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
                 SignupFooter(),
               ],

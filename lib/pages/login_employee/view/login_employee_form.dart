@@ -1,4 +1,5 @@
 import 'package:empireone_app/l10n/app_localizations.dart';
+import 'package:empireone_app/models/models.dart';
 import 'package:empireone_app/pages/login_employee/bloc/bloc.dart';
 import 'package:empireone_app/pages/login_employee/widgets/login_employee_field.dart';
 import 'package:flutter/material.dart';
@@ -76,89 +77,25 @@ class LoginEmployeeForm extends StatelessWidget {
                     FilteringTextInputFormatter.digitsOnly,
                     LengthLimitingTextInputFormatter(8),
                   ],
+                  error: Text(state.employeeId.errorType.message.toString()),
                 ),
-                // Padding(
-                //   padding: const EdgeInsets.symmetric(vertical: 16),
-                //   child: Align(
-                //     alignment: Alignment.centerLeft,
-                //     child: Text(
-                //       AppLocalizations.of(context)?.password ?? '',
-                //       style: GoogleFonts.inter(
-                //         color: Theme.of(context).colorScheme.onPrimary,
-                //         textStyle: Theme.of(context).textTheme.labelMedium,
-                //       ),
-                //     ),
-                //   ),
-                // ),
-                // LoginEmployeeField(
-                //   onChanged: (value) {},
-                //   hintText: AppLocalizations.of(context)?.enterYourPassword ?? '',
-                //   prefixIcon: SvgPicture.asset(
-                //     'assets/icons/passwordlock.svg',
-                //     fit: BoxFit.contain,
-                //   ),
-                //   textInputAction: TextInputAction.done,
-                //   textInputType: TextInputType.text,
-                //   textInputFormatter: null,
-                // ),
-                // Padding(
-                //   padding: const EdgeInsets.symmetric(vertical: 8),
-                //   child: Align(
-                //     alignment: Alignment.centerRight,
-                //     child: TextButton(
-                //       onPressed: () {},
-                //       child: Text(
-                //         AppLocalizations.of(context)?.forgotPassword ?? '',
-                //         style: GoogleFonts.inter(
-                //           textStyle: Theme.of(context).textTheme.labelMedium,
-                //           color: Theme.of(context).colorScheme.primary,
-                //         ),
-                //       ),
-                //     ),
-                //   ),
-                // ),
                 Padding(
                   padding: const EdgeInsets.only(top: 16.0),
                   child: ElevatedButton(
                     onPressed: () {
-                      // context.push(HomeEmployeePage.route);
-                      bloc.add(EmployeeIdVerifiedPressed());
+                      if (state.employeeId.errorType == ErrorType.none) {
+                        bloc.add(EmployeeIdVerifiedPressed());
+                      }
                     },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor:
+                          state.employeeId.errorType == ErrorType.none
+                          ? Color(0xFF1329A9)
+                          : Color(0xFF1329A9).withValues(alpha: 0.5),
+                    ),
                     child: Text(AppLocalizations.of(context)?.submit ?? ''),
                   ),
                 ),
-                // Padding(
-                //   padding: const EdgeInsets.symmetric(vertical: 8),
-                //   child: Row(
-                //     children: [
-                //       Text(
-                //         AppLocalizations.of(context)?.dontHaveAnAccount ?? '',
-                //         style: GoogleFonts.inter(
-                //           textStyle: Theme.of(context).textTheme.bodyMedium
-                //               ?.copyWith(
-                //                 color: Theme.of(context).colorScheme.onTertiary,
-                //                 fontSize: 13.6,
-                //               ),
-                //         ),
-                //       ),
-                //       TextButton(
-                //         onPressed: () {},
-                //         child: Text(
-                //           AppLocalizations.of(context)?.createAccount ?? '',
-                //           textAlign: TextAlign.start,
-                //           style: GoogleFonts.inter(
-                //             textStyle: Theme.of(context).textTheme.bodyLarge
-                //                 ?.copyWith(
-                //                   color: Theme.of(context).colorScheme.primary,
-                //                   fontSize: 13.6,
-                //                   fontWeight: FontWeight.w600,
-                //                 ),
-                //           ),
-                //         ),
-                //       ),
-                //     ],
-                //   ),
-                // ),
               ],
             ),
           ),

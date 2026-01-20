@@ -11,10 +11,12 @@ class Result<T> {
     switch (statusCode) {
       case 200:
         return ResultStatus.success;
-      case 400:
-      case 401:
-      case 404:
-      case 422:
+      case 302: // redirect (usually auth/session issue)
+      case 400: // bad request
+      case 401: // unauthorized
+      case 404: // not found
+      case 422: // validation error
+      case 500: // server error
         return ResultStatus.error;
       default:
         return ResultStatus.none;

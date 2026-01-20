@@ -35,29 +35,25 @@ class LoginEmployeeBloc extends Bloc<LoginEmployeeEvent, LoginEmployeeState> {
     emit(state.copyWith(employeeId: employeeId));
   }
 
-  void _employeeIdVerifiedPressed(
+  Future<void> _employeeIdVerifiedPressed(
     EmployeeIdVerifiedPressed event,
     Emitter<LoginEmployeeState> emit,
   ) async {
-    emit(state.copyWith(requestStatusSendOtp: RequestStatus.waiting));
-    emit(state.copyWith(requestStatusSendOtp: RequestStatus.inProgress));
+    emit(state.copyWith(requestStatus: RequestStatus.waiting));
+    emit(state.copyWith(requestStatus: RequestStatus.inProgress));
     var employeeId = state.employeeId;
     var result = await _accountRepository.employeeId(
       employeeId: employeeId.value,
     );
-    // print('result $result');
-    // print('here data bloc: ${result.data}');
-    // print('eogs ${result.data?.eogs}');
-    // print('status code bloc: ${result.statusCode}');
+    print('status code bloc: ${result.statusCode}');
     var eogsEmail = result.data?.eogs;
     if (eogsEmail != null) {
       emit(state.copyWith(eogsEmail: eogsEmail));
       switch (result.resultStatus) {
         case ResultStatus.success:
-          _accountRepository.sendOtp(email: eogsEmail);
+          await _accountRepository.sendOtp(email: eogsEmail);
           emit(
             state.copyWith(
-              requestStatus: RequestStatus.success,
               requestStatusSendOtp: RequestStatus.success,
               eogsEmail: eogsEmail,
             ),
@@ -66,60 +62,14 @@ class LoginEmployeeBloc extends Bloc<LoginEmployeeEvent, LoginEmployeeState> {
         case ResultStatus.error:
           emit(
             state.copyWith(
-              requestStatus: RequestStatus.failure,
               requestStatusSendOtp: RequestStatus.failure,
+              message: result.data?.message ?? '',
             ),
           );
           break;
         case ResultStatus.none:
           break;
       }
-      // if (result.statusCode == 200) {
-      //   _accountRepository.sendOtp(email: eogsEmail);
-      //   emit(
-      //     state.copyWith(
-      //       requestStatusSendOtp: RequestStatus.success,
-      //       requestStatus: RequestStatus.success,
-      //       eogsEmail: eogsEmail,
-      //     ),
-      //   );
-      // } else {
-      //   emit(
-      //     state.copyWith(
-      //       requestStatusSendOtp: RequestStatus.failure,
-      //       message: state.message,
-      //     ),
-      //   );
-      // }
-    } else {
-      
-    }
-    // print('eogsemail bloc: $eogsEmail');
-
-    // switch (result.statusCode) {
-    //   // ignore: constant_pattern_never_matches_value_type
-    //   case ResultStatus.success:
-    //     emit(state.copyWith(requestStatusSendOtp: RequestStatus.inProgress));
-    //     _accountRepository.sendOtp(email: eogsEmail ?? '');
-    //     emit(
-    //       state.copyWith(
-    //         requestStatusSendOtp: RequestStatus.success,
-    //         requestStatus: RequestStatus.success,
-    //       ),
-    //     );
-    //     break;
-    //   // ignore: constant_pattern_never_matches_value_type
-    //   case ResultStatus.error:
-    //     emit(
-    //       state.copyWith(
-    //         message: result.data?.message ?? '',
-    //         requestStatus: RequestStatus.failure,
-    //       ),
-    //     );
-    //     break;
-    //   // ignore: constant_pattern_never_matches_value_type
-    //   case ResultStatus.none:
-    //     break;
-    // }
+    } else {}
   }
 }

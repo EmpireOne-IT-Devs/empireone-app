@@ -1,4 +1,5 @@
 import 'package:empireone_app/l10n/app_localizations.dart';
+import 'package:empireone_app/models/models.dart';
 import 'package:empireone_app/pages/login/view/view.dart';
 import 'package:empireone_app/pages/sign_up/bloc/bloc.dart';
 import 'package:flutter/material.dart';
@@ -17,8 +18,22 @@ class SignupFooter extends StatelessWidget {
         return Column(
           children: [
             ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor:
+                    state.name.errorType == ErrorType.none &&
+                        state.signupEmail.errorType == ErrorType.none &&
+                        state.signupPassword.errorType == ErrorType.none &&
+                        state.signupConfirmPassword.errorType == ErrorType.none
+                    ? Color(0xFF1329A9)
+                    : Color(0xFF1329A9).withValues(alpha: 0.5),
+              ),
               onPressed: () {
-                bloc.add(SignupPressed());
+                if (state.name.errorType == ErrorType.none &&
+                    state.signupEmail.errorType == ErrorType.none &&
+                    state.signupPassword.errorType == ErrorType.none &&
+                    state.signupConfirmPassword.errorType == ErrorType.none) {
+                  bloc.add(SignupPressed());
+                }
               },
               child: Text(
                 AppLocalizations.of(context)?.createAccount ?? '',
