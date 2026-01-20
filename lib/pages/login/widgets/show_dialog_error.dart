@@ -50,7 +50,7 @@ class ShowDialogError extends StatelessWidget {
                   message,
                   style: GoogleFonts.kumbhSans(
                     textStyle: Theme.of(context).textTheme.titleSmall?.copyWith(
-                      color: Theme.of(context).colorScheme.onPrimary,
+                      color: Theme.of(context).colorScheme.error,
                       fontWeight: FontWeight.w500,
                     ),
                   ),

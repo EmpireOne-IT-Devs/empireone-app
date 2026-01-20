@@ -7,6 +7,6 @@ class EmployeeIdChanged extends LoginEmployeeEvent{
   const EmployeeIdChanged(this.employeeId);
 }
 
-class EmployeeIdVerified extends LoginEmployeeEvent{
-  const EmployeeIdVerified();
+class EmployeeIdVerifiedPressed extends LoginEmployeeEvent{
+  const EmployeeIdVerifiedPressed();
 }

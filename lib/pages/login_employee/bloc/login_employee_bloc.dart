@@ -12,7 +12,7 @@ class LoginEmployeeBloc extends Bloc<LoginEmployeeEvent, LoginEmployeeState> {
   }) : _accountRepository = accountRepository,
        super(initialState) {
     on<EmployeeIdChanged>(_employeeIdChanged);
-    on<EmployeeIdVerified>(_employeeIdVerified);
+    on<EmployeeIdVerifiedPressed>(_employeeIdVerifiedPressed);
   }
 
   void _employeeIdChanged(
@@ -35,8 +35,8 @@ class LoginEmployeeBloc extends Bloc<LoginEmployeeEvent, LoginEmployeeState> {
     emit(state.copyWith(employeeId: employeeId));
   }
 
-  void _employeeIdVerified(
-    EmployeeIdVerified event,
+  void _employeeIdVerifiedPressed(
+    EmployeeIdVerifiedPressed event,
     Emitter<LoginEmployeeState> emit,
   ) async {
     emit(state.copyWith(requestStatusSendOtp: RequestStatus.waiting));
@@ -50,26 +50,52 @@ class LoginEmployeeBloc extends Bloc<LoginEmployeeEvent, LoginEmployeeState> {
     // print('eogs ${result.data?.eogs}');
     // print('status code bloc: ${result.statusCode}');
     var eogsEmail = result.data?.eogs;
-    // print('eogsemail bloc: $eogsEmail');
-    emit(state.copyWith(eogsEmail: eogsEmail ?? ''));
-    // print('state employeeid eogs: $eogsEmail');
-    if (result.statusCode == 200 && eogsEmail != null) {
-      _accountRepository.sendOtp(email: eogsEmail);
-      emit(
-        state.copyWith(
-          requestStatusSendOtp: RequestStatus.success,
-          requestStatus: RequestStatus.success,
-          eogsEmail: eogsEmail,
-        ),
-      );
+    if (eogsEmail != null) {
+      emit(state.copyWith(eogsEmail: eogsEmail));
+      switch (result.resultStatus) {
+        case ResultStatus.success:
+          _accountRepository.sendOtp(email: eogsEmail);
+          emit(
+            state.copyWith(
+              requestStatus: RequestStatus.success,
+              requestStatusSendOtp: RequestStatus.success,
+              eogsEmail: eogsEmail,
+            ),
+          );
+          break;
+        case ResultStatus.error:
+          emit(
+            state.copyWith(
+              requestStatus: RequestStatus.failure,
+              requestStatusSendOtp: RequestStatus.failure,
+            ),
+          );
+          break;
+        case ResultStatus.none:
+          break;
+      }
+      // if (result.statusCode == 200) {
+      //   _accountRepository.sendOtp(email: eogsEmail);
+      //   emit(
+      //     state.copyWith(
+      //       requestStatusSendOtp: RequestStatus.success,
+      //       requestStatus: RequestStatus.success,
+      //       eogsEmail: eogsEmail,
+      //     ),
+      //   );
+      // } else {
+      //   emit(
+      //     state.copyWith(
+      //       requestStatusSendOtp: RequestStatus.failure,
+      //       message: state.message,
+      //     ),
+      //   );
+      // }
     } else {
-      emit(
-        state.copyWith(
-          requestStatusSendOtp: RequestStatus.failure,
-          message: state.message,
-        ),
-      );
+      
     }
+    // print('eogsemail bloc: $eogsEmail');
+
     // switch (result.statusCode) {
     //   // ignore: constant_pattern_never_matches_value_type
     //   case ResultStatus.success:

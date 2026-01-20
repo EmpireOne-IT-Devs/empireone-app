@@ -6,7 +6,6 @@ import 'package:empireone_app/pages/verify_account/bloc/bloc.dart';
 import 'package:empireone_app/pages/verify_account/view/view.dart';
 import 'package:empireone_app/pages/widgets/circular_progress_dialog.dart';
 import 'package:empireone_app/repositories/account_repository.dart';
-import 'package:empireone_app/services/account_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -51,42 +50,30 @@ class LoginEmployeePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiRepositoryProvider(
-      providers: [
-        RepositoryProvider(
-          create: (context) => AccountRepository(
-            accountService: AccountService(
-              baseUrl: 'https://empireone-bpo.com/api',
-              baseUrl2: 'https://empireone-hris.com/api',
-            ),
-          ),
-        ),
-      ],
-      child: BlocProvider<LoginEmployeeBloc>(
-        create: (context) => LoginEmployeeBloc(
-          initialState: LoginEmployeeState(),
-          accountRepository: RepositoryProvider.of<AccountRepository>(context),
-        ),
-        child: BlocListener<LoginEmployeeBloc, LoginEmployeeState>(
-          listener: (context, state) => listener(context, state),
-          child: const Scaffold(
-            body: CustomScrollView(
-              slivers: [
-                SliverToBoxAdapter(child: LoginEmployeeAppbar()),
-                SliverToBoxAdapter(
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 48),
-                    child: LoginEmployeeHeading(),
-                  ),
+    return BlocProvider<LoginEmployeeBloc>(
+      create: (context) => LoginEmployeeBloc(
+        initialState: LoginEmployeeState(),
+        accountRepository: RepositoryProvider.of<AccountRepository>(context),
+      ),
+      child: BlocListener<LoginEmployeeBloc, LoginEmployeeState>(
+        listener: (context, state) => listener(context, state),
+        child: const Scaffold(
+          body: CustomScrollView(
+            slivers: [
+              SliverToBoxAdapter(child: LoginEmployeeAppbar()),
+              SliverToBoxAdapter(
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 48),
+                  child: LoginEmployeeHeading(),
                 ),
-                SliverToBoxAdapter(
-                  child: Padding(
-                    padding: EdgeInsets.fromLTRB(16, 32, 16, 0),
-                    child: LoginEmployeeForm(),
-                  ),
+              ),
+              SliverToBoxAdapter(
+                child: Padding(
+                  padding: EdgeInsets.fromLTRB(16, 32, 16, 0),
+                  child: LoginEmployeeForm(),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),
