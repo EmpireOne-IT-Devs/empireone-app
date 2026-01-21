@@ -121,11 +121,11 @@ class AccountRepository {
 
   Future<Result> signInTGoogle({required String idToken}) async {
     var result = await _accountService.signInTGoogle(idToken: idToken);
-    print('resultss ${result.body}');
-    return Result(
-      statusCode: result.statusCode,
-      // data: AccountPayload.fromJson(jsonDecode(result.body)),
-    );
+    var body = jsonDecode(result.body);
+    print('body: $body');
+    print('statusCodessss: ${result.statusCode}');
+
+    return Result(statusCode: result.statusCode, data: body);
   }
 
   Future<Result> forgotPassword({required String email}) async {

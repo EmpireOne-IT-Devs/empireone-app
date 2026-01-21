@@ -121,11 +121,7 @@ class _EmpireOneState extends State<EmpireOne> {
             bodyMedium: TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
             bodySmall: TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
           ),
-          appBarTheme: AppBarTheme(
-            toolbarHeight: 50,
-            elevation: 0,
-            surfaceTintColor: Colors.transparent,
-          ),
+          appBarTheme: AppBarTheme(toolbarHeight: 50, elevation: 0),
           elevatedButtonTheme: ElevatedButtonThemeData(
             style: ElevatedButton.styleFrom(
               fixedSize: const Size(316, 56),
