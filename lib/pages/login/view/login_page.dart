@@ -1,9 +1,9 @@
+import 'package:empireone_app/l10n/app_localizations.dart';
 import 'package:empireone_app/models/models.dart';
 import 'package:empireone_app/pages/home_employee/home_employee.dart';
 import 'package:empireone_app/pages/login/bloc/bloc.dart';
 import 'package:empireone_app/pages/login/login.dart';
-import 'package:empireone_app/pages/login/widgets/widgets.dart';
-import 'package:empireone_app/pages/widgets/circular_progress_dialog.dart';
+import 'package:empireone_app/pages/widgets/widgets.dart';
 import 'package:empireone_app/repositories/account_repository.dart';
 import 'package:empireone_app/repositories/repositories.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +15,7 @@ class LoginPage extends StatelessWidget {
 
   const LoginPage({super.key});
 
-  void listener(BuildContext context, LoginState state) {
+  void listenerLogin(BuildContext context, LoginState state) {
     switch (state.requestStatus) {
       case RequestStatus.waiting:
         break;
@@ -35,8 +35,12 @@ class LoginPage extends StatelessWidget {
         showDialog(
           context: context,
           builder: (context) {
+            print('here ${state.message}');
             return Center(
-              child: ShowDialogError(message: state.message.toString()),
+              child: ShowDialogError(
+                message: state.message.toString(),
+                text: AppLocalizations.of(context)?.loginFailed ?? '',
+              ),
             );
           },
         );
@@ -67,7 +71,10 @@ class LoginPage extends StatelessWidget {
           context: context,
           builder: (context) {
             return Center(
-              child: ShowDialogError(message: state.message.toString()),
+              child: ShowDialogError(
+                message: state.message.toString(),
+                text: '',
+              ),
             );
           },
         );
@@ -79,14 +86,14 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider<LoginBloc>(
       create: (context) => LoginBloc(
-        googleRepository:RepositoryProvider.of<GoogleRepository>(context),
+        googleRepository: RepositoryProvider.of<GoogleRepository>(context),
         initialState: const LoginState(),
         accountRepository: RepositoryProvider.of<AccountRepository>(context),
       ),
       child: MultiBlocListener(
         listeners: [
           BlocListener<LoginBloc, LoginState>(
-            listener: (context, state) => listener(context, state),
+            listener: (context, state) => listenerLogin(context, state),
           ),
           BlocListener<LoginBloc, LoginState>(
             listenWhen: (previous, current) =>

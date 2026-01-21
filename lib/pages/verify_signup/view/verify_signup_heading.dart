@@ -22,7 +22,7 @@ class VerifySignupHeading extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.fromLTRB(0, 16, 0, 8),
           child: Text(
-            AppLocalizations.of(context)?.verifyLogin ?? '',
+            AppLocalizations.of(context)?.verifyAccount ?? '',
             style: GoogleFonts.inter(
               textStyle: Theme.of(context).textTheme.headlineSmall,
             ),

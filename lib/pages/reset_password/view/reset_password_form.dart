@@ -1,4 +1,5 @@
 import 'package:empireone_app/l10n/app_localizations.dart';
+import 'package:empireone_app/models/models.dart';
 import 'package:empireone_app/pages/reset_password/bloc/bloc.dart';
 import 'package:empireone_app/pages/widgets/labeled_text_field.dart';
 import 'package:flutter/material.dart';
@@ -125,7 +126,12 @@ class ResetPasswordForm extends StatelessWidget {
                               Padding(
                                 padding: EdgeInsets.only(left: 8.0),
                                 child: Text(
-                                  state.resetNewPassword.value.length < 8
+                                  state.resetNewPassword.value.length < 8 &&
+                                          state
+                                                  .resetConfirmNewPassword
+                                                  .value
+                                                  .length <
+                                              8
                                       ? 'At least 8 characters'
                                       : '',
                                   style:
@@ -152,9 +158,14 @@ class ResetPasswordForm extends StatelessWidget {
                                 Padding(
                                   padding: const EdgeInsets.only(left: 8.0),
                                   child: Text(
-                                    !RegExp(
-                                          r'[A-Z]',
-                                        ).hasMatch(state.resetNewPassword.value)
+                                    !RegExp(r'[A-Z]').hasMatch(
+                                              state.resetNewPassword.value,
+                                            ) &&
+                                            !RegExp(r'[A-Z]').hasMatch(
+                                              state
+                                                  .resetConfirmNewPassword
+                                                  .value,
+                                            )
                                         ? 'One uppercase letter'
                                         : '',
                                     style:
@@ -180,9 +191,12 @@ class ResetPasswordForm extends StatelessWidget {
                               Padding(
                                 padding: const EdgeInsets.only(left: 8.0),
                                 child: Text(
-                                  !RegExp(
-                                        r'[0-9]',
-                                      ).hasMatch(state.resetNewPassword.value)
+                                  !RegExp(r'[0-9]').hasMatch(
+                                            state.resetNewPassword.value,
+                                          ) &&
+                                          !RegExp(r'[0-9]').hasMatch(
+                                            state.resetConfirmNewPassword.value,
+                                          )
                                       ? 'One number'
                                       : '',
                                   style:
@@ -210,8 +224,20 @@ class ResetPasswordForm extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(vertical: 16),
                   child: ElevatedButton(
                     onPressed: () {
-                      bloc.add(ResetPasswordPressed());
+                      if (state.resetNewPassword.errorType == ErrorType.none &&
+                          state.resetConfirmNewPassword.errorType ==
+                              ErrorType.none) {
+                        bloc.add(ResetPasswordPressed());
+                      }
                     },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor:
+                          state.resetNewPassword.errorType == ErrorType.none &&
+                              state.resetConfirmNewPassword.errorType ==
+                                  ErrorType.none
+                          ? Color(0xFF1329A9)
+                          : Color(0xFF1329A9).withValues(alpha: 0.5),
+                    ),
                     child: Text(
                       AppLocalizations.of(context)?.resetPassword ?? '',
                       style: GoogleFonts.inter(

@@ -88,7 +88,12 @@ class AccountRepository {
         result.statusCode == 402 ||
         result.statusCode == 403 ||
         result.statusCode == 404) {
-      return Result<EmployeePayload>(statusCode: result.statusCode);
+      final emPayload = EmployeePayload.fromJson(jsonDecode(result.body));
+      print('emPayload: $emPayload');
+      return Result<EmployeePayload>(
+        statusCode: result.statusCode,
+        data: emPayload,
+      );
     } else {
       throw Exception('Server Error: ${result.statusCode}');
     }
@@ -116,6 +121,7 @@ class AccountRepository {
 
   Future<Result> signInTGoogle({required String idToken}) async {
     var result = await _accountService.signInTGoogle(idToken: idToken);
+    print('resultss ${result.body}');
     return Result(
       statusCode: result.statusCode,
       // data: AccountPayload.fromJson(jsonDecode(result.body)),
@@ -125,17 +131,63 @@ class AccountRepository {
   Future<Result> forgotPassword({required String email}) async {
     var result = await _accountService.forgotPassword(body: {'email': email});
     print('result status : ${result.statusCode}');
-    return Result(statusCode: result.statusCode);
+    if (result.statusCode == 200) {
+      return Result(statusCode: result.statusCode);
+    } else {
+      final decoded = jsonDecode(result.body);
+      print('decoded $decoded');
+      return Result(statusCode: result.statusCode, data: decoded);
+    }
   }
 
-  Future<Result> forgotPasswordVerifyOtp({
+  Future<Result<String>> forgotPasswordVerifyOtp({
     required String otp,
     required String email,
   }) async {
-    var result = await _accountService.forgotPasswordVerifyOtp(
+    final result = await _accountService.forgotPasswordVerifyOtp(
       body: {'otp': otp, 'email': email},
     );
-    return Result(statusCode: result.statusCode);
+
+    if (result.statusCode == 200) {
+      return Result(statusCode: result.statusCode);
+    }
+
+    String errorMessage = 'Something went wrong';
+
+    try {
+      final decoded = jsonDecode(result.body);
+      print('decoded $decoded');
+      if (decoded is Map<String, dynamic>) {
+        // 1️⃣ message
+        if (decoded['message'] is String) {
+          errorMessage = decoded['message'];
+          print('errormessage :$errorMessage');
+        }
+
+        // 2️⃣ validation errors
+        if (decoded['errors'] is Map) {
+          final errors = decoded['errors'] as Map<String, dynamic>;
+          print('errors :$errors');
+
+          if (errors.isNotEmpty) {
+            final firstError = errors.values.first;
+            print('firstError $firstError');
+            if (firstError is List && firstError.isNotEmpty) {
+              errorMessage = firstError.first.toString();
+              print('errorMessage $errorMessage');
+            }
+          }
+        }
+      }
+    } catch (e) {
+      // Response is NOT JSON
+      errorMessage = result.body.isNotEmpty
+          ? result.body
+          : 'Unexpected server error';
+      print('e errorMessage $errorMessage');
+    }
+
+    return Result(statusCode: result.statusCode, data: errorMessage);
   }
 
   Future<Result> resetPassword({
@@ -150,10 +202,11 @@ class AccountRepository {
         'password_confirmation': passwordConfirmation,
       },
     );
+    print('result: ${result.statusCode}');
     if (result.statusCode == 200) {
       return Result(statusCode: result.statusCode);
     } else {
-      return Result(statusCode: result.statusCode, data: result.body);
+      return Result(statusCode: result.statusCode);
     }
   }
 }

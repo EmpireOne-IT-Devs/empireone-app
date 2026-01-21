@@ -7,6 +7,7 @@ class LoginEmployeeAppbar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      forceMaterialTransparency: true,
       leading: IconButton(
         onPressed: () {
           context.pop();

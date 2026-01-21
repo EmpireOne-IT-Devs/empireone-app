@@ -1,11 +1,10 @@
-import 'package:empireone_app/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ShowDialogError extends StatelessWidget {
   final String message;
-
-  const ShowDialogError({super.key, required this.message});
+  final String text;
+  const ShowDialogError({super.key, required this.message, required this.text});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +23,7 @@ class ShowDialogError extends StatelessWidget {
           ),
           const SizedBox(width: 8),
           Text(
-            AppLocalizations.of(context)?.loginFailed ?? '',
+            text,
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
               color: Theme.of(context).colorScheme.onTertiary,
               fontWeight: FontWeight.w600,

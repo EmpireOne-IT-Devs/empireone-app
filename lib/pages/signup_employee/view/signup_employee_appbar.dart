@@ -5,7 +5,8 @@ class SignupEmployeeAppbar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppBar(
+    return SliverAppBar(
+      forceMaterialTransparency: true,
       leading: IconButton(
         onPressed: () {},
         icon: ClipRRect(

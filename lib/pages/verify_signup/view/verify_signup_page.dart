@@ -38,7 +38,7 @@ class VerifySignupPage extends StatelessWidget {
         context.push(HomeEmployeePage.route);
         break;
       case RequestStatus.failure:
-        Navigator.pop(context);
+        // Navigator.pop(context);
         showDialog(
           context: context,
           builder: (context) {

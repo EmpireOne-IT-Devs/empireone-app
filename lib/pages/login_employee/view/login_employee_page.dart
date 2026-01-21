@@ -1,10 +1,11 @@
+import 'package:empireone_app/l10n/app_localizations.dart';
+import 'package:empireone_app/l10n/app_localizations_en.dart';
 import 'package:empireone_app/models/models.dart';
-import 'package:empireone_app/pages/login/widgets/widgets.dart';
 import 'package:empireone_app/pages/login_employee/bloc/bloc.dart';
 import 'package:empireone_app/pages/login_employee/login_employee.dart';
 import 'package:empireone_app/pages/verify_account/bloc/bloc.dart';
 import 'package:empireone_app/pages/verify_account/view/view.dart';
-import 'package:empireone_app/pages/widgets/circular_progress_dialog.dart';
+import 'package:empireone_app/pages/widgets/widgets.dart';
 import 'package:empireone_app/repositories/account_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -40,11 +41,17 @@ class LoginEmployeePage extends StatelessWidget {
         );
         break;
       case RequestStatus.failure:
-        Navigator.pop(context);
+        // Navigator.pop(context);
         showDialog(
           context: context,
           builder: (context) {
-            return Center(child: ShowDialogError(message: state.message));
+            return Center(
+              child: ShowDialogError(
+                message: state.message,
+                text:
+                    AppLocalizations.of(context)?.employeeIdVerifyFailed ?? '',
+              ),
+            );
           },
         );
         break;

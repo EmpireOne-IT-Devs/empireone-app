@@ -345,6 +345,36 @@ abstract class AppLocalizations {
   /// **'Employee Id Verification'**
   String get employeeidverification;
 
+  /// No description provided for @loginFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Login Failed'**
+  String get loginFailed;
+
+  /// No description provided for @signupFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Signup Failed'**
+  String get signupFailed;
+
+  /// No description provided for @googleSigninFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Google Signin Failed'**
+  String get googleSigninFailed;
+
+  /// No description provided for @employeeIdVerifyFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Employee Id Verify Failed'**
+  String get employeeIdVerifyFailed;
+
+  /// No description provided for @resetPasswordFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset Password Failed'**
+  String get resetPasswordFailed;
+
   /// No description provided for @youCanLogNewPassword.
   ///
   /// In en, this message translates to:

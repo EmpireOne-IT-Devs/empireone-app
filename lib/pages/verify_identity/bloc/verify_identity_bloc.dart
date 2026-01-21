@@ -38,7 +38,12 @@ class VerifyIdentityBloc
         emit(state.copyWith(requestStatus: RequestStatus.success));
         break;
       case ResultStatus.error:
-        emit(state.copyWith(requestStatus: RequestStatus.failure));
+        emit(
+          state.copyWith(
+            requestStatus: RequestStatus.failure,
+            message: result.data ?? '',
+          ),
+        );
         break;
       case ResultStatus.none:
         break;

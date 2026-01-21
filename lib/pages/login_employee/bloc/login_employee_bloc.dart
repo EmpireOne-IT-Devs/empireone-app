@@ -45,31 +45,27 @@ class LoginEmployeeBloc extends Bloc<LoginEmployeeEvent, LoginEmployeeState> {
     var result = await _accountRepository.employeeId(
       employeeId: employeeId.value,
     );
-    print('status code bloc: ${result.statusCode}');
-    var eogsEmail = result.data?.eogs;
-    if (eogsEmail != null) {
-      emit(state.copyWith(eogsEmail: eogsEmail));
-      switch (result.resultStatus) {
-        case ResultStatus.success:
-          await _accountRepository.sendOtp(email: eogsEmail);
-          emit(
-            state.copyWith(
-              requestStatusSendOtp: RequestStatus.success,
-              eogsEmail: eogsEmail,
-            ),
-          );
-          break;
-        case ResultStatus.error:
-          emit(
-            state.copyWith(
-              requestStatusSendOtp: RequestStatus.failure,
-              message: result.data?.message ?? '',
-            ),
-          );
-          break;
-        case ResultStatus.none:
-          break;
-      }
-    } else {}
+    switch (result.resultStatus) {
+      case ResultStatus.success:
+        var eogsEmail = result.data?.eogs;
+        await _accountRepository.sendOtp(email: eogsEmail ?? '');
+        emit(
+          state.copyWith(
+            requestStatusSendOtp: RequestStatus.success,
+            eogsEmail: eogsEmail ?? '',
+          ),
+        );
+        break;
+      case ResultStatus.error:
+        emit(
+          state.copyWith(
+            requestStatusSendOtp: RequestStatus.failure,
+            message: result.data?.message ?? '',
+          ),
+        );
+        break;
+      case ResultStatus.none:
+        break;
+    }
   }
 }

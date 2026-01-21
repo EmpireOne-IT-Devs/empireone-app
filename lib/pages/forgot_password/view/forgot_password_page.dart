@@ -37,7 +37,7 @@ class ForgotPasswordPage extends StatelessWidget {
         );
         break;
       case RequestStatus.failure:
-        Navigator.pop(context);
+        // Navigator.pop(context);
         showDialog(
           context: context,
           builder: (context) {

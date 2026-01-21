@@ -5,12 +5,12 @@ import 'package:google_sign_in/google_sign_in.dart';
 class GoogleService {
   final GoogleSignIn googleSignIn;
   final String baseUrl;
-  
-  GoogleService(this.googleSignIn, this.baseUrl,);
+
+  GoogleService(this.googleSignIn, this.baseUrl);
   final GoogleSignIn _googleSignIn = GoogleSignIn(
     scopes: ['email', 'profile'],
     serverClientId:
-        '543673078002-evvjccgs0cpm15bg3g4r35nko24aoheq.apps.googleusercontent.com',
+        '301631048424-pdrvq2jm03jhca6d3abtp63jqmliuobo.apps.googleusercontent.com',
   );
   Future<GoogleSignInAuthentication?> signIn() async {
     try {
@@ -27,7 +27,6 @@ class GoogleService {
       return null;
     }
   }
-
 
   // Future<String?> getAccessToken() async {
   //   print('letsss goooo agol');

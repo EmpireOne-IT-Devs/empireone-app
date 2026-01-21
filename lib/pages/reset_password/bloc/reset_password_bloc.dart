@@ -34,12 +34,7 @@ class ResetPasswordBloc extends Bloc<ResetPasswordEvent, ResetPasswordState> {
         emit(state.copyWith(requestStatus: RequestStatus.success));
         break;
       case ResultStatus.error:
-        emit(
-          state.copyWith(
-            requestStatus: RequestStatus.failure,
-            message: result.data.message,
-          ),
-        );
+        emit(state.copyWith(requestStatus: RequestStatus.failure));
         break;
       case ResultStatus.none:
         break;
@@ -55,7 +50,7 @@ class ResetPasswordBloc extends Bloc<ResetPasswordEvent, ResetPasswordState> {
     var errorType = ErrorType.none;
     if (event.resetNewPassword.isEmpty) {
       errorType = ErrorType.empty;
-    } else if (event.resetNewPassword.length < 6) {
+    } else if (event.resetNewPassword.length < 8) {
       errorType = ErrorType.length;
     } else {
       errorType = ErrorType.none;
@@ -77,7 +72,7 @@ class ResetPasswordBloc extends Bloc<ResetPasswordEvent, ResetPasswordState> {
     var errorType = ErrorType.none;
     if (event.resetConfirmNewPassword.isEmpty) {
       errorType = ErrorType.empty;
-    } else if (event.resetConfirmNewPassword.length < 6) {
+    } else if (event.resetConfirmNewPassword.length < 8) {
       errorType = ErrorType.length;
     } else {
       errorType = ErrorType.none;

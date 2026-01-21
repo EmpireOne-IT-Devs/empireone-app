@@ -1,11 +1,12 @@
+import 'package:empireone_app/l10n/app_localizations.dart';
 import 'package:empireone_app/models/models.dart';
-import 'package:empireone_app/pages/login/widgets/show_dialog_error.dart';
 import 'package:empireone_app/pages/password_reset/view/view.dart';
 import 'package:empireone_app/pages/reset_password/bloc/bloc.dart';
 import 'package:empireone_app/pages/reset_password/view/reset_password_appbar.dart';
 import 'package:empireone_app/pages/reset_password/view/reset_password_form.dart';
 import 'package:empireone_app/pages/reset_password/view/reset_password_heading.dart';
 import 'package:empireone_app/pages/widgets/circular_progress_dialog.dart';
+import 'package:empireone_app/pages/widgets/widgets.dart';
 import 'package:empireone_app/repositories/account_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -44,7 +45,12 @@ class ResetPasswordPage extends StatelessWidget {
         showDialog(
           context: context,
           builder: (context) {
-            return Center(child: ShowDialogError(message: state.message));
+            return Center(
+              child: ShowDialogError(
+                message: state.message,
+                text: AppLocalizations.of(context)?.resetPasswordFailed ?? '',
+              ),
+            );
           },
         );
         break;

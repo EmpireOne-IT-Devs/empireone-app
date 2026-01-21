@@ -5,6 +5,10 @@ class LoginAppbar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppBar(automaticallyImplyLeading: false);
+    return AppBar(
+      surfaceTintColor: Colors.transparent,
+      automaticallyImplyLeading: false,
+      forceMaterialTransparency: true,
+    );
   }
 }

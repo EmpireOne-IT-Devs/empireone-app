@@ -41,5 +41,10 @@
   "verifyIdentity": "Verify Identity",
   "submit": "Submit",
   "employeeidverification": "Employee Id Verification",
+  "loginFailed": "Login Failed",
+  "signupFailed": "Signup Failed",
+  "googleSigninFailed": "Google Signin Failed",
+  "employeeIdVerifyFailed": "Employee Id Verify Failed",
+  "resetPasswordFailed": "Reset Password Failed",
   "youCanLogNewPassword": "You can now log in with your new password"
   }

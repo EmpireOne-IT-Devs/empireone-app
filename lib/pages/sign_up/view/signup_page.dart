@@ -1,12 +1,13 @@
+import 'package:empireone_app/l10n/app_localizations.dart';
 import 'package:empireone_app/models/models.dart';
 import 'package:empireone_app/pages/home_employee/view/view.dart';
-import 'package:empireone_app/pages/login/widgets/show_dialog_error.dart';
 import 'package:empireone_app/pages/sign_up/bloc/bloc.dart';
 import 'package:empireone_app/pages/sign_up/view/view.dart';
 import 'package:empireone_app/pages/verify_signup/bloc/bloc.dart'
     show VerifySignupState;
 import 'package:empireone_app/pages/verify_signup/view/view.dart';
 import 'package:empireone_app/pages/widgets/circular_progress_dialog.dart';
+import 'package:empireone_app/pages/widgets/widgets.dart';
 import 'package:empireone_app/repositories/account_repository.dart';
 import 'package:empireone_app/repositories/repositories.dart';
 import 'package:flutter/material.dart';
@@ -48,7 +49,12 @@ class SignupPage extends StatelessWidget {
         showDialog(
           context: context,
           builder: (context) {
-            return Center(child: ShowDialogError(message: state.message));
+            return Center(
+              child: ShowDialogError(
+                message: state.message,
+                text: AppLocalizations.of(context)?.signupFailed ?? '',
+              ),
+            );
           },
         );
         break;
@@ -78,7 +84,10 @@ class SignupPage extends StatelessWidget {
           context: context,
           builder: (context) {
             return Center(
-              child: ShowDialogError(message: state.message.toString()),
+              child: ShowDialogError(
+                message: state.message.toString(),
+                text: AppLocalizations.of(context)?.googleSigninFailed ?? '',
+              ),
             );
           },
         );
@@ -107,7 +116,7 @@ class SignupPage extends StatelessWidget {
           ),
         ],
         child: Scaffold(
-          appBar: AppBar(),
+          appBar: AppBar(forceMaterialTransparency: true),
           body: CustomScrollView(
             slivers: [
               SliverToBoxAdapter(

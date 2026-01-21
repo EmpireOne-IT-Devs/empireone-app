@@ -1,10 +1,10 @@
 import 'package:empireone_app/models/models.dart';
-import 'package:empireone_app/pages/login/widgets/show_dialog_error.dart';
 import 'package:empireone_app/pages/reset_password/bloc/reset_password_state/reset_password_state.dart';
 import 'package:empireone_app/pages/reset_password/view/view.dart';
 import 'package:empireone_app/pages/verify_identity/bloc/bloc.dart';
 import 'package:empireone_app/pages/verify_identity/view/view.dart';
 import 'package:empireone_app/pages/widgets/circular_progress_dialog.dart';
+import 'package:empireone_app/pages/widgets/widgets.dart';
 import 'package:empireone_app/repositories/account_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -42,11 +42,16 @@ class VerifyIdentityPage extends StatelessWidget {
         );
         break;
       case RequestStatus.failure:
-        Navigator.pop(context);
+        // Navigator.pop(context);
         showDialog(
           context: context,
           builder: (context) {
-            return Center(child: ShowDialogError(message: state.message));
+            return Center(
+              child: ShowDialogError(
+                message: state.message,
+                text: 'Verify Identity Failed',
+              ),
+            );
           },
         );
         break;

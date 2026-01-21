@@ -135,5 +135,20 @@ class AppLocalizationsEn extends AppLocalizations {
   String get employeeidverification => 'Employee Id Verification';
 
   @override
+  String get loginFailed => 'Login Failed';
+
+  @override
+  String get signupFailed => 'Signup Failed';
+
+  @override
+  String get googleSigninFailed => 'Google Signin Failed';
+
+  @override
+  String get employeeIdVerifyFailed => 'Employee Id Verify Failed';
+
+  @override
+  String get resetPasswordFailed => 'Reset Password Failed';
+
+  @override
   String get youCanLogNewPassword => 'You can now log in with your new password';
 }

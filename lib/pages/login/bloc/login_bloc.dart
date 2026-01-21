@@ -50,16 +50,10 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     var errorType = ErrorType.none;
     if (event.password.isEmpty) {
       errorType = ErrorType.none;
-    } else if (event.password.length < 6) {
+    } else if (event.password.length < 8) {
       errorType = ErrorType.length;
     } else if (!RegExp(r'[a-z]').hasMatch(event.password)) {
       errorType = ErrorType.lowercaseLetter;
-    } else if (!RegExp(r'[A-Z]').hasMatch(event.password)) {
-      errorType = ErrorType.uppercaseLetter;
-    } else if (!RegExp(r'[0-9]').hasMatch(event.password)) {
-      errorType = ErrorType.digitNumber;
-    } else if (!RegExp(r'[!@#\$%^&*(),.?":{}|<>]').hasMatch(event.password)) {
-      errorType = ErrorType.specialCharacter;
     } else {
       errorType = ErrorType.none;
     }

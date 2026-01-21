@@ -42,7 +42,7 @@ void main() {
         googleService: GoogleService(
           GoogleSignIn(
             serverClientId:
-                '543673078002-evvjccgs0cpm15bg3g4r35nko24aoheq.apps.googleusercontent.com',
+                '301631048424-pdrvq2jm03jhca6d3abtp63jqmliuobo.apps.googleusercontent.com',
             scopes: ['email', 'profile'],
           ),
           baseUrl,
@@ -121,7 +121,11 @@ class _EmpireOneState extends State<EmpireOne> {
             bodyMedium: TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
             bodySmall: TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
           ),
-          appBarTheme: AppBarTheme(toolbarHeight: 50, elevation: 0),
+          appBarTheme: AppBarTheme(
+            toolbarHeight: 50,
+            elevation: 0,
+            surfaceTintColor: Colors.transparent,
+          ),
           elevatedButtonTheme: ElevatedButtonThemeData(
             style: ElevatedButton.styleFrom(
               fixedSize: const Size(316, 56),

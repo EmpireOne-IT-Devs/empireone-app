@@ -28,6 +28,7 @@ class ForgotPasswordBloc
       email: state.emailForgotPassVal.value,
     );
     print('here2 $emailForgotPassVal');
+    print('resultStatus ${result.resultStatus}');
     switch (result.resultStatus) {
       case ResultStatus.success:
         print('emailforgot: ${state.emailForgotPassVal.value}');
@@ -35,7 +36,13 @@ class ForgotPasswordBloc
         emit(state.copyWith(requestStatus: RequestStatus.success));
         break;
       case ResultStatus.error:
-        emit(state.copyWith(requestStatus: RequestStatus.failure));
+        print('error: ${result.data}');
+        emit(
+          state.copyWith(
+            requestStatus: RequestStatus.failure,
+            message: result.data,
+          ),
+        );
         break;
       case ResultStatus.none:
         break;
@@ -51,18 +58,6 @@ class ForgotPasswordBloc
     var errorType = ErrorType.none;
     if (event.emailForgotPassVal.isEmpty) {
       errorType = ErrorType.none;
-    } else if (event.emailForgotPassVal.length < 6) {
-      errorType = ErrorType.length;
-    } else if (!RegExp(r'[a-z]').hasMatch(event.emailForgotPassVal)) {
-      errorType = ErrorType.lowercaseLetter;
-    } else if (!RegExp(
-      r'[!@#\$%^&*(),.?":{}|<>]',
-    ).hasMatch(event.emailForgotPassVal)) {
-      errorType = ErrorType.specialCharacter;
-    } else if (!RegExp(
-      r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+",
-    ).hasMatch(event.emailForgotPassVal)) {
-      errorType = ErrorType.format;
     } else {
       errorType = ErrorType.none;
     }
