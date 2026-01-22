@@ -13,6 +13,8 @@ sealed class StepperState with _$StepperState {
     @Default(TextFieldInput(errorType: ErrorType.empty))
     TextFieldInput employeeIdStepper,
     @Default(0) int currentStep,
+    @Default(false) bool isCheckedTermsPriv,
     @Default(RequestStatus.waiting) RequestStatus requestStatus,
+    @Default(RequestStatus.waiting) RequestStatus requestStatusSendOtpStepper,
   }) = _StepperState;
 }

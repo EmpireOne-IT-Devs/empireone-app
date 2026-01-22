@@ -1,5 +1,8 @@
+import 'package:empireone_app/models/models.dart';
 import 'package:empireone_app/pages/stepper/bloc/bloc.dart';
 import 'package:empireone_app/pages/stepper/stepper.dart';
+import 'package:empireone_app/pages/widgets/widgets.dart';
+import 'package:empireone_app/repositories/account_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -9,38 +12,82 @@ class StepperPage extends StatelessWidget {
 
   const StepperPage({super.key});
 
+  Future<void> listenerStepperSendOtp(
+    BuildContext context,
+    StepperState state,
+  ) async {
+    switch (state.requestStatus) {
+      case RequestStatus.waiting:
+        break;
+      case RequestStatus.inProgress:
+        showDialog(
+          context: context,
+          barrierDismissible: false,
+          builder: (context) {
+            return const Center(child: CircularProgressDialog());
+          },
+        );
+        break;
+      case RequestStatus.success:
+        Navigator.of(context, rootNavigator: true).pop();
+        Future.delayed(const Duration(milliseconds: 3000));
+
+        break;
+      case RequestStatus.failure:
+        // Navigator.pop(context);
+        showDialog(
+          context: context,
+          builder: (context) {
+            return Center(
+              child: ShowDialogError(
+                message: 'failed',
+                text: 'Verify Identity Failed',
+              ),
+            );
+          },
+        );
+        break;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) =>
-          StepperBloc(initialState: StepperState())
-            ..add(StepperVerificationScreenCreated()),
-      child: Scaffold(
-        backgroundColor: Theme.of(context).colorScheme.onSurface,
-        body: CustomScrollView(
-          slivers: [
-            SliverAppBar(
-              leading: IconButton(
-                onPressed: () {
-                  context.pop();
-                },
-                icon: Icon(Icons.arrow_back, color: Colors.red),
+      create: (context) => StepperBloc(
+        initialState: StepperState(),
+        accountRepository: RepositoryProvider.of<AccountRepository>(context),
+      )..add(StepperVerificationScreenCreated()),
+      child: BlocListener<StepperBloc, StepperState>(
+        listener: (context, state) {
+          listenerStepperSendOtp(context, state);
+        },
+        child: Scaffold(
+          backgroundColor: Theme.of(context).colorScheme.onSurface,
+          body: CustomScrollView(
+            slivers: [
+              SliverAppBar(
+                leading: IconButton(
+                  onPressed: () {
+                    context.pop();
+                  },
+                  icon: Icon(Icons.arrow_back, color: Colors.red),
+                ),
+                backgroundColor: Theme.of(context).colorScheme.onSurface,
               ),
-              backgroundColor: Theme.of(context).colorScheme.onSurface,
-            ),
-            SliverToBoxAdapter(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 32),
-                child: StepperHeading(),
+              SliverToBoxAdapter(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 32),
+                  child: StepperHeading(),
+                ),
               ),
-            ),
-            SliverToBoxAdapter(
-              child: Padding(
-                padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
-                child: StepperOnboarding(),
+              SliverToBoxAdapter(
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
+                  child: StepperOnboarding(),
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

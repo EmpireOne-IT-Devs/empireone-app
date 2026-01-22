@@ -2,8 +2,17 @@ abstract class StepperEvent {
   const StepperEvent();
 }
 
+class CheckedBoxPressed extends StepperEvent {
+  final bool isChecked;
+  const CheckedBoxPressed(this.isChecked);
+}
+
 class ContinuePressed extends StepperEvent {
   const ContinuePressed();
+}
+
+class BackPressed extends StepperEvent {
+  const BackPressed();
 }
 
 class StepperVerificationFieldChanged extends StepperEvent {
@@ -22,4 +31,17 @@ class StepperVerificationPressed extends StepperEvent {
 
 class ResendVerificationCodePressed extends StepperEvent {
   const ResendVerificationCodePressed();
+}
+
+class StepperEmployeeIdChanged extends StepperEvent {
+  final String employeeId;
+  const StepperEmployeeIdChanged(this.employeeId);
+}
+
+class StepperEmployeeFormPressed extends StepperEvent {
+  const StepperEmployeeFormPressed();
+}
+
+class StepperVerifyCodePressed extends StepperEvent {
+  const StepperVerifyCodePressed();
 }
