@@ -1,6 +1,8 @@
+import 'package:empireone_app/pages/stepper/bloc/bloc.dart';
 import 'package:empireone_app/pages/stepper/stepper.dart';
-import 'package:empireone_app/pages/stepper/view/stepper_onboarding.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class StepperPage extends StatelessWidget {
   static const route = '/stepper';
@@ -9,26 +11,37 @@ class StepperPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.onSurface,
-      body: CustomScrollView(
-        slivers: [
-          SliverAppBar(
-            backgroundColor: Theme.of(context).colorScheme.onSurface,
-          ),
-          SliverToBoxAdapter(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 32),
-              child: StepperHeading(),
+    return BlocProvider(
+      create: (context) =>
+          StepperBloc(initialState: StepperState())
+            ..add(StepperVerificationScreenCreated()),
+      child: Scaffold(
+        backgroundColor: Theme.of(context).colorScheme.onSurface,
+        body: CustomScrollView(
+          slivers: [
+            SliverAppBar(
+              leading: IconButton(
+                onPressed: () {
+                  context.pop();
+                },
+                icon: Icon(Icons.arrow_back, color: Colors.red),
+              ),
+              backgroundColor: Theme.of(context).colorScheme.onSurface,
             ),
-          ),
-          SliverToBoxAdapter(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: StepperOnboarding(),
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 32),
+                child: StepperHeading(),
+              ),
             ),
-          ),
-        ],
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
+                child: StepperOnboarding(),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

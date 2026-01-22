@@ -1,6 +1,8 @@
+import 'package:empireone_app/l10n/app_localizations.dart';
 import 'package:empireone_app/pages/stepper/view/view.dart';
 import 'package:empireone_app/pages/stepper/widgets/stepper_content.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class StepperOnboarding extends StatefulWidget {
   const StepperOnboarding({super.key});
@@ -12,15 +14,14 @@ class StepperOnboarding extends StatefulWidget {
 class _StepperOnboardingState extends State<StepperOnboarding> {
   int currentStep = 0;
 
-  final steps = ['Terms & Conditions', 'Employee ID', 'Email OTP Verification'];
   Widget _buildStepContent() {
     switch (currentStep) {
       case 0:
-        return StepperContent();
+        return const StepperContent();
       case 1:
-        return const Text('Employee ID Content');
+        return const StepperForm();
       case 2:
-        return const Text('Email OTP Verification Content');
+        return const StepperVerification();
       default:
         return const SizedBox.shrink();
     }
@@ -36,7 +37,8 @@ class _StepperOnboardingState extends State<StepperOnboarding> {
         const SizedBox(height: 24),
 
         /// 🔹 Step content
-        SizedBox(height: 300, child: _buildStepContent()),
+        // SizedBox(height: 300, child: _buildStepContent()),
+        SizedBox(height: 300, child: ListView(children: [_buildStepContent()])),
 
         /// 🔹 Navigation buttons
         Row(
@@ -53,14 +55,31 @@ class _StepperOnboardingState extends State<StepperOnboarding> {
               ),
             if (currentStep > 0) const SizedBox(width: 12),
             Expanded(
-              child: ElevatedButton(
+              child: OutlinedButton(
+                style: ElevatedButton.styleFrom(
+                  side: BorderSide(
+                    width: 2,
+                    color: Theme.of(context).colorScheme.primary,
+                  ),
+                ),
                 onPressed: () {
                   if (currentStep < 2) {
                     setState(() => currentStep++);
                     print('currentStep $currentStep');
                   }
                 },
-                child: const Text('Next'),
+                child: Text(
+                  'Next',
+                  style:
+                      GoogleFonts.mada(
+                            textStyle: Theme.of(context).textTheme.bodyMedium,
+                          )
+                          .copyWith(fontSize: 24)
+                          .copyWith(fontWeight: FontWeight.bold)
+                          .copyWith(
+                            color: Theme.of(context).colorScheme.primary,
+                          ),
+                ),
               ),
             ),
           ],

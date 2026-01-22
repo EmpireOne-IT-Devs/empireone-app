@@ -1,5 +1,4 @@
 import 'package:empireone_app/l10n/app_localizations.dart';
-import 'package:empireone_app/pages/verify_account/bloc/bloc.dart';
 import 'package:empireone_app/pages/verify_identity/bloc/bloc.dart';
 import 'package:empireone_app/pages/verify_identity/widgets/widgets.dart';
 import 'package:flutter/material.dart';
