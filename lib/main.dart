@@ -5,6 +5,7 @@ import 'package:empireone_app/pages/login_employee/view/view.dart';
 import 'package:empireone_app/pages/reset_password/bloc/bloc.dart';
 import 'package:empireone_app/pages/reset_password/view/view.dart';
 import 'package:empireone_app/pages/role/view/role_page.dart';
+import 'package:empireone_app/pages/stepper/view/view.dart';
 import 'package:empireone_app/pages/ticket/ticket.dart';
 import 'package:empireone_app/pages/verify_account/bloc/bloc.dart';
 import 'package:empireone_app/pages/verify_identity/bloc/bloc.dart';
@@ -183,7 +184,7 @@ final GoRouter _router = GoRouter(
     GoRoute(
       path: '/',
       builder: (BuildContext context, GoRouterState state) {
-        return LoginPage();
+        return StepperPage();
       },
       routes: <RouteBase>[
         GoRoute(
@@ -270,6 +271,12 @@ final GoRouter _router = GoRouter(
           path: RolePage.route,
           builder: (BuildContext context, GoRouterState state) {
             return const RolePage();
+          },
+        ),
+        GoRoute(
+          path: StepperPage.route,
+          builder: (BuildContext context, GoRouterState state) {
+            return const StepperPage();
           },
         ),
       ],
