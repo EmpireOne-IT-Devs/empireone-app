@@ -16,36 +16,52 @@ class StepperPage extends StatelessWidget {
     BuildContext context,
     StepperState state,
   ) async {
-    switch (state.requestStatus) {
-      case RequestStatus.waiting:
-        break;
+    // Always verify context is still in the tree before proceeding
+    if (!context.mounted) return;
+
+    switch (state.requestStatusSendOtpStepper) {
       case RequestStatus.inProgress:
         showDialog(
           context: context,
           barrierDismissible: false,
-          builder: (context) {
-            return const Center(child: CircularProgressDialog());
-          },
+          builder: (context) => const Center(child: CircularProgressDialog()),
         );
         break;
-      case RequestStatus.success:
-        Navigator.of(context, rootNavigator: true).pop();
-        Future.delayed(const Duration(milliseconds: 3000));
 
+      case RequestStatus.success:
+        // Pop the loading dialog using the root navigator
+        Navigator.of(context, rootNavigator: true).pop();
+
+        // Await your delay properly before the next action
+        await Future.delayed(const Duration(milliseconds: 3000));
+
+        // Crucial: Check mounted again after ANY await
+        if (context.mounted) {
+          // Proceed to next screen or step
+        }
         break;
+
       case RequestStatus.failure:
-        // Navigator.pop(context);
-        showDialog(
-          context: context,
-          builder: (context) {
-            return Center(
-              child: ShowDialogError(
-                message: 'failed',
-                text: 'Verify Identity Failed',
+        // Pop the loading dialog first
+        Navigator.of(context, rootNavigator: true).pop();
+
+        // Schedule the error dialog to avoid build-cycle conflicts
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          if (context.mounted) {
+            showDialog(
+              context: context,
+              builder: (context) => Center(
+                child: ShowDialogError(
+                  message: 'failed',
+                  text: 'Verify Identity Failed',
+                ),
               ),
             );
-          },
-        );
+          }
+        });
+        break;
+
+      default:
         break;
     }
   }
@@ -57,10 +73,16 @@ class StepperPage extends StatelessWidget {
         initialState: StepperState(),
         accountRepository: RepositoryProvider.of<AccountRepository>(context),
       )..add(StepperVerificationScreenCreated()),
-      child: BlocListener<StepperBloc, StepperState>(
-        listener: (context, state) {
-          listenerStepperSendOtp(context, state);
-        },
+      child: MultiBlocListener(
+        listeners: [
+          BlocListener<StepperBloc, StepperState>(
+            listenWhen: (previous, current) =>
+                previous.requestStatusSendOtpStepper !=
+                current.requestStatusSendOtpStepper,
+            listener: (context, state) =>
+                listenerStepperSendOtp(context, state),
+          ),
+        ],
         child: Scaffold(
           backgroundColor: Theme.of(context).colorScheme.onSurface,
           body: CustomScrollView(

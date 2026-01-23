@@ -64,10 +64,16 @@ class ResetPasswordPage extends StatelessWidget {
         initialState: initialState,
         accountRepository: RepositoryProvider.of<AccountRepository>(context),
       ),
-      child: BlocListener<ResetPasswordBloc, ResetPasswordState>(
-        listener: (context, state) {
-          listenerResetPassword(context, state);
-        },
+      child: MultiBlocListener(
+        listeners: [
+          BlocListener<ResetPasswordBloc, ResetPasswordState>(
+            listenWhen: (previous, current) =>
+                previous.requestStatus != current.requestStatus,
+            listener: (context, state) {
+              listenerResetPassword(context, state);
+            },
+          ),
+        ],
         child: Scaffold(
           body: const CustomScrollView(
             slivers: [

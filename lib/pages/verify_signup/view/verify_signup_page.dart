@@ -56,10 +56,16 @@ class VerifySignupPage extends StatelessWidget {
         initialState: initialState,
         accountRepository: RepositoryProvider.of<AccountRepository>(context),
       )..add(const VerifySignupScreenCreated()),
-      child: BlocListener<VerifySignupBloc, VerifySignupState>(
-        listener: (context, state) {
-          listenerVerifyOtp(context, state);
-        },
+      child: MultiBlocListener(
+        listeners: [
+          BlocListener<VerifySignupBloc, VerifySignupState>(
+            listenWhen: (previous, current) =>
+                previous.requestStatus != current.requestStatus,
+            listener: (context, state) {
+              listenerVerifyOtp(context, state);
+            },
+          ),
+        ],
         child: const Scaffold(
           body: CustomScrollView(
             slivers: [

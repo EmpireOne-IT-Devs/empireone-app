@@ -41,8 +41,8 @@ class StepperBloc extends Bloc<StepperEvent, StepperState> {
     StepperEmployeeFormPressed event,
     Emitter<StepperState> emit,
   ) async {
-    emit(state.copyWith(requestStatus: RequestStatus.waiting));
-    emit(state.copyWith(requestStatus: RequestStatus.inProgress));
+    emit(state.copyWith(requestStatusSendOtpStepper: RequestStatus.waiting));
+    emit(state.copyWith(requestStatusSendOtpStepper: RequestStatus.inProgress));
     print('employeeid : ${state.employeeIdStepper}');
 
     var result = await _accountRepository.employeeId(

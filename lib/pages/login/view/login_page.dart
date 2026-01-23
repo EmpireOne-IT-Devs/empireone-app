@@ -93,6 +93,8 @@ class LoginPage extends StatelessWidget {
       child: MultiBlocListener(
         listeners: [
           BlocListener<LoginBloc, LoginState>(
+            listenWhen: (previous, current) =>
+                previous.requestStatus != current.requestStatus,
             listener: (context, state) => listenerLogin(context, state),
           ),
           BlocListener<LoginBloc, LoginState>(

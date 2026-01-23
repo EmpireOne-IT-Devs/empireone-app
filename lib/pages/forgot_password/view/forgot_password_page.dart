@@ -55,8 +55,14 @@ class ForgotPasswordPage extends StatelessWidget {
         initialState: ForgotPasswordState(),
         accountRepository: RepositoryProvider.of<AccountRepository>(context),
       ),
-      child: BlocListener<ForgotPasswordBloc, ForgotPasswordState>(
-        listener: (context, state) => listenerForgotPass(context, state),
+      child: MultiBlocListener(
+        listeners: [
+          BlocListener<ForgotPasswordBloc, ForgotPasswordState>(
+            listenWhen: (previous, current) =>
+                previous.requestStatus != current.requestStatus,
+            listener: (context, state) => listenerForgotPass(context, state),
+          ),
+        ],
         child: const Scaffold(
           body: CustomScrollView(
             slivers: [

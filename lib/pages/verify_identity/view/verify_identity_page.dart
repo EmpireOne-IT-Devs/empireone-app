@@ -65,10 +65,16 @@ class VerifyIdentityPage extends StatelessWidget {
         initialState: initialState,
         accountRepository: RepositoryProvider.of<AccountRepository>(context),
       )..add(VerifyIdentityScreenCreated()),
-      child: BlocListener<VerifyIdentityBloc, VerifyIdentityState>(
-        listener: (context, state) {
-          listenerVerifyIdentityOtp(context, state);
-        },
+      child: MultiBlocListener(
+        listeners: [
+          BlocListener<VerifyIdentityBloc, VerifyIdentityState>(
+            listenWhen: (previous, current) =>
+                previous.requestStatus != current.requestStatus,
+            listener: (context, state) {
+              listenerVerifyIdentityOtp(context, state);
+            },
+          ),
+        ],
         child: Scaffold(
           body: CustomScrollView(
             slivers: [

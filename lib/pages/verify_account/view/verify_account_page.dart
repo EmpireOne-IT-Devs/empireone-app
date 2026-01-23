@@ -49,7 +49,7 @@ class VerifyAccountPage extends StatelessWidget {
         break;
     }
   }
-   
+
   @override
   Widget build(BuildContext context) {
     return MultiRepositoryProvider(
@@ -63,15 +63,23 @@ class VerifyAccountPage extends StatelessWidget {
           ),
         ),
       ],
+
+      
       child: BlocProvider(
         create: (context) => VerifyAccountBloc(
           initialState: initialState,
           accountRepository: RepositoryProvider.of<AccountRepository>(context),
         )..add(const VerificationScreenCreated()),
-        child: BlocListener<VerifyAccountBloc, VerifyAccountState>(
-          listener: (context, state) {
-            listenerVerifyOtp(context, state);
-          },
+        child: MultiBlocListener(
+          listeners: [
+            BlocListener<VerifyAccountBloc, VerifyAccountState>(
+              listenWhen: (previous, current) =>
+                  previous.requestStatus != current.requestStatus,
+              listener: (context, state) {
+                listenerVerifyOtp(context, state);
+              },
+            ),
+          ],
           child: const Scaffold(
             body: CustomScrollView(
               slivers: [
