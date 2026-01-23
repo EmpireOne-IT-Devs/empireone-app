@@ -16,5 +16,7 @@ sealed class StepperState with _$StepperState {
     @Default(false) bool isCheckedTermsPriv,
     @Default(RequestStatus.waiting) RequestStatus requestStatus,
     @Default(RequestStatus.waiting) RequestStatus requestStatusSendOtpStepper,
+    @Default(RequestStatus.waiting) RequestStatus requestStatusVerifyOtpStepper,
+    @Default('') String message,
   }) = _StepperState;
 }

@@ -17,6 +17,47 @@ class StepperBloc extends Bloc<StepperEvent, StepperState> {
     on<ContinuePressed>(_continuePressed);
     on<BackPressed>(_backPressed);
     on<CheckedBoxPressed>(_checkedBoxPressed);
+    on<StepperVerificationPressed>(_stepperVerificationPressed);
+  }
+
+  Future<void> _stepperVerificationPressed(
+    StepperVerificationPressed event,
+    Emitter<StepperState> emit,
+  ) async {
+    emit(state.copyWith(requestStatusVerifyOtpStepper: RequestStatus.waiting));
+    emit(
+      state.copyWith(requestStatusVerifyOtpStepper: RequestStatus.inProgress),
+    );
+    var employee = await _accountRepository.employeeId(
+      employeeId: state.employeeIdStepper.value,
+    );
+
+    var email = employee.data?.eogs;
+    print('emaillss: $email');
+    var result = await _accountRepository.verifyAccount(
+      // email: state.email,
+      email: email ?? '',
+      verificationCode: state.verificationFieldsStepper
+          .map<String>((e) => e.value)
+          .join(),
+    );
+    switch (result.resultStatus) {
+      case ResultStatus.success:
+        emit(
+          state.copyWith(requestStatusVerifyOtpStepper: RequestStatus.success),
+        );
+        break;
+      case ResultStatus.error:
+        emit(
+          state.copyWith(
+            requestStatusVerifyOtpStepper: RequestStatus.failure,
+            message: '',
+          ),
+        );
+        break;
+      case ResultStatus.none:
+        break;
+    }
   }
 
   void _checkedBoxPressed(CheckedBoxPressed event, Emitter<StepperState> emit) {

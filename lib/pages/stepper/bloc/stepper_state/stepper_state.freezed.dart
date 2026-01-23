@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$StepperState {
 
- List<TextFieldInput> get verificationFieldsStepper; TextFieldInput get employeeIdStepper; int get currentStep; bool get isCheckedTermsPriv; RequestStatus get requestStatus; RequestStatus get requestStatusSendOtpStepper;
+ List<TextFieldInput> get verificationFieldsStepper; TextFieldInput get employeeIdStepper; int get currentStep; bool get isCheckedTermsPriv; RequestStatus get requestStatus; RequestStatus get requestStatusSendOtpStepper; RequestStatus get requestStatusVerifyOtpStepper; String get message;
 /// Create a copy of StepperState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -25,16 +25,16 @@ $StepperStateCopyWith<StepperState> get copyWith => _$StepperStateCopyWithImpl<S
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is StepperState&&const DeepCollectionEquality().equals(other.verificationFieldsStepper, verificationFieldsStepper)&&(identical(other.employeeIdStepper, employeeIdStepper) || other.employeeIdStepper == employeeIdStepper)&&(identical(other.currentStep, currentStep) || other.currentStep == currentStep)&&(identical(other.isCheckedTermsPriv, isCheckedTermsPriv) || other.isCheckedTermsPriv == isCheckedTermsPriv)&&(identical(other.requestStatus, requestStatus) || other.requestStatus == requestStatus)&&(identical(other.requestStatusSendOtpStepper, requestStatusSendOtpStepper) || other.requestStatusSendOtpStepper == requestStatusSendOtpStepper));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is StepperState&&const DeepCollectionEquality().equals(other.verificationFieldsStepper, verificationFieldsStepper)&&(identical(other.employeeIdStepper, employeeIdStepper) || other.employeeIdStepper == employeeIdStepper)&&(identical(other.currentStep, currentStep) || other.currentStep == currentStep)&&(identical(other.isCheckedTermsPriv, isCheckedTermsPriv) || other.isCheckedTermsPriv == isCheckedTermsPriv)&&(identical(other.requestStatus, requestStatus) || other.requestStatus == requestStatus)&&(identical(other.requestStatusSendOtpStepper, requestStatusSendOtpStepper) || other.requestStatusSendOtpStepper == requestStatusSendOtpStepper)&&(identical(other.requestStatusVerifyOtpStepper, requestStatusVerifyOtpStepper) || other.requestStatusVerifyOtpStepper == requestStatusVerifyOtpStepper)&&(identical(other.message, message) || other.message == message));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(verificationFieldsStepper),employeeIdStepper,currentStep,isCheckedTermsPriv,requestStatus,requestStatusSendOtpStepper);
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(verificationFieldsStepper),employeeIdStepper,currentStep,isCheckedTermsPriv,requestStatus,requestStatusSendOtpStepper,requestStatusVerifyOtpStepper,message);
 
 @override
 String toString() {
-  return 'StepperState(verificationFieldsStepper: $verificationFieldsStepper, employeeIdStepper: $employeeIdStepper, currentStep: $currentStep, isCheckedTermsPriv: $isCheckedTermsPriv, requestStatus: $requestStatus, requestStatusSendOtpStepper: $requestStatusSendOtpStepper)';
+  return 'StepperState(verificationFieldsStepper: $verificationFieldsStepper, employeeIdStepper: $employeeIdStepper, currentStep: $currentStep, isCheckedTermsPriv: $isCheckedTermsPriv, requestStatus: $requestStatus, requestStatusSendOtpStepper: $requestStatusSendOtpStepper, requestStatusVerifyOtpStepper: $requestStatusVerifyOtpStepper, message: $message)';
 }
 
 
@@ -45,7 +45,7 @@ abstract mixin class $StepperStateCopyWith<$Res>  {
   factory $StepperStateCopyWith(StepperState value, $Res Function(StepperState) _then) = _$StepperStateCopyWithImpl;
 @useResult
 $Res call({
- List<TextFieldInput> verificationFieldsStepper, TextFieldInput employeeIdStepper, int currentStep, bool isCheckedTermsPriv, RequestStatus requestStatus, RequestStatus requestStatusSendOtpStepper
+ List<TextFieldInput> verificationFieldsStepper, TextFieldInput employeeIdStepper, int currentStep, bool isCheckedTermsPriv, RequestStatus requestStatus, RequestStatus requestStatusSendOtpStepper, RequestStatus requestStatusVerifyOtpStepper, String message
 });
 
 
@@ -62,7 +62,7 @@ class _$StepperStateCopyWithImpl<$Res>
 
 /// Create a copy of StepperState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? verificationFieldsStepper = null,Object? employeeIdStepper = null,Object? currentStep = null,Object? isCheckedTermsPriv = null,Object? requestStatus = null,Object? requestStatusSendOtpStepper = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? verificationFieldsStepper = null,Object? employeeIdStepper = null,Object? currentStep = null,Object? isCheckedTermsPriv = null,Object? requestStatus = null,Object? requestStatusSendOtpStepper = null,Object? requestStatusVerifyOtpStepper = null,Object? message = null,}) {
   return _then(_self.copyWith(
 verificationFieldsStepper: null == verificationFieldsStepper ? _self.verificationFieldsStepper : verificationFieldsStepper // ignore: cast_nullable_to_non_nullable
 as List<TextFieldInput>,employeeIdStepper: null == employeeIdStepper ? _self.employeeIdStepper : employeeIdStepper // ignore: cast_nullable_to_non_nullable
@@ -70,7 +70,9 @@ as TextFieldInput,currentStep: null == currentStep ? _self.currentStep : current
 as int,isCheckedTermsPriv: null == isCheckedTermsPriv ? _self.isCheckedTermsPriv : isCheckedTermsPriv // ignore: cast_nullable_to_non_nullable
 as bool,requestStatus: null == requestStatus ? _self.requestStatus : requestStatus // ignore: cast_nullable_to_non_nullable
 as RequestStatus,requestStatusSendOtpStepper: null == requestStatusSendOtpStepper ? _self.requestStatusSendOtpStepper : requestStatusSendOtpStepper // ignore: cast_nullable_to_non_nullable
-as RequestStatus,
+as RequestStatus,requestStatusVerifyOtpStepper: null == requestStatusVerifyOtpStepper ? _self.requestStatusVerifyOtpStepper : requestStatusVerifyOtpStepper // ignore: cast_nullable_to_non_nullable
+as RequestStatus,message: null == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
+as String,
   ));
 }
 /// Create a copy of StepperState
@@ -161,10 +163,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<TextFieldInput> verificationFieldsStepper,  TextFieldInput employeeIdStepper,  int currentStep,  bool isCheckedTermsPriv,  RequestStatus requestStatus,  RequestStatus requestStatusSendOtpStepper)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<TextFieldInput> verificationFieldsStepper,  TextFieldInput employeeIdStepper,  int currentStep,  bool isCheckedTermsPriv,  RequestStatus requestStatus,  RequestStatus requestStatusSendOtpStepper,  RequestStatus requestStatusVerifyOtpStepper,  String message)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _StepperState() when $default != null:
-return $default(_that.verificationFieldsStepper,_that.employeeIdStepper,_that.currentStep,_that.isCheckedTermsPriv,_that.requestStatus,_that.requestStatusSendOtpStepper);case _:
+return $default(_that.verificationFieldsStepper,_that.employeeIdStepper,_that.currentStep,_that.isCheckedTermsPriv,_that.requestStatus,_that.requestStatusSendOtpStepper,_that.requestStatusVerifyOtpStepper,_that.message);case _:
   return orElse();
 
 }
@@ -182,10 +184,10 @@ return $default(_that.verificationFieldsStepper,_that.employeeIdStepper,_that.cu
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<TextFieldInput> verificationFieldsStepper,  TextFieldInput employeeIdStepper,  int currentStep,  bool isCheckedTermsPriv,  RequestStatus requestStatus,  RequestStatus requestStatusSendOtpStepper)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<TextFieldInput> verificationFieldsStepper,  TextFieldInput employeeIdStepper,  int currentStep,  bool isCheckedTermsPriv,  RequestStatus requestStatus,  RequestStatus requestStatusSendOtpStepper,  RequestStatus requestStatusVerifyOtpStepper,  String message)  $default,) {final _that = this;
 switch (_that) {
 case _StepperState():
-return $default(_that.verificationFieldsStepper,_that.employeeIdStepper,_that.currentStep,_that.isCheckedTermsPriv,_that.requestStatus,_that.requestStatusSendOtpStepper);}
+return $default(_that.verificationFieldsStepper,_that.employeeIdStepper,_that.currentStep,_that.isCheckedTermsPriv,_that.requestStatus,_that.requestStatusSendOtpStepper,_that.requestStatusVerifyOtpStepper,_that.message);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -199,10 +201,10 @@ return $default(_that.verificationFieldsStepper,_that.employeeIdStepper,_that.cu
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<TextFieldInput> verificationFieldsStepper,  TextFieldInput employeeIdStepper,  int currentStep,  bool isCheckedTermsPriv,  RequestStatus requestStatus,  RequestStatus requestStatusSendOtpStepper)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<TextFieldInput> verificationFieldsStepper,  TextFieldInput employeeIdStepper,  int currentStep,  bool isCheckedTermsPriv,  RequestStatus requestStatus,  RequestStatus requestStatusSendOtpStepper,  RequestStatus requestStatusVerifyOtpStepper,  String message)?  $default,) {final _that = this;
 switch (_that) {
 case _StepperState() when $default != null:
-return $default(_that.verificationFieldsStepper,_that.employeeIdStepper,_that.currentStep,_that.isCheckedTermsPriv,_that.requestStatus,_that.requestStatusSendOtpStepper);case _:
+return $default(_that.verificationFieldsStepper,_that.employeeIdStepper,_that.currentStep,_that.isCheckedTermsPriv,_that.requestStatus,_that.requestStatusSendOtpStepper,_that.requestStatusVerifyOtpStepper,_that.message);case _:
   return null;
 
 }
@@ -214,7 +216,7 @@ return $default(_that.verificationFieldsStepper,_that.employeeIdStepper,_that.cu
 
 
 class _StepperState implements StepperState {
-  const _StepperState({final  List<TextFieldInput> verificationFieldsStepper = const [], this.employeeIdStepper = const TextFieldInput(errorType: ErrorType.empty), this.currentStep = 0, this.isCheckedTermsPriv = false, this.requestStatus = RequestStatus.waiting, this.requestStatusSendOtpStepper = RequestStatus.waiting}): _verificationFieldsStepper = verificationFieldsStepper;
+  const _StepperState({final  List<TextFieldInput> verificationFieldsStepper = const [], this.employeeIdStepper = const TextFieldInput(errorType: ErrorType.empty), this.currentStep = 0, this.isCheckedTermsPriv = false, this.requestStatus = RequestStatus.waiting, this.requestStatusSendOtpStepper = RequestStatus.waiting, this.requestStatusVerifyOtpStepper = RequestStatus.waiting, this.message = ''}): _verificationFieldsStepper = verificationFieldsStepper;
   
 
  final  List<TextFieldInput> _verificationFieldsStepper;
@@ -229,6 +231,8 @@ class _StepperState implements StepperState {
 @override@JsonKey() final  bool isCheckedTermsPriv;
 @override@JsonKey() final  RequestStatus requestStatus;
 @override@JsonKey() final  RequestStatus requestStatusSendOtpStepper;
+@override@JsonKey() final  RequestStatus requestStatusVerifyOtpStepper;
+@override@JsonKey() final  String message;
 
 /// Create a copy of StepperState
 /// with the given fields replaced by the non-null parameter values.
@@ -240,16 +244,16 @@ _$StepperStateCopyWith<_StepperState> get copyWith => __$StepperStateCopyWithImp
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _StepperState&&const DeepCollectionEquality().equals(other._verificationFieldsStepper, _verificationFieldsStepper)&&(identical(other.employeeIdStepper, employeeIdStepper) || other.employeeIdStepper == employeeIdStepper)&&(identical(other.currentStep, currentStep) || other.currentStep == currentStep)&&(identical(other.isCheckedTermsPriv, isCheckedTermsPriv) || other.isCheckedTermsPriv == isCheckedTermsPriv)&&(identical(other.requestStatus, requestStatus) || other.requestStatus == requestStatus)&&(identical(other.requestStatusSendOtpStepper, requestStatusSendOtpStepper) || other.requestStatusSendOtpStepper == requestStatusSendOtpStepper));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _StepperState&&const DeepCollectionEquality().equals(other._verificationFieldsStepper, _verificationFieldsStepper)&&(identical(other.employeeIdStepper, employeeIdStepper) || other.employeeIdStepper == employeeIdStepper)&&(identical(other.currentStep, currentStep) || other.currentStep == currentStep)&&(identical(other.isCheckedTermsPriv, isCheckedTermsPriv) || other.isCheckedTermsPriv == isCheckedTermsPriv)&&(identical(other.requestStatus, requestStatus) || other.requestStatus == requestStatus)&&(identical(other.requestStatusSendOtpStepper, requestStatusSendOtpStepper) || other.requestStatusSendOtpStepper == requestStatusSendOtpStepper)&&(identical(other.requestStatusVerifyOtpStepper, requestStatusVerifyOtpStepper) || other.requestStatusVerifyOtpStepper == requestStatusVerifyOtpStepper)&&(identical(other.message, message) || other.message == message));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_verificationFieldsStepper),employeeIdStepper,currentStep,isCheckedTermsPriv,requestStatus,requestStatusSendOtpStepper);
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_verificationFieldsStepper),employeeIdStepper,currentStep,isCheckedTermsPriv,requestStatus,requestStatusSendOtpStepper,requestStatusVerifyOtpStepper,message);
 
 @override
 String toString() {
-  return 'StepperState(verificationFieldsStepper: $verificationFieldsStepper, employeeIdStepper: $employeeIdStepper, currentStep: $currentStep, isCheckedTermsPriv: $isCheckedTermsPriv, requestStatus: $requestStatus, requestStatusSendOtpStepper: $requestStatusSendOtpStepper)';
+  return 'StepperState(verificationFieldsStepper: $verificationFieldsStepper, employeeIdStepper: $employeeIdStepper, currentStep: $currentStep, isCheckedTermsPriv: $isCheckedTermsPriv, requestStatus: $requestStatus, requestStatusSendOtpStepper: $requestStatusSendOtpStepper, requestStatusVerifyOtpStepper: $requestStatusVerifyOtpStepper, message: $message)';
 }
 
 
@@ -260,7 +264,7 @@ abstract mixin class _$StepperStateCopyWith<$Res> implements $StepperStateCopyWi
   factory _$StepperStateCopyWith(_StepperState value, $Res Function(_StepperState) _then) = __$StepperStateCopyWithImpl;
 @override @useResult
 $Res call({
- List<TextFieldInput> verificationFieldsStepper, TextFieldInput employeeIdStepper, int currentStep, bool isCheckedTermsPriv, RequestStatus requestStatus, RequestStatus requestStatusSendOtpStepper
+ List<TextFieldInput> verificationFieldsStepper, TextFieldInput employeeIdStepper, int currentStep, bool isCheckedTermsPriv, RequestStatus requestStatus, RequestStatus requestStatusSendOtpStepper, RequestStatus requestStatusVerifyOtpStepper, String message
 });
 
 
@@ -277,7 +281,7 @@ class __$StepperStateCopyWithImpl<$Res>
 
 /// Create a copy of StepperState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? verificationFieldsStepper = null,Object? employeeIdStepper = null,Object? currentStep = null,Object? isCheckedTermsPriv = null,Object? requestStatus = null,Object? requestStatusSendOtpStepper = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? verificationFieldsStepper = null,Object? employeeIdStepper = null,Object? currentStep = null,Object? isCheckedTermsPriv = null,Object? requestStatus = null,Object? requestStatusSendOtpStepper = null,Object? requestStatusVerifyOtpStepper = null,Object? message = null,}) {
   return _then(_StepperState(
 verificationFieldsStepper: null == verificationFieldsStepper ? _self._verificationFieldsStepper : verificationFieldsStepper // ignore: cast_nullable_to_non_nullable
 as List<TextFieldInput>,employeeIdStepper: null == employeeIdStepper ? _self.employeeIdStepper : employeeIdStepper // ignore: cast_nullable_to_non_nullable
@@ -285,7 +289,9 @@ as TextFieldInput,currentStep: null == currentStep ? _self.currentStep : current
 as int,isCheckedTermsPriv: null == isCheckedTermsPriv ? _self.isCheckedTermsPriv : isCheckedTermsPriv // ignore: cast_nullable_to_non_nullable
 as bool,requestStatus: null == requestStatus ? _self.requestStatus : requestStatus // ignore: cast_nullable_to_non_nullable
 as RequestStatus,requestStatusSendOtpStepper: null == requestStatusSendOtpStepper ? _self.requestStatusSendOtpStepper : requestStatusSendOtpStepper // ignore: cast_nullable_to_non_nullable
-as RequestStatus,
+as RequestStatus,requestStatusVerifyOtpStepper: null == requestStatusVerifyOtpStepper ? _self.requestStatusVerifyOtpStepper : requestStatusVerifyOtpStepper // ignore: cast_nullable_to_non_nullable
+as RequestStatus,message: null == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
+as String,
   ));
 }
 

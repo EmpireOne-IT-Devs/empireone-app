@@ -180,13 +180,12 @@ class _EmpireOneState extends State<EmpireOne> {
 }
 
 
-
 final GoRouter _router = GoRouter(
   routes: <RouteBase>[
     GoRoute(
       path: '/',
       builder: (BuildContext context, GoRouterState state) {
-        return StepperPage();
+        return HomeEmployeePage();
       },
       routes: <RouteBase>[
         GoRoute(

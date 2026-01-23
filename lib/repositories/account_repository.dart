@@ -115,8 +115,8 @@ class AccountRepository {
     var result = await _accountService.verifyAccount(
       body: {'email': email, 'otp': verificationCode},
     );
-
-    return Result(statusCode: result.statusCode);
+    var body = jsonDecode(result.body);
+    return Result(statusCode: result.statusCode, data: body);
   }
 
   Future<Result> signInTGoogle({required String idToken}) async {

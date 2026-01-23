@@ -22,7 +22,6 @@ class SegmentedStepper extends StatelessWidget {
         Color themeColor = isActive || isCompleted
             ? Theme.of(context).colorScheme.primary
             : Theme.of(context).colorScheme.onTertiary;
-
         return Expanded(
           child: Container(
             decoration: BoxDecoration(
