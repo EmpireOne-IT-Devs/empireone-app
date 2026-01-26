@@ -41,11 +41,7 @@ void main() {
       accountRepository: accountRepository,
       googleRepository: GoogleRepository(
         googleService: GoogleService(
-          GoogleSignIn(
-            serverClientId:
-                '301631048424-pdrvq2jm03jhca6d3abtp63jqmliuobo.apps.googleusercontent.com',
-            scopes: ['email', 'profile'],
-          ),
+          GoogleSignIn(scopes: ['email', 'profile']),
           baseUrl,
         ),
       ),

@@ -1,5 +1,7 @@
+import 'package:empireone_app/pages/home_employee/bloc/bloc.dart';
 import 'package:empireone_app/pages/home_employee/view/home_employee_persistent.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomeEmployeePage extends StatelessWidget {
   static const route = '/home_employee_dashboard';
@@ -9,7 +11,10 @@ class HomeEmployeePage extends StatelessWidget {
   // int _selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: HomeEmployeePersistent());
+    return BlocProvider(
+      create: (context) => HomeEmployeeBloc(initialState: HomeEmployeeState()),
+      child: Scaffold(body: HomeEmployeePersistent()),
+    );
     // List<Widget> icons = [
     //   SvgPicture.asset('assets/icons/home.svg'),
     //   SvgPicture.asset('assets/icons/company.svg'),

@@ -69,8 +69,8 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     var googleSignInAuthentication = await _googleRepository.signIn();
     var token = googleSignInAuthentication?.accessToken;
     var tokenId = googleSignInAuthentication?.idToken;
-    print('tokenID bloc: $tokenId');
-    print('accessTokensss: $token');
+    // print('tokenID bloc: $tokenId');
+    // print('accessTokensss: $token');
 
     // emit(state.copyWith(googleSigninRequestStatus: RequestStatus.waiting));
     // emit(state.copyWith(googleSigninRequestStatus: RequestStatus.inProgress));

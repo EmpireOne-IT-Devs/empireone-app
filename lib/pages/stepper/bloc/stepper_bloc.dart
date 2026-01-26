@@ -98,7 +98,6 @@ class StepperBloc extends Bloc<StepperEvent, StepperState> {
 
     switch (resultSendotp.resultStatus) {
       case ResultStatus.success:
-        await _accountRepository.sendOtp(email: email ?? '');
         emit(
           state.copyWith(requestStatusSendOtpStepper: RequestStatus.success),
         );

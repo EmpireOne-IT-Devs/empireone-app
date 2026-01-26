@@ -56,4 +56,8 @@ class AccountService {
   Future<Response> resetPassword({required Map<String, dynamic> body}) async {
     return post(Uri.parse('$baseUrl/auth/change_password'), body: body);
   }
+
+  Future<Response> logout() async {
+    return post(Uri.parse('$baseUrl/auth/logout'));
+  }
 }

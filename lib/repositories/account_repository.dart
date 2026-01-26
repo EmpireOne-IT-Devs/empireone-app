@@ -203,4 +203,10 @@ class AccountRepository {
       return Result(statusCode: result.statusCode);
     }
   }
+
+  Future<Result> logout() async {
+    var result = await _accountService.logout();
+    return Result(statusCode: result.statusCode);
+  }
+  
 }

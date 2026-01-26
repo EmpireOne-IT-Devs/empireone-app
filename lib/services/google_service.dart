@@ -9,24 +9,37 @@ class GoogleService {
   GoogleService(this.googleSignIn, this.baseUrl);
   final GoogleSignIn _googleSignIn = GoogleSignIn(
     scopes: ['email', 'profile'],
-    serverClientId:
-        '301631048424-pdrvq2jm03jhca6d3abtp63jqmliuobo.apps.googleusercontent.com',
+    // serverClientId:
+    //     '713254963579-jeed4qktrvhq0csaofhu61kkd8c8gbeo.apps.googleusercontent.com',
   );
 
   Future<GoogleSignInAuthentication?> signIn() async {
     try {
       print('hereereee');
-      final googleSignInAccount = await _googleSignIn.signIn();
+      final GoogleSignInAccount? googleSignInAccount = await _googleSignIn
+          .signIn();
+
       print('googleSignInAccount: $googleSignInAccount');
 
       if (googleSignInAccount == null) {
         // User cancelled the login
+        print('Google Sign-In cancelled by user.');
         return null;
       }
-      final auth = await googleSignInAccount.authentication;
-      print('auth: $auth');
+      print('GoogleSignInAccount:');
+      print('  Display Name: ${googleSignInAccount.displayName}');
+      print('  Email: ${googleSignInAccount.email}');
+      print('  ID: ${googleSignInAccount.id}');
+
+      final GoogleSignInAuthentication auth =
+          await googleSignInAccount.authentication;
+
+      print('GoogleSignInAuthentication Tokens:');
+      print('  Access Token: ${auth.accessToken}');
+      print('  ID Token: ${auth.idToken}');
       return auth;
     } catch (e) {
+      print('Sign-in error: $e');
       return null;
     }
   }
