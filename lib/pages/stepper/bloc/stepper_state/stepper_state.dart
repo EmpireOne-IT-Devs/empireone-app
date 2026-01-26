@@ -18,5 +18,6 @@ sealed class StepperState with _$StepperState {
     @Default(RequestStatus.waiting) RequestStatus requestStatusSendOtpStepper,
     @Default(RequestStatus.waiting) RequestStatus requestStatusVerifyOtpStepper,
     @Default('') String message,
+    @Default(false) bool verificationStepInitialized ,
   }) = _StepperState;
 }

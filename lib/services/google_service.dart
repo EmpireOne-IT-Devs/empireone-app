@@ -10,17 +10,19 @@ class GoogleService {
   final GoogleSignIn _googleSignIn = GoogleSignIn(
     scopes: ['email', 'profile'],
     serverClientId:
-        '713254963579-jeed4qktrvhq0csaofhu61kkd8c8gbeo.apps.googleusercontent.com',
+        '301631048424-pdrvq2jm03jhca6d3abtp63jqmliuobo.apps.googleusercontent.com',
   );
-  
+
   Future<GoogleSignInAuthentication?> signIn() async {
     try {
+      print('hereereee');
       final googleSignInAccount = await _googleSignIn.signIn();
+      print('googleSignInAccount: $googleSignInAccount');
+
       if (googleSignInAccount == null) {
         // User cancelled the login
         return null;
       }
-      print('googleSignInAccount: $googleSignInAccount');
       final auth = await googleSignInAccount.authentication;
       print('auth: $auth');
       return auth;

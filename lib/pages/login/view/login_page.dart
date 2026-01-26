@@ -35,7 +35,6 @@ class LoginPage extends StatelessWidget {
         showDialog(
           context: context,
           builder: (context) {
-            print('here ${state.message}');
             return Center(
               child: ShowDialogError(
                 message: state.message.toString(),

@@ -41,6 +41,7 @@ class StepperBloc extends Bloc<StepperEvent, StepperState> {
           .map<String>((e) => e.value)
           .join(),
     );
+    print('verify otp: ${result.resultStatus}');
     switch (result.resultStatus) {
       case ResultStatus.success:
         emit(
@@ -152,6 +153,7 @@ class StepperBloc extends Bloc<StepperEvent, StepperState> {
   ) {
     emit(
       state.copyWith(
+        verificationStepInitialized: true,
         verificationFieldsStepper: const [
           TextFieldInput(),
           TextFieldInput(),

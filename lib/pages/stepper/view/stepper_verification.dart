@@ -1,6 +1,7 @@
 import 'package:empireone_app/l10n/app_localizations.dart';
 import 'package:empireone_app/pages/stepper/bloc/bloc.dart';
 import 'package:empireone_app/pages/stepper/widgets/widgets.dart';
+import 'package:empireone_app/repositories/account_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -19,54 +20,57 @@ class _StepperVerificationState extends State<StepperVerification> {
   @override
   void initState() {
     super.initState();
-    controllers = [];
-    focusNodes = [];
+
+    // fire once when StepperVerification screen is created
+    context.read<StepperBloc>().add(StepperVerificationScreenCreated());
+  }
+
+  void stepperLengthListener(BuildContext context, StepperState state) {
+    controllers = List.generate(
+      state.verificationFieldsStepper.length,
+      (index) => TextEditingController(),
+    );
+    focusNodes = List.generate(
+      state.verificationFieldsStepper.length,
+      (index) => FocusNode(),
+    );
+  }
+
+  void stepperValueListener(
+    BuildContext context,
+    StepperState state,
+    int index,
+  ) {
+    var value = state.verificationFieldsStepper[index].value;
+    if (value.length == 1 && index < 5) {
+      FocusScope.of(context).nextFocus();
+    } else if (value.isEmpty && index > 0) {
+      FocusScope.of(context).previousFocus();
+    }
+    // if (value.isNotEmpty) {
+    //   if (index + 1 == focusNodes.length) {
+    //     FocusScope.of(context).unfocus();
+    //   } else {
+    //     focusNodes[index + 1].requestFocus();
+    //   }
+    // } else if (value.isEmpty) {
+    //   if (index == 0) {
+    //   } else {
+    //     controllers[index - 1].value = const TextEditingValue(
+    //       text: '\u200b',
+    //       selection: TextSelection(baseOffset: 1, extentOffset: 1),
+    //     );
+    //     focusNodes[index - 1].requestFocus();
+    //   }
+    // }
   }
 
   @override
   Widget build(BuildContext context) {
-    void stepperLengthListener(BuildContext context, StepperState state) {
-      controllers = List.generate(
-        state.verificationFieldsStepper.length,
-        (index) => TextEditingController(),
-      );
-      focusNodes = List.generate(
-        state.verificationFieldsStepper.length,
-        (index) => FocusNode(),
-      );
-    }
-
-    void stepperValueListener(
-      BuildContext context,
-      StepperState state,
-      int index,
-    ) {
-      var value = state.verificationFieldsStepper[index].value;
-      if (value.length == 1 && index < 5) {
-        FocusScope.of(context).nextFocus();
-      } else if (value.isEmpty && index > 0) {
-        FocusScope.of(context).previousFocus();
-      }
-      // if (value.isNotEmpty) {
-      //   if (index + 1 == focusNodes.length) {
-      //     FocusScope.of(context).unfocus();
-      //   } else {
-      //     focusNodes[index + 1].requestFocus();
-      //   }
-      // } else if (value.isEmpty) {
-      //   if (index == 0) {
-      //   } else {
-      //     controllers[index - 1].value = const TextEditingValue(
-      //       text: '\u200b',
-      //       selection: TextSelection(baseOffset: 1, extentOffset: 1),
-      //     );
-      //     focusNodes[index - 1].requestFocus();
-      //   }
-      // }
-    }
-
+    var bloc = context.read<StepperBloc>();
     return BlocBuilder<StepperBloc, StepperState>(
       builder: (context, state) {
+        print('val ${state.verificationFieldsStepper}');
         var bloc = context.read<StepperBloc>();
         return MultiBlocListener(
           listeners: [
@@ -77,18 +81,30 @@ class _StepperVerificationState extends State<StepperVerification> {
               listener: (context, state) =>
                   stepperLengthListener(context, state),
             ),
-            // ...List<BlocListener>.generate(
-            //   state.verificationFieldsStepper.length,
-            //   (index) {
-            //     return BlocListener<StepperBloc, StepperState>(
-            //       listenWhen: (previous, current) =>
-            //           previous.verificationFieldsStepper[index].value !=
-            //           current.verificationFieldsStepper[index].value,
-            //       listener: (context, state) =>
-            //           stepperValueListener(context, state, index),
-            //     );
-            //   },
-            // ),
+            ...List<BlocListener>.generate(
+              state.verificationFieldsStepper.length,
+              (index) {
+                return BlocListener<StepperBloc, StepperState>(
+                  listenWhen: (previous, current) =>
+                      previous.verificationFieldsStepper[index].value !=
+                      current.verificationFieldsStepper[index].value,
+                  listener: (context, state) =>
+                      stepperValueListener(context, state, index),
+                );
+              },
+            ),
+            BlocListener<StepperBloc, StepperState>(
+              listenWhen: (previous, current) =>
+                  previous.currentStep != current.currentStep,
+              listener: (context, state) {
+                if (state.currentStep == 2) {
+                  // Step 3 screen is now visible
+                  context.read<StepperBloc>().add(
+                    StepperVerificationScreenCreated(),
+                  );
+                }
+              },
+            ),
           ],
           child: Container(
             padding: EdgeInsets.all(8),
@@ -153,11 +169,11 @@ class _StepperVerificationState extends State<StepperVerification> {
                       width: 48,
                       height: 56,
                       child: StepperVerificationField(
+                        controller: controllers[index],
+                        focusNode: focusNodes[index],
                         onChanged: (value) => bloc.add(
                           StepperVerificationFieldChanged(index, value),
                         ),
-                        controller: controllers[index],
-                        focusNode: focusNodes[index],
                         textStyle: GoogleFonts.mada(
                           color: Theme.of(context).colorScheme.onPrimary,
                           textStyle: Theme.of(context).textTheme.titleMedium,
@@ -230,7 +246,7 @@ class _StepperVerificationState extends State<StepperVerification> {
                   padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
                   child: OutlinedButton(
                     onPressed: () {
-                      // bloc.add(VerifyIdentitytPressed());
+                      bloc.add(StepperVerificationPressed());
                     },
                     child: Text(
                       'Verify Code',

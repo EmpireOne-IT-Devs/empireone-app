@@ -179,7 +179,6 @@ class _EmpireOneState extends State<EmpireOne> {
   }
 }
 
-
 final GoRouter _router = GoRouter(
   routes: <RouteBase>[
     GoRoute(

@@ -1,11 +1,13 @@
 import 'package:empireone_app/l10n/app_localizations.dart';
 import 'package:empireone_app/models/models.dart';
+import 'package:empireone_app/pages/home_employee/view/view.dart';
 import 'package:empireone_app/pages/stepper/bloc/bloc.dart';
 import 'package:empireone_app/pages/stepper/stepper.dart';
 import 'package:empireone_app/pages/widgets/widgets.dart';
 import 'package:empireone_app/repositories/account_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class StepperPage extends StatelessWidget {
   static const route = '/stepper';
@@ -47,13 +49,47 @@ class StepperPage extends StatelessWidget {
     }
   }
 
+  void verifyOtpPressed(BuildContext context, StepperState state) {
+    switch (state.requestStatusVerifyOtpStepper) {
+      case RequestStatus.waiting:
+        break;
+      case RequestStatus.inProgress:
+        showDialog(
+          context: context,
+          barrierDismissible: false,
+          builder: (context) {
+            return const Center(child: CircularProgressDialog());
+          },
+        );
+        break;
+      case RequestStatus.success:
+        Navigator.of(context, rootNavigator: true).pop();
+        context.push(HomeEmployeePage.route);
+        break;
+      case RequestStatus.failure:
+        Navigator.pop(context);
+        showDialog(
+          context: context,
+          builder: (context) {
+            return Center(
+              child: ShowDialogError(
+                message: state.message,
+                text: AppLocalizations.of(context)?.signupFailed ?? '',
+              ),
+            );
+          },
+        );
+        break;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => StepperBloc(
         initialState: StepperState(),
         accountRepository: RepositoryProvider.of<AccountRepository>(context),
-      )..add(StepperVerificationScreenCreated()),
+      ),
       child: MultiBlocListener(
         listeners: [
           BlocListener<StepperBloc, StepperState>(
@@ -62,6 +98,12 @@ class StepperPage extends StatelessWidget {
                 current.requestStatusSendOtpStepper,
             listener: (context, state) =>
                 listenerStepperSendOtp(context, state),
+          ),
+          BlocListener<StepperBloc, StepperState>(
+            listenWhen: (previous, current) =>
+                previous.requestStatusVerifyOtpStepper !=
+                current.requestStatusVerifyOtpStepper,
+            listener: (context, state) => verifyOtpPressed(context, state),
           ),
         ],
         child: Scaffold(

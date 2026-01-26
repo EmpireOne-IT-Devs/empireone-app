@@ -27,7 +27,6 @@ class _StepperOnboardingState extends State<StepperOnboarding> {
 
   @override
   Widget build(BuildContext context) {
-    var bloc = context.read<StepperBloc>();
     return BlocBuilder<StepperBloc, StepperState>(
       builder: (context, state) {
         return Column(
