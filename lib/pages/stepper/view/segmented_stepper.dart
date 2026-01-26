@@ -1,4 +1,3 @@
-import 'package:empireone_app/pages/stepper/view/arrow_clipper.dart';
 import 'package:flutter/material.dart';
 
 class SegmentedStepper extends StatelessWidget {

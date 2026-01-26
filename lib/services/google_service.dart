@@ -10,8 +10,9 @@ class GoogleService {
   final GoogleSignIn _googleSignIn = GoogleSignIn(
     scopes: ['email', 'profile'],
     serverClientId:
-        '301631048424-pdrvq2jm03jhca6d3abtp63jqmliuobo.apps.googleusercontent.com',
+        '713254963579-jeed4qktrvhq0csaofhu61kkd8c8gbeo.apps.googleusercontent.com',
   );
+  
   Future<GoogleSignInAuthentication?> signIn() async {
     try {
       final googleSignInAccount = await _googleSignIn.signIn();

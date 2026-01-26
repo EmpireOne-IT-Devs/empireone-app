@@ -17,9 +17,8 @@ class _StepperFormState extends State<StepperForm> {
     var bloc = context.read<StepperBloc>();
     return BlocBuilder<StepperBloc, StepperState>(
       builder: (context, state) {
-        print('hereee : ${state.employeeIdStepper.value}');
         return Container(
-          padding: EdgeInsets.all(8),
+          padding: EdgeInsets.all(16),
           decoration: BoxDecoration(
             border: Border.all(color: Theme.of(context).colorScheme.onTertiary),
             borderRadius: BorderRadius.circular(10),

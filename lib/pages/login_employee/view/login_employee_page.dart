@@ -1,5 +1,4 @@
 import 'package:empireone_app/l10n/app_localizations.dart';
-import 'package:empireone_app/l10n/app_localizations_en.dart';
 import 'package:empireone_app/models/models.dart';
 import 'package:empireone_app/pages/login_employee/bloc/bloc.dart';
 import 'package:empireone_app/pages/login_employee/login_employee.dart';

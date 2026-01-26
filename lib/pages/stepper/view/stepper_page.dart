@@ -1,3 +1,4 @@
+import 'package:empireone_app/l10n/app_localizations.dart';
 import 'package:empireone_app/models/models.dart';
 import 'package:empireone_app/pages/stepper/bloc/bloc.dart';
 import 'package:empireone_app/pages/stepper/stepper.dart';
@@ -5,63 +6,43 @@ import 'package:empireone_app/pages/widgets/widgets.dart';
 import 'package:empireone_app/repositories/account_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 
 class StepperPage extends StatelessWidget {
   static const route = '/stepper';
 
   const StepperPage({super.key});
 
-  Future<void> listenerStepperSendOtp(
-    BuildContext context,
-    StepperState state,
-  ) async {
-    // Always verify context is still in the tree before proceeding
-    if (!context.mounted) return;
-
+  void listenerStepperSendOtp(BuildContext context, StepperState state) {
+    var bloc = context.read<StepperBloc>();
     switch (state.requestStatusSendOtpStepper) {
+      case RequestStatus.waiting:
+        break;
       case RequestStatus.inProgress:
         showDialog(
           context: context,
           barrierDismissible: false,
-          builder: (context) => const Center(child: CircularProgressDialog()),
+          builder: (context) {
+            return const Center(child: CircularProgressDialog());
+          },
         );
         break;
-
       case RequestStatus.success:
-        // Pop the loading dialog using the root navigator
         Navigator.of(context, rootNavigator: true).pop();
-
-        // Await your delay properly before the next action
-        await Future.delayed(const Duration(milliseconds: 3000));
-
-        // Crucial: Check mounted again after ANY await
-        if (context.mounted) {
-          // Proceed to next screen or step
-        }
+        bloc.add(ContinuePressed());
         break;
-
       case RequestStatus.failure:
-        // Pop the loading dialog first
-        Navigator.of(context, rootNavigator: true).pop();
-
-        // Schedule the error dialog to avoid build-cycle conflicts
-        WidgetsBinding.instance.addPostFrameCallback((_) {
-          if (context.mounted) {
-            showDialog(
-              context: context,
-              builder: (context) => Center(
-                child: ShowDialogError(
-                  message: 'failed',
-                  text: 'Verify Identity Failed',
-                ),
+        Navigator.pop(context);
+        showDialog(
+          context: context,
+          builder: (context) {
+            return Center(
+              child: ShowDialogError(
+                message: state.message,
+                text: AppLocalizations.of(context)?.signupFailed ?? '',
               ),
             );
-          }
-        });
-        break;
-
-      default:
+          },
+        );
         break;
     }
   }
@@ -87,15 +68,7 @@ class StepperPage extends StatelessWidget {
           backgroundColor: Theme.of(context).colorScheme.onSurface,
           body: CustomScrollView(
             slivers: [
-              SliverAppBar(
-                leading: IconButton(
-                  onPressed: () {
-                    context.pop();
-                  },
-                  icon: Icon(Icons.arrow_back, color: Colors.red),
-                ),
-                backgroundColor: Theme.of(context).colorScheme.onSurface,
-              ),
+              StepperAppbar(),
               SliverToBoxAdapter(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 32),
@@ -106,6 +79,12 @@ class StepperPage extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
                   child: StepperOnboarding(),
+                ),
+              ),
+              SliverToBoxAdapter(
+                child: Align(
+                  alignment: Alignment.bottomCenter,
+                  child: StepperButton(),
                 ),
               ),
             ],

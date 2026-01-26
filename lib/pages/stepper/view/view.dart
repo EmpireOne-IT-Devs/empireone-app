@@ -4,3 +4,6 @@ export 'stepper_form.dart';
 export 'segmented_stepper.dart';
 export 'stepper_verification.dart';
 export 'stepper_onboarding.dart';
+export 'stepper_appbar.dart';
+export 'stepper_terms_condition.dart';
+export 'stepper_button.dart';

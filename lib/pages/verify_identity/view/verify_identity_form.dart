@@ -61,8 +61,6 @@ class _VerifyIdentityFormState extends State<VerifyIdentityForm> {
     var bloc = context.read<VerifyIdentityBloc>();
     return BlocBuilder<VerifyIdentityBloc, VerifyIdentityState>(
       builder: (context, state) {
-        print('email: ${state.emailForgotPassVal}');
-        print('here field: ${state.verificationFieldsVerIdentity}');
         return MultiBlocListener(
           listeners: [
             BlocListener<VerifyIdentityBloc, VerifyIdentityState>(

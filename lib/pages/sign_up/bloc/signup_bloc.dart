@@ -31,7 +31,6 @@ class SignupBloc extends Bloc<SignupEvent, SignupState> {
     var tokenId = googleSignInAuthentication?.idToken;
     emit(state.copyWith(requestStatus: RequestStatus.inProgress));
     var result = await _accountRepository.signInTGoogle(idToken: tokenId ?? '');
-    print('bloc result: ${result.resultStatus}');
     switch (result.resultStatus) {
       case ResultStatus.success:
         emit(state.copyWith(googleSignupRequestStatus: RequestStatus.success));
@@ -56,7 +55,6 @@ class SignupBloc extends Bloc<SignupEvent, SignupState> {
       password: state.signupPassword.value,
       passwordConfirmation: state.signupConfirmPassword.value,
     );
-    print('result bloc: ${result.resultStatus}');
     switch (result.resultStatus) {
       case ResultStatus.success:
         emit(state.copyWith(requestStatus: RequestStatus.success));

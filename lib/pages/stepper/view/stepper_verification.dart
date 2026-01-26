@@ -13,11 +13,18 @@ class StepperVerification extends StatefulWidget {
 }
 
 class _StepperVerificationState extends State<StepperVerification> {
+  List<TextEditingController> controllers = [];
+  List<FocusNode> focusNodes = [];
+
+  @override
+  void initState() {
+    super.initState();
+    controllers = [];
+    focusNodes = [];
+  }
+
   @override
   Widget build(BuildContext context) {
-    List<TextEditingController> controllers = [];
-    List<FocusNode> focusNodes = [];
-
     void stepperLengthListener(BuildContext context, StepperState state) {
       controllers = List.generate(
         state.verificationFieldsStepper.length,
@@ -70,18 +77,18 @@ class _StepperVerificationState extends State<StepperVerification> {
               listener: (context, state) =>
                   stepperLengthListener(context, state),
             ),
-            ...List<BlocListener>.generate(
-              state.verificationFieldsStepper.length,
-              (index) {
-                return BlocListener<StepperBloc, StepperState>(
-                  listenWhen: (previous, current) =>
-                      previous.verificationFieldsStepper[index].value !=
-                      current.verificationFieldsStepper[index].value,
-                  listener: (context, state) =>
-                      stepperValueListener(context, state, index),
-                );
-              },
-            ),
+            // ...List<BlocListener>.generate(
+            //   state.verificationFieldsStepper.length,
+            //   (index) {
+            //     return BlocListener<StepperBloc, StepperState>(
+            //       listenWhen: (previous, current) =>
+            //           previous.verificationFieldsStepper[index].value !=
+            //           current.verificationFieldsStepper[index].value,
+            //       listener: (context, state) =>
+            //           stepperValueListener(context, state, index),
+            //     );
+            //   },
+            // ),
           ],
           child: Container(
             padding: EdgeInsets.all(8),

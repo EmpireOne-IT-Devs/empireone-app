@@ -5,7 +5,6 @@ import 'package:empireone_app/pages/reset_password/bloc/bloc.dart';
 import 'package:empireone_app/pages/reset_password/view/reset_password_appbar.dart';
 import 'package:empireone_app/pages/reset_password/view/reset_password_form.dart';
 import 'package:empireone_app/pages/reset_password/view/reset_password_heading.dart';
-import 'package:empireone_app/pages/widgets/circular_progress_dialog.dart';
 import 'package:empireone_app/pages/widgets/widgets.dart';
 import 'package:empireone_app/repositories/account_repository.dart';
 import 'package:flutter/material.dart';

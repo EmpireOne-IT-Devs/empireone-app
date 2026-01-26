@@ -23,22 +23,17 @@ class AccountService {
   }
 
   Future<Response> signInTGoogle({required String idToken}) {
-    print('signingoogle: $baseUrl/auth/google/app?token=$idToken');
-    print('idToken $idToken');
+    print('url: $baseUrl/auth/google/app?token=$idToken');
     return get(Uri.parse('$baseUrl/auth/google/app?token=$idToken'));
   }
 
   Future<Response> signUp({required Map<String, dynamic> body}) async {
-    print('signup job seeker $baseUrl/auth/job_seeker_sign_up');
-    print('body: $body');
     return post(Uri.parse('$baseUrl/auth/job_seeker_sign_up'), body: body);
   }
 
   Future<Response> jobSeekerVerifyOtp({
     required Map<String, dynamic> body,
   }) async {
-    print('verify $baseUrl/auth/job_seeker_verify_otp');
-    print('body: $body');
     return post(Uri.parse('$baseUrl/auth/job_seeker_verify_otp'), body: body);
   }
 
@@ -52,8 +47,6 @@ class AccountService {
   Future<Response> forgotPasswordVerifyOtp({
     required Map<String, dynamic> body,
   }) async {
-    print('url forgot: $baseUrl/auth/forgot_password_verify_otp');
-    print('forgot: $body');
     return post(
       Uri.parse('$baseUrl/auth/forgot_password_verify_otp'),
       body: body,
@@ -61,8 +54,6 @@ class AccountService {
   }
 
   Future<Response> resetPassword({required Map<String, dynamic> body}) async {
-    print('changePassword: $baseUrl/auth/change_password');
-    print('changePassword: $body');
     return post(Uri.parse('$baseUrl/auth/change_password'), body: body);
   }
 }

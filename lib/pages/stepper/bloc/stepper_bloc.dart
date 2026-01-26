@@ -33,7 +33,7 @@ class StepperBloc extends Bloc<StepperEvent, StepperState> {
     );
 
     var email = employee.data?.eogs;
-    print('emaillss: $email');
+    // print('emaillss: $email');
     var result = await _accountRepository.verifyAccount(
       // email: state.email,
       email: email ?? '',
@@ -84,13 +84,13 @@ class StepperBloc extends Bloc<StepperEvent, StepperState> {
   ) async {
     emit(state.copyWith(requestStatusSendOtpStepper: RequestStatus.waiting));
     emit(state.copyWith(requestStatusSendOtpStepper: RequestStatus.inProgress));
-    print('employeeid : ${state.employeeIdStepper}');
+    // print('employeeid : ${state.employeeIdStepper}');
 
     var result = await _accountRepository.employeeId(
       employeeId: state.employeeIdStepper.value,
     );
     var email = result.data?.eogs;
-    print('emailsss: $email');
+    // print('emailsss: $email');
     var resultSendotp = await _accountRepository.sendOtp(email: email ?? '');
     print('resultStatus: ${result.resultStatus}');
     print('Sendotp status: ${resultSendotp.resultStatus}');

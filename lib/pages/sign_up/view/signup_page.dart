@@ -6,7 +6,6 @@ import 'package:empireone_app/pages/sign_up/view/view.dart';
 import 'package:empireone_app/pages/verify_signup/bloc/bloc.dart'
     show VerifySignupState;
 import 'package:empireone_app/pages/verify_signup/view/view.dart';
-import 'package:empireone_app/pages/widgets/circular_progress_dialog.dart';
 import 'package:empireone_app/pages/widgets/widgets.dart';
 import 'package:empireone_app/repositories/account_repository.dart';
 import 'package:empireone_app/repositories/repositories.dart';
@@ -106,6 +105,8 @@ class SignupPage extends StatelessWidget {
       child: MultiBlocListener(
         listeners: [
           BlocListener<SignupBloc, SignupState>(
+            listenWhen: (previous, current) =>
+                previous.requestStatus != current.requestStatus,
             listener: (context, state) => listenerSignup(context, state),
           ),
           BlocListener<SignupBloc, SignupState>(

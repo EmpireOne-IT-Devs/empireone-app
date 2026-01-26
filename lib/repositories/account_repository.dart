@@ -89,7 +89,7 @@ class AccountRepository {
         result.statusCode == 403 ||
         result.statusCode == 404) {
       final emPayload = EmployeePayload.fromJson(jsonDecode(result.body));
-      print('emPayload: $emPayload');
+      // print('emPayload: $emPayload');
       return Result<EmployeePayload>(
         statusCode: result.statusCode,
         data: emPayload,
@@ -121,21 +121,16 @@ class AccountRepository {
 
   Future<Result> signInTGoogle({required String idToken}) async {
     var result = await _accountService.signInTGoogle(idToken: idToken);
-    var body = jsonDecode(result.body);
-    print('body: $body');
-    print('statusCodessss: ${result.statusCode}');
 
-    return Result(statusCode: result.statusCode, data: body);
+    return Result(statusCode: result.statusCode);
   }
 
   Future<Result> forgotPassword({required String email}) async {
     var result = await _accountService.forgotPassword(body: {'email': email});
-    print('result status : ${result.statusCode}');
     if (result.statusCode == 200) {
       return Result(statusCode: result.statusCode);
     } else {
       final decoded = jsonDecode(result.body);
-      print('decoded $decoded');
       return Result(statusCode: result.statusCode, data: decoded);
     }
   }
@@ -202,7 +197,6 @@ class AccountRepository {
         'password_confirmation': passwordConfirmation,
       },
     );
-    print('result: ${result.statusCode}');
     if (result.statusCode == 200) {
       return Result(statusCode: result.statusCode);
     } else {
