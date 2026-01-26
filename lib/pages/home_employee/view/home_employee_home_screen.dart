@@ -163,7 +163,10 @@ class HomeEmployeeHomeScreen extends StatelessWidget {
                           child: Container(
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(20),
-                              border: Border.all(color: Colors.white, width: 3),
+                              border: Border.all(
+                                color: Theme.of(context).colorScheme.onSurface,
+                                width: 3,
+                              ),
                             ),
                             child: Container(
                               decoration: BoxDecoration(
