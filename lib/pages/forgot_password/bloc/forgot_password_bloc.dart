@@ -23,20 +23,14 @@ class ForgotPasswordBloc
     emit(state.copyWith(requestStatus: RequestStatus.waiting));
     emit(state.copyWith(requestStatus: RequestStatus.inProgress));
     var emailForgotPassVal = state.emailForgotPassVal.value;
-    print('here1 $emailForgotPassVal');
     var result = await _accountRepository.forgotPassword(
       email: state.emailForgotPassVal.value,
     );
-    print('here2 $emailForgotPassVal');
-    print('resultStatus ${result.resultStatus}');
     switch (result.resultStatus) {
       case ResultStatus.success:
-        print('emailforgot: ${state.emailForgotPassVal.value}');
-        print('emailforgot: ${result.resultStatus}');
         emit(state.copyWith(requestStatus: RequestStatus.success));
         break;
       case ResultStatus.error:
-        print('error: ${result.data}');
         emit(
           state.copyWith(
             requestStatus: RequestStatus.failure,

@@ -2,7 +2,6 @@ import 'package:empireone_app/pages/stepper/bloc/bloc.dart';
 import 'package:empireone_app/pages/stepper/view/view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class StepperOnboarding extends StatefulWidget {
   const StepperOnboarding({super.key});

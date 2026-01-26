@@ -180,7 +180,7 @@ final GoRouter _router = GoRouter(
     GoRoute(
       path: '/',
       builder: (BuildContext context, GoRouterState state) {
-        return LoginPage();
+        return HomeEmployeePage();
       },
       routes: <RouteBase>[
         GoRoute(
