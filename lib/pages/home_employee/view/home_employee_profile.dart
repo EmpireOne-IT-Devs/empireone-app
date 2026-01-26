@@ -16,7 +16,7 @@ class HomeEmployeeProfile extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: PreferredSize(
-        preferredSize: Size(double.infinity, 500),
+        preferredSize: Size(double.infinity, 350),
         child: SafeArea(
           child: AppBar(
             backgroundColor: Colors.red,
@@ -30,148 +30,147 @@ class HomeEmployeeProfile extends StatelessWidget {
             ),
             flexibleSpace: CurvedHeader(
               height: 250,
-              child: Container(
-                color: Colors.amber,
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    SizedBox(
-                      height: 105,
-                      width: 103,
-                      child: Stack(
-                        children: [
-                          InkWell(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  SizedBox(
+                    height: 105,
+                    width: 103,
+                    child: Stack(
+                      children: [
+                        InkWell(
+                          onTap: () {},
+                          customBorder: const CircleBorder(),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: Theme.of(context).colorScheme.secondary,
+                              shape: BoxShape.circle,
+                            ),
+                            child: const Center(
+                              child: CircularProgressDialog(),
+                            ),
+                          ),
+                        ),
+                        Align(
+                          alignment: Alignment.bottomRight,
+                          child: InkWell(
                             onTap: () {},
-                            customBorder: const CircleBorder(),
                             child: Container(
+                              height: 26,
+                              width: 26,
                               decoration: BoxDecoration(
-                                color: Theme.of(context).colorScheme.secondary,
+                                color: Theme.of(context).colorScheme.primary,
                                 shape: BoxShape.circle,
                               ),
-                              child: const Center(
-                                child: CircularProgressDialog(),
-                              ),
                             ),
                           ),
-                          Align(
-                            alignment: Alignment.bottomRight,
-                            child: InkWell(
-                              onTap: () {},
-                              child: Container(
-                                height: 26,
-                                width: 26,
-                                decoration: BoxDecoration(
-                                  color: Theme.of(context).colorScheme.primary,
-                                  shape: BoxShape.circle,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    Text(
-                      'John Doe',
-                      style:
-                          GoogleFonts.mada(
-                            textStyle: Theme.of(context).textTheme.bodyMedium,
-                          ).copyWith(
-                            fontSize: 20,
-                            color: Theme.of(context).colorScheme.onTertiary,
-                          ),
-                    ),
-                    Text(
-                      'Web Developer',
-                      style:
-                          GoogleFonts.mada(
-                            textStyle: Theme.of(context).textTheme.bodyMedium,
-                          ).copyWith(
-                            fontSize: 13,
-                            color: Theme.of(context).colorScheme.onTertiary,
-                          ),
-                    ),
-                    const SizedBox(height: 8),
-                    Container(
-                      color: Colors.green,
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          maximumSize: const Size(210, 35),
-                          minimumSize: const Size(210, 35),
                         ),
-                        onPressed: () {},
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Icon(Icons.star),
-                            SizedBox(width: 6),
-                            Text(
-                              'Employee of the Month',
-                              style: GoogleFonts.inter(
-                                textStyle: Theme.of(
-                                  context,
-                                ).textTheme.titleSmall,
-                              ).copyWith(fontSize: 11.2),
-                            ),
-                          ],
-                        ),
-                      ),
+                      ],
                     ),
-
-                    // const SizedBox(height: 8),
-                    Container(
-                      color: Colors.blue,
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    'John Doe',
+                    style:
+                        GoogleFonts.mada(
+                          textStyle: Theme.of(context).textTheme.bodyMedium,
+                        ).copyWith(
+                          fontSize: 20,
+                          color: Theme.of(context).colorScheme.onTertiary,
+                        ),
+                  ),
+                  Text(
+                    'Web Developer',
+                    style:
+                        GoogleFonts.mada(
+                          textStyle: Theme.of(context).textTheme.bodyMedium,
+                        ).copyWith(
+                          fontSize: 13,
+                          color: Theme.of(context).colorScheme.onTertiary,
+                        ),
+                  ),
+                  const SizedBox(height: 8),
+                  Container(
+                    color: Colors.green,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        maximumSize: const Size(210, 35),
+                        minimumSize: const Size(210, 35),
+                      ),
+                      onPressed: () {},
                       child: Row(
+                        mainAxisSize: MainAxisSize.min,
                         children: [
-                          // ElevatedButton(
-                          //   style: ElevatedButton.styleFrom(
-                          //     maximumSize: const Size(130, 30),
-                          //     minimumSize: const Size(130, 30),
-                          //   ),
-                          //   onPressed: () {},
-                          //   child: Row(
-                          //     children: [
-                          //       Icon(Icons.star),
-                          //       Text(
-                          //         'Top Performer',
-                          //         style: GoogleFonts.inter(
-                          //           textStyle: Theme.of(
-                          //             context,
-                          //           ).textTheme.titleSmall,
-                          //         ).copyWith(fontSize: 11.2),
-                          //       ),
-                          //     ],
-                          //   ),
-                          // ),
-                          // ElevatedButton(
-                          //   style: ElevatedButton.styleFrom(
-                          //     fixedSize: Size(115, 28),
-                          //   ),
-                          //   onPressed: () {},
-                          //   child: Row(
-                          //     children: [
-                          //       Icon(Icons.star),
-                          //       Text('Employee of the Month'),
-                          //     ],
-                          //   ),
-                          // ),
-                          // ElevatedButton(
-                          //   style: ElevatedButton.styleFrom(
-                          //     fixedSize: Size(83.5, 28),
-                          //   ),
-                          //   onPressed: () {},
-                          //   child: Row(
-                          //     children: [
-                          //       Icon(Icons.star),
-                          //       Text('Employee of the Month'),
-                          //     ],
-                          //   ),
-                          // ),
+                          Icon(Icons.star),
+                          SizedBox(width: 6),
+                          Text(
+                            'Employee of the Month',
+                            style: GoogleFonts.inter(
+                              textStyle: Theme.of(context).textTheme.titleSmall,
+                            ).copyWith(fontSize: 11.2),
+                          ),
                         ],
                       ),
                     ),
-                  ],
-                ),
+                  ),
+
+                  const SizedBox(height: 8),
+                  Container(
+                    color: Colors.blue,
+                    child: Row(
+                      children: [
+                        // ListView(
+                        //   scrollDirection: Axis.horizontal,
+                        //   children: [
+                        //     ElevatedButton(
+                        //       style: ElevatedButton.styleFrom(
+                        //         maximumSize: const Size(130, 30),
+                        //         minimumSize: const Size(130, 30),
+                        //       ),
+                        //       onPressed: () {},
+                        //       child: Row(
+                        //         children: [
+                        //           Icon(Icons.star),
+                        //           Text(
+                        //             'Top Performer',
+                        //             style: GoogleFonts.inter(
+                        //               textStyle: Theme.of(
+                        //                 context,
+                        //               ).textTheme.titleSmall,
+                        //             ).copyWith(fontSize: 11.2),
+                        //           ),
+                        //         ],
+                        //       ),
+                        //     ),
+                        //     ElevatedButton(
+                        //       style: ElevatedButton.styleFrom(
+                        //         maximumSize: const Size(150, 30),
+                        //         minimumSize: const Size(150, 30),
+                        //       ),
+                        //       onPressed: () {},
+                        //       child: Row(
+                        //         children: [
+                        //           Icon(Icons.star),
+                        //           Text('Team Leader'),
+                        //         ],
+                        //       ),
+                        //     ),
+                        //     ElevatedButton(
+                        //       style: ElevatedButton.styleFrom(
+                        //         maximumSize: const Size(150, 30),
+                        //         minimumSize: const Size(150, 30),
+                        //       ),
+                        //       onPressed: () {},
+                        //       child: Row(
+                        //         children: [Icon(Icons.star), Text('5 Years')],
+                        //       ),
+                        //     ),
+                        //   ],
+                        // ),
+                      ],
+                    ),
+                  ),
+                ],
               ),
             ),
           ),

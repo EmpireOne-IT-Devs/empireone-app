@@ -18,7 +18,7 @@ class CurvedHeader extends StatelessWidget {
             size: Size(double.infinity, height),
             painter: HeaderCurveUpPainter(),
           ),
-          Positioned(bottom: -height / 1.70, left: 0, right: 0, child: child),
+          Positioned(bottom: -height / 2.50, left: 0, right: 0, child: child),
         ],
       ),
     );
