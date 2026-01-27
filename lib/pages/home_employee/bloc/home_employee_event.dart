@@ -7,3 +7,6 @@ class SelectedIndex extends HomeEmployeeEvent {
   const SelectedIndex(this.selectedIndex);
 }
 
+class LogoutPressed extends HomeEmployeeEvent{
+  const LogoutPressed();
+}

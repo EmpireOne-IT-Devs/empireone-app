@@ -1,5 +1,6 @@
 import 'package:empireone_app/pages/home_employee/bloc/bloc.dart';
 import 'package:empireone_app/pages/home_employee/view/home_employee_persistent.dart';
+import 'package:empireone_app/repositories/account_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -12,7 +13,10 @@ class HomeEmployeePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => HomeEmployeeBloc(initialState: HomeEmployeeState()),
+      create: (context) => HomeEmployeeBloc(
+        initialState: HomeEmployeeState(),
+        accountRepository: RepositoryProvider.of<AccountRepository>(context),
+      ),
       child: Scaffold(body: HomeEmployeePersistent()),
     );
     // List<Widget> icons = [

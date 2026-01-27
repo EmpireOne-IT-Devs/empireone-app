@@ -206,6 +206,7 @@ class AccountRepository {
 
   Future<Result> logout() async {
     var result = await _accountService.logout();
+    print('result : ${result.body}');
     return Result(statusCode: result.statusCode);
   }
 }

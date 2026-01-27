@@ -67,7 +67,7 @@ class HomeEmployeeProfile extends StatelessWidget {
                                   decoration: BoxDecoration(
                                     color: Theme.of(
                                       context,
-                                    ).colorScheme.primary,
+                                    ).colorScheme.surfaceContainer,
                                     shape: BoxShape.circle,
                                   ),
                                 ),
@@ -81,14 +81,20 @@ class HomeEmployeeProfile extends StatelessWidget {
                         'John Doe',
                         style:
                             GoogleFonts.mada(
-                              textStyle: Theme.of(context).textTheme.bodyMedium,
-                            ).copyWith(
-                              fontSize: 20,
-                              color: Theme.of(context).colorScheme.onTertiary,
-                            ),
+                                  textStyle: Theme.of(
+                                    context,
+                                  ).textTheme.bodyMedium,
+                                )
+                                .copyWith(
+                                  fontSize: 20,
+                                  color: Theme.of(
+                                    context,
+                                  ).colorScheme.onTertiary,
+                                )
+                                .copyWith(fontWeight: FontWeight.bold),
                       ),
                       Text(
-                        'Web Developer',
+                        'Software Engineer',
                         style:
                             GoogleFonts.mada(
                               textStyle: Theme.of(context).textTheme.bodyMedium,
