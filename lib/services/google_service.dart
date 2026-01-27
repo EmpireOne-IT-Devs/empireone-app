@@ -8,9 +8,9 @@ class GoogleService {
 
   GoogleService(this.googleSignIn, this.baseUrl);
   final GoogleSignIn _googleSignIn = GoogleSignIn(
-    scopes: ['email', 'profile'],
-    // serverClientId:
-    //     '713254963579-jeed4qktrvhq0csaofhu61kkd8c8gbeo.apps.googleusercontent.com',
+    scopes: ['email'],
+    serverClientId:
+        '543673078002-bhqkbrhr7cpfapraq0cjb3hl30mavj53.apps.googleusercontent.com',
   );
 
   Future<GoogleSignInAuthentication?> signIn() async {

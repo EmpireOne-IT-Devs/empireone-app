@@ -121,7 +121,7 @@ class AccountRepository {
 
   Future<Result> signInTGoogle({required String idToken}) async {
     var result = await _accountService.signInTGoogle(idToken: idToken);
-
+    print('signTgoogle: ${result.body}');
     return Result(statusCode: result.statusCode);
   }
 
@@ -208,5 +208,4 @@ class AccountRepository {
     var result = await _accountService.logout();
     return Result(statusCode: result.statusCode);
   }
-  
 }

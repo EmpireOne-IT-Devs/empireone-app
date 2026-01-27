@@ -90,28 +90,33 @@ class StepperBloc extends Bloc<StepperEvent, StepperState> {
     var result = await _accountRepository.employeeId(
       employeeId: state.employeeIdStepper.value,
     );
-    var email = result.data?.eogs;
-    // print('emailsss: $email');
-    var resultSendotp = await _accountRepository.sendOtp(email: email ?? '');
-    print('resultStatus: ${result.resultStatus}');
-    print('Sendotp status: ${resultSendotp.resultStatus}');
-
-    switch (resultSendotp.resultStatus) {
-      case ResultStatus.success:
-        emit(
-          state.copyWith(requestStatusSendOtpStepper: RequestStatus.success),
-        );
-        emit(
-          state.copyWith(requestStatusSendOtpStepper: RequestStatus.success),
-        );
-        break;
-      case ResultStatus.error:
-        emit(
-          state.copyWith(requestStatusSendOtpStepper: RequestStatus.failure),
-        );
-        break;
-      case ResultStatus.none:
-        break;
+    if (result.resultStatus == ResultStatus.success) {
+      var email = result.data?.eogs;
+      // print('emailsss: $email');
+      var resultSendotp = await _accountRepository.sendOtp(email: email ?? '');
+      print('resultStatus: ${result.resultStatus}');
+      print('Sendotp status: ${resultSendotp.resultStatus}');
+      switch (resultSendotp.resultStatus) {
+        case ResultStatus.success:
+          emit(
+            state.copyWith(requestStatusSendOtpStepper: RequestStatus.success),
+          );
+          break;
+        case ResultStatus.error:
+          emit(
+            state.copyWith(requestStatusSendOtpStepper: RequestStatus.failure),
+          );
+          break;
+        case ResultStatus.none:
+          break;
+      }
+    } else {
+      emit(
+        state.copyWith(
+          requestStatus: RequestStatus.failure,
+          message: result.data?.message ?? '',
+        ),
+      );
     }
   }
 

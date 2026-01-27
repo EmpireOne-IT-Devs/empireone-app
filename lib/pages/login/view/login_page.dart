@@ -62,7 +62,7 @@ class LoginPage extends StatelessWidget {
         break;
       case RequestStatus.success:
         Future.delayed(const Duration(milliseconds: 3000));
-        // context.go(HomeEmployeePage.route);
+        context.go(HomeEmployeePage.route);
         break;
       case RequestStatus.failure:
         Navigator.pop(context);
